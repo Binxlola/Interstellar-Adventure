@@ -1,4 +1,4 @@
-package interstellar_adventures;
+package management;
 
 import java.awt.EventQueue;
 
