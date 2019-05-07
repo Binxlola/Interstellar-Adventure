@@ -18,11 +18,15 @@ import java.awt.Font;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class SetupScreen {
 
 	private JFrame frmInterstellarAdventures;
 	private JTextField shipNameFld;
+	private int crewSize;
+	private int gameDuration;
 
 	/**
 	 * Launch the application.
@@ -56,6 +60,7 @@ public class SetupScreen {
 		frmInterstellarAdventures.setBounds(100, 100, 1000, 600);
 		frmInterstellarAdventures.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInterstellarAdventures.getContentPane().setLayout(new CardLayout(0, 0));
+		frmInterstellarAdventures.setResizable(false);
 		
 		// Create a Jpanel that will act as a card stack
 		JPanel setup = new JPanel();
@@ -66,7 +71,7 @@ public class SetupScreen {
 		JPanel setup1 = new JPanel();
 		setup.add(setup1, "name_621206693201140");
 		
-		// Creat new game button and add event handler
+		// Create new game button and add event handler
 		JButton newGameBtn = new JButton("New Game");
 		newGameBtn.setBounds(320, 382, 102, 31);
 		newGameBtn.addActionListener(new ActionListener() {
@@ -120,6 +125,13 @@ public class SetupScreen {
 		setup2.add(gameLengthLbl);
 		
 		JSlider gameLengthSldr = new JSlider();
+		gameLengthSldr.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				JSlider source = (JSlider) e.getSource();
+				gameDuration = source.getValue();
+				
+			}
+		});
 		gameLengthSldr.setSnapToTicks(true);
 		gameLengthSldr.setPaintLabels(true);
 		gameLengthSldr.setMajorTickSpacing(1);
@@ -147,6 +159,13 @@ public class SetupScreen {
 		setup2.add(crewSizeLbl);
 		
 		JSlider crewSizeSldr = new JSlider();
+		crewSizeSldr.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				JSlider source = (JSlider) e.getSource();
+				crewSize = source.getValue();
+				
+			}
+		});
 		crewSizeSldr.setSnapToTicks(true);
 		crewSizeSldr.setMinimum(4);
 		crewSizeSldr.setMaximum(6);
@@ -156,63 +175,75 @@ public class SetupScreen {
 		crewSizeSldr.setBounds(100, 111, 200, 30);
 		setup2.add(crewSizeSldr);
 		
+		// Create the users set game parameters.
 		JButton setup2Next = new JButton("Next");
 		setup2Next.setBounds(150, 340, 100, 50);
-		setup2.add(setup2Next);
-		
-		// Adding the ship icons as buttons
-		JButton ship1Btn = new JButton("");
-		ship1Btn.addActionListener(new ActionListener() {
+		setup2Next.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JButton cl = (JButton)(setup2.getComponentAt(520, 350));
-				getSelectedIcon(ship1Btn, cl);
+				System.out.println("Crew size: " + crewSize);
+				System.out.println("Game duration: " + gameDuration);
+				System.out.println(shipNameFld.getText());
 			}
 		});
-		ship1Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship1.png")));
-		ship1Btn.setBounds(450, 40, 50, 50);
-		setup2.add(ship1Btn);
+		setup2.add(setup2Next);
 		
+		// ======Ship Icons======
 		JLabel selectShipLbl = new JLabel("Ship Icon");
 		selectShipLbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		selectShipLbl.setBounds(500, 5, 70, 20);
 		setup2.add(selectShipLbl);
 		
-		JButton ship2Btn = new JButton("");
+		// Adding the ship icons as buttons
+		JButton ship1Btn = new JButton(""); // Ship 1
+		ship1Btn.addActionListener(new SelectedIconListener(setup2, 520, 350));
+		ship1Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship1.png")));
+		ship1Btn.setBounds(450, 40, 50, 50);
+		setup2.add(ship1Btn);
+		
+		JButton ship2Btn = new JButton(""); // Ship 2
+		ship2Btn.addActionListener(new SelectedIconListener(setup2, 520, 350));
 		ship2Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship2.png")));
 		ship2Btn.setBounds(520, 40, 50, 50);
 		setup2.add(ship2Btn);
 		
-		JButton ship3Btn = new JButton("");
+		JButton ship3Btn = new JButton(""); // Ship 3
+		ship3Btn.addActionListener(new SelectedIconListener(setup2, 520, 350));
 		ship3Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship3.png")));
 		ship3Btn.setBounds(590, 40, 50, 50);
 		setup2.add(ship3Btn);
 		
-		JButton ship4Btn = new JButton("");
+		JButton ship4Btn = new JButton(""); // Ship 4
+		ship4Btn.addActionListener(new SelectedIconListener(setup2, 520, 350));
 		ship4Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship4.png")));
 		ship4Btn.setBounds(450, 100, 50, 50);
 		setup2.add(ship4Btn);
 		
-		JButton ship5Btn = new JButton("");
+		JButton ship5Btn = new JButton(""); // Ship 5
+		ship5Btn.addActionListener(new SelectedIconListener(setup2, 520, 350));
 		ship5Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship5.png")));
 		ship5Btn.setBounds(520, 100, 50, 50);
 		setup2.add(ship5Btn);
 		
-		JButton ship6Btn = new JButton("");
+		JButton ship6Btn = new JButton(""); // Ship 6
+		ship6Btn.addActionListener(new SelectedIconListener(setup2, 520, 350));
 		ship6Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship6.png")));
 		ship6Btn.setBounds(590, 100, 50, 50);
 		setup2.add(ship6Btn);
 		
-		JButton ship7Btn = new JButton("");
+		JButton ship7Btn = new JButton(""); // Ship 7
+		ship7Btn.addActionListener(new SelectedIconListener(setup2, 520, 350));
 		ship7Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship7.png")));
 		ship7Btn.setBounds(450, 160, 50, 50);
 		setup2.add(ship7Btn);
 		
-		JButton ship8Btn = new JButton("");
+		JButton ship8Btn = new JButton(""); // Ship 8
+		ship8Btn.addActionListener(new SelectedIconListener(setup2, 520, 350));
 		ship8Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship8.png")));
 		ship8Btn.setBounds(520, 160, 50, 50);
 		setup2.add(ship8Btn);
 		
-		JButton ship9Btn = new JButton("");
+		JButton ship9Btn = new JButton(""); // Ship 9
+		ship9Btn.addActionListener(new SelectedIconListener(setup2, 520, 350));
 		ship9Btn.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/ship9.png")));
 		ship9Btn.setBounds(590, 160, 50, 50);
 		setup2.add(ship9Btn);
@@ -222,8 +253,8 @@ public class SetupScreen {
 		setup2.add(testBtn);
 	}
 	
-	// Not Complete, it will change a buttons icons based on a icon selected. Currently only works for the first Button.
-	private void getSelectedIcon(JButton button, JButton selected) {
+	// Not Complete, it will change a buttons icons based on a icon selected.
+	public static void getSelectedIcon(JButton button, JButton selected) {
 		Icon iconSelected = button.getIcon();
 		selected.setIcon(iconSelected);
 		
