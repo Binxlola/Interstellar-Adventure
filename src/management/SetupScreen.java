@@ -67,12 +67,13 @@ public class SetupScreen {
 		frmInterstellarAdventures.setTitle("Interstellar Adventures");
 		frmInterstellarAdventures.setBounds(100, 100, 1000, 600);
 		frmInterstellarAdventures.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmInterstellarAdventures.getContentPane().setLayout(new CardLayout(0, 0));
 		frmInterstellarAdventures.setResizable(false);
+		frmInterstellarAdventures.getContentPane().setLayout(null);
 		
-		// Create a Jpanel that will act as a card stack
+		// Create a Jpanel that will act as a card stack / Also the first card of the deck, where player starts new game.
 		JPanel setup = new JPanel();
-		frmInterstellarAdventures.getContentPane().add(setup, "name_621061748124305");
+		setup.setBounds(0, 0, 994, 571);
+		frmInterstellarAdventures.getContentPane().add(setup);
 		setup.setLayout(new CardLayout(0, 0));
 		
 		// Create setup1 card that will be added to the setup card stack
@@ -107,12 +108,13 @@ public class SetupScreen {
 		gameLogo.setBounds(0, 0, 984, 348);
 		setup1.add(gameLogo);
 		
+		// ======Window 2: Game Parameters======
 		
 		// Create setup2 card which will be added to the setup card stack
 		JPanel setup2 = new JPanel();
 		setup.add(setup2, "name_621220876675124");
 		
-		// Create test button and add event handler !!!!Must Be changed!!!!
+		// Create back button for Window 2
 		JButton setup2Back = new JButton("Back");
 		setup2Back.setBounds(5, 340, 100, 50);
 		setup2Back.addActionListener(new ActionListener() {
@@ -124,9 +126,7 @@ public class SetupScreen {
 		setup2.setLayout(null);
 		setup2.add(setup2Back);
 		
-		// ===========Game Length===========
-		
-		// Game Length
+		// Game Length setup
 		JLabel gameLengthLbl = new JLabel("Game Length:");
 		gameLengthLbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		gameLengthLbl.setBounds(5, 5, 95, 20);
@@ -149,7 +149,7 @@ public class SetupScreen {
 		gameLengthSldr.setBounds(100, 5, 200, 30);
 		setup2.add(gameLengthSldr);
 		
-		// Ship Name
+		// Ship Name setup
 		JLabel shipNameLbl = new JLabel("Ship Name:");
 		shipNameLbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		shipNameLbl.setBounds(5, 60, 95, 20);
@@ -160,7 +160,7 @@ public class SetupScreen {
 		setup2.add(shipNameFld);
 		shipNameFld.setColumns(10);
 		
-		// Crew Size
+		// Crew Size setup
 		JLabel crewSizeLbl = new JLabel("Crew Size:");
 		crewSizeLbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		crewSizeLbl.setBounds(5, 110, 95, 30);
@@ -182,37 +182,6 @@ public class SetupScreen {
 		crewSizeSldr.setMajorTickSpacing(1);
 		crewSizeSldr.setBounds(100, 111, 200, 30);
 		setup2.add(crewSizeSldr);
-		
-		// Create setup3 before setup2's Next Button creation
-		JPanel setup3 = new JPanel();
-		
-		// Create the users set game parameters.
-		JButton setup2Next = new JButton("Next");
-		setup2Next.setBounds(150, 340, 100, 50);
-		setup2Next.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Crew size: " + crewSize);
-				System.out.println("Game duration: " + gameDuration);
-				System.out.println(shipNameFld.getText());
-				
-				//---can be removed
-				CardLayout cl = (CardLayout)(setup.getLayout());
-				createCrewFields(crewSize, setup3);
-		        cl.show(setup, "name_621220876675248");
-				//-----------------
-			}
-		});
-		setup2.add(setup2Next);
-		
-		//--can be removed
-		
-		// Create setup3 card which will be added to the setup card stack
-		// Window 3: The Crew Editor
-		setup.add(setup3, "name_621220876675248");
-		setup3.setLayout(null);
-		
-		//-----------------
-		
 		
 		// ======Ship Icons======
 		JLabel selectShipLbl = new JLabel("Ship Icon");
@@ -275,9 +244,57 @@ public class SetupScreen {
 		ship9Btn.setBounds(590, 160, 50, 50);
 		setup2.add(ship9Btn);
 		
+		// ======End Ship Icons======
+		
+		// The selected icon button, displays to user what ship icon will be saved.
 		JButton testBtn = new JButton("");
 		testBtn.setBounds(520, 350, 50, 50);
 		setup2.add(testBtn);
+		
+		// Create setup3 before setup2's Next Button creation
+		JPanel setup3 = new JPanel();
+		
+		// Create the users set game parameters.
+		JButton setup2Next = new JButton("Next");
+		setup2Next.setBounds(150, 340, 100, 50);
+		setup2Next.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//	T			System.out.println("Crew size: " + crewSize);
+//	T			System.out.println("Game duration: " + gameDuration);
+//	T			System.out.println(shipNameFld.getText());
+				
+				//---can be removed
+				CardLayout cl = (CardLayout)(setup.getLayout());
+				createCrewFields(crewSize, setup3);
+		        cl.next(setup);
+				//-----------------
+			}
+		});
+		setup2.add(setup2Next);
+		
+		// ======Window 3: Crew Editor======
+		
+		// Create setup3 card which will be added to the setup card stack
+		// Card is created on line 187
+		setup.add(setup3, "name_621220876675248");
+		setup3.setLayout(null);
+		
+		// Create back button for Window 3
+		JButton setup3Back = new JButton("Back");
+		setup3Back.setBounds(150, 450, 100, 50);
+		setup3Back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cl = (CardLayout)(setup.getLayout());
+		        cl.previous(setup);;
+			}
+		});
+		setup3.add(setup3Back);
+		
+		// Creat next button for Window 3
+		JButton setup3Next = new JButton("Next");
+		setup3Next.setBounds(350, 450, 100, 50);
+		setup3.add(setup3Next);
+		
 	}
 	
 //	private void createCrewFields(int size, JPanel panel) {
@@ -319,7 +336,7 @@ public class SetupScreen {
 	
 	private void createCrewFields(int size, JPanel panel) {
 		int[] xCoord = {139, 40, 40, 40, 139}; // X coordinate for each component.
-		int[] yCoord = {127, 83, 126, 157, 163}; // Y coordinate for each component.
+		int[] yCoord = {47, 3, 46, 77, 83}; // Y coordinate for each component.
 		int current = 0;
 		
 		while(current < size) {
