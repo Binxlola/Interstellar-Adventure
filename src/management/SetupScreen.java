@@ -280,41 +280,94 @@ public class SetupScreen {
 		setup2.add(testBtn);
 	}
 	
+//	private void createCrewFields(int size, JPanel panel) {
+//		int[] locTxt = {139, 127, 489, 127, 139, 277, 489, 277, 139, 427, 489, 427};
+//		int[] locLbl = {40, 83, 390, 83, 40, 233, 390, 233, 40, 383, 390, 383};
+//		int[] locName = {40, 126, 390, 126, 40, 276, 390, 276, 40, 426, 390, 426};
+//		int[] locType = {40, 157, 390, 157, 40, 307, 390, 307, 40, 457, 390, 457};
+//		int[] locCombo = {139, 163, 489, 163, 139, 313, 489, 313, 139, 463, 489, 463};
+//		for (int i = 0; (i/2) < crewSize; i+=2) {
+//			// add components to the panel
+//			JTextField textField = new JTextField();
+//			textField.setBounds(locTxt[i], locTxt[i+1], 137, 21);
+//			panel.add(textField);
+//			textField.setColumns(10);
+//			crewName.add(textField);
+//			
+//			JLabel lblNewLabel = new JLabel("CREW #" + ((i/2) + 1));
+//			lblNewLabel.setFont(new Font("Unispace", Font.PLAIN, 18));
+//			lblNewLabel.setBounds(locLbl[i], locLbl[i+1], 103, 27);
+//			panel.add(lblNewLabel);
+//			
+//			JLabel lblCrewName = new JLabel("CREW NAME:");
+//			lblCrewName.setFont(new Font("Rockwell", Font.PLAIN, 14));
+//			lblCrewName.setBounds(locName[i], locName[i+1], 114, 21);
+//			panel.add(lblCrewName);
+//			
+//			JLabel lblCrewType = new JLabel("CREW TYPE:");
+//			lblCrewType.setFont(new Font("Rockwell", Font.PLAIN, 14));
+//			lblCrewType.setBounds(locType[i], locType[i+1], 103, 27);
+//			panel.add(lblCrewType);
+//			
+//			JComboBox<Object> comboBox = new JComboBox<Object>();
+//			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Captain", "Engineer", "Medic", "Scout"}));
+//			comboBox.setBounds(locCombo[i], locCombo[i+1], 137, 21);
+//			panel.add(comboBox);
+//			crewCombo.add(comboBox);
+//		}
+//	}
+	
 	private void createCrewFields(int size, JPanel panel) {
-		int[] locTxt = {139, 127, 489, 127, 139, 277, 489, 277, 139, 427, 489, 427};
-		int[] locLbl = {40, 83, 390, 83, 40, 233, 390, 233, 40, 383, 390, 383};
-		int[] locName = {40, 126, 390, 126, 40, 276, 390, 276, 40, 426, 390, 426};
-		int[] locType = {40, 157, 390, 157, 40, 307, 390, 307, 40, 457, 390, 457};
-		int[] locCombo = {139, 163, 489, 163, 139, 313, 489, 313, 139, 463, 489, 463};
-		for (int i = 0; (i/2) < crewSize; i+=2) {
-			// add components to the panel
+		int[] xCoord = {139, 40, 40, 40, 139}; // X coordinate for each component.
+		int[] yCoord = {127, 83, 126, 157, 163}; // Y coordinate for each component.
+		int current = 0;
+		
+		while(current < size) {
 			JTextField textField = new JTextField();
-			textField.setBounds(locTxt[i], locTxt[i+1], 137, 21);
+			textField.setBounds(xCoord[0], yCoord[0], 137, 21);
 			panel.add(textField);
 			textField.setColumns(10);
 			crewName.add(textField);
 			
-			JLabel lblNewLabel = new JLabel("CREW #" + ((i/2) + 1));
+			JLabel lblNewLabel = new JLabel("CREW #" + (current + 1)); // taken out that weird math calculation.
 			lblNewLabel.setFont(new Font("Unispace", Font.PLAIN, 18));
-			lblNewLabel.setBounds(locLbl[i], locLbl[i+1], 103, 27);
+			lblNewLabel.setBounds(xCoord[1], yCoord[1], 103, 27);
 			panel.add(lblNewLabel);
 			
 			JLabel lblCrewName = new JLabel("CREW NAME:");
 			lblCrewName.setFont(new Font("Rockwell", Font.PLAIN, 14));
-			lblCrewName.setBounds(locName[i], locName[i+1], 114, 21);
+			lblCrewName.setBounds(xCoord[2], yCoord[2], 114, 21);
 			panel.add(lblCrewName);
 			
 			JLabel lblCrewType = new JLabel("CREW TYPE:");
 			lblCrewType.setFont(new Font("Rockwell", Font.PLAIN, 14));
-			lblCrewType.setBounds(locType[i], locType[i+1], 103, 27);
+			lblCrewType.setBounds(xCoord[3], yCoord[3], 103, 27);
 			panel.add(lblCrewType);
 			
 			JComboBox<Object> comboBox = new JComboBox<Object>();
 			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Captain", "Engineer", "Medic", "Scout"}));
-			comboBox.setBounds(locCombo[i], locCombo[i+1], 137, 21);
+			comboBox.setBounds(xCoord[4], yCoord[4], 137, 21);
 			panel.add(comboBox);
 			crewCombo.add(comboBox);
+			
+			if((current%2) == 0) { // even numbers change only the X coordinate, so next item will have new X but same Y.
+				int i = 0;
+				while(i < xCoord.length) {
+					xCoord[i] += 350;
+					i ++;
+				}
+			}
+			else { // Odd numbers get the X coordinate taken back to previous value, and increases Y coordinate to new value.
+				int i = 0;
+				while(i < xCoord.length && i < yCoord.length) {
+					xCoord[i] -= 350;
+					yCoord[i] += 150;
+					i ++;
+				}
+			}
+			current ++; // Increment the current, so the next crew member field is processed next.
 		}
+		
 	}
 	
 	// Not Complete, it will change a buttons icons based on a icon selected.
