@@ -7,10 +7,14 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.BorderLayout;
@@ -27,6 +31,10 @@ public class SetupScreen {
 	private JTextField shipNameFld;
 	private int crewSize;
 	private int gameDuration;
+	
+	//For setup3 window
+	private ArrayList<JTextField> crewName = new ArrayList<JTextField>();
+	private ArrayList<JComboBox<Object>> crewCombo = new ArrayList<JComboBox<Object>>();
 
 	/**
 	 * Launch the application.
@@ -175,6 +183,9 @@ public class SetupScreen {
 		crewSizeSldr.setBounds(100, 111, 200, 30);
 		setup2.add(crewSizeSldr);
 		
+		// Create setup3 before setup2's Next Button creation
+		JPanel setup3 = new JPanel();
+		
 		// Create the users set game parameters.
 		JButton setup2Next = new JButton("Next");
 		setup2Next.setBounds(150, 340, 100, 50);
@@ -183,9 +194,24 @@ public class SetupScreen {
 				System.out.println("Crew size: " + crewSize);
 				System.out.println("Game duration: " + gameDuration);
 				System.out.println(shipNameFld.getText());
+				
+				//---can be removed
+				CardLayout cl = (CardLayout)(setup.getLayout());
+				createCrewFields(crewSize, setup3);
+		        cl.show(setup, "name_621220876675248");
+				//-----------------
 			}
 		});
 		setup2.add(setup2Next);
+		
+		//--can be removed
+		
+		// Create setup3 card which will be added to the setup card stack
+		// Window 3: The Crew Editor
+		setup.add(setup3, "name_621220876675248");
+		
+		//-----------------
+		
 		
 		// ======Ship Icons======
 		JLabel selectShipLbl = new JLabel("Ship Icon");
@@ -251,6 +277,43 @@ public class SetupScreen {
 		JButton testBtn = new JButton("");
 		testBtn.setBounds(520, 350, 50, 50);
 		setup2.add(testBtn);
+	}
+	
+	private void createCrewFields(int size, JPanel panel) {
+		int[] locTxt = {139, 127, 489, 127, 139, 277, 489, 277, 139, 427, 489, 427};
+		int[] locLbl = {40, 83, 390, 83, 40, 233, 390, 233, 40, 383, 390, 383};
+		int[] locName = {40, 126, 390, 126, 40, 276, 390, 276, 40, 426, 390, 426};
+		int[] locType = {40, 157, 390, 157, 40, 307, 390, 307, 40, 457, 390, 457};
+		int[] locCombo = {139, 163, 489, 163, 139, 313, 489, 313, 139, 463, 489, 463};
+		for (int i = 0; (i/2) < crewSize; i+=2) {
+			// add components to the panel
+			JTextField textField = new JTextField();
+			textField.setBounds(locTxt[i], locTxt[i+1], 137, 21);
+			panel.add(textField);
+			textField.setColumns(10);
+			crewName.add(textField);
+			
+			JLabel lblNewLabel = new JLabel("CREW #" + ((i/2) + 1));
+			lblNewLabel.setFont(new Font("Unispace", Font.PLAIN, 18));
+			lblNewLabel.setBounds(locLbl[i], locLbl[i+1], 103, 27);
+			panel.add(lblNewLabel);
+			
+			JLabel lblCrewName = new JLabel("CREW NAME:");
+			lblCrewName.setFont(new Font("Rockwell", Font.PLAIN, 14));
+			lblCrewName.setBounds(locName[i], locName[i+1], 114, 21);
+			panel.add(lblCrewName);
+			
+			JLabel lblCrewType = new JLabel("CREW TYPE:");
+			lblCrewType.setFont(new Font("Rockwell", Font.PLAIN, 14));
+			lblCrewType.setBounds(locType[i], locType[i+1], 103, 27);
+			panel.add(lblCrewType);
+			
+			JComboBox<Object> comboBox = new JComboBox<Object>();
+			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Captain", "Engineer", "Medic", "Scout"}));
+			comboBox.setBounds(locCombo[i], locCombo[i+1], 137, 21);
+			panel.add(comboBox);
+			crewCombo.add(comboBox);
+		}
 	}
 	
 	// Not Complete, it will change a buttons icons based on a icon selected.
