@@ -209,6 +209,7 @@ public class SetupScreen {
 		// Create setup3 card which will be added to the setup card stack
 		// Window 3: The Crew Editor
 		setup.add(setup3, "name_621220876675248");
+		setup3.setLayout(null);
 		
 		//-----------------
 		
