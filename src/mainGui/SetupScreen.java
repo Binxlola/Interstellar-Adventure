@@ -1,4 +1,4 @@
-package management;
+package mainGui;
 
 import java.awt.EventQueue;
 
