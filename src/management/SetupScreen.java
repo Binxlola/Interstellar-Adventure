@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.CardLayout;
+import java.awt.Component;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -275,7 +277,7 @@ public class SetupScreen {
 		// ======Window 3: Crew Editor======
 		
 		// Create setup3 card which will be added to the setup card stack
-		// Card is created on line 187
+		// Card is created on line 255
 		setup.add(setup3, "name_621220876675248");
 		setup3.setLayout(null);
 		
@@ -285,55 +287,24 @@ public class SetupScreen {
 		setup3Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cl = (CardLayout)(setup.getLayout());
+				resetCrewFields(crewSize, setup3);
 		        cl.previous(setup);;
 			}
 		});
 		setup3.add(setup3Back);
 		
-		// Creat next button for Window 3
+		// Creat3 next button for Window 3
 		JButton setup3Next = new JButton("Next");
 		setup3Next.setBounds(350, 450, 100, 50);
 		setup3.add(setup3Next);
 		
 	}
 	
-//	private void createCrewFields(int size, JPanel panel) {
-//		int[] locTxt = {139, 127, 489, 127, 139, 277, 489, 277, 139, 427, 489, 427};
-//		int[] locLbl = {40, 83, 390, 83, 40, 233, 390, 233, 40, 383, 390, 383};
-//		int[] locName = {40, 126, 390, 126, 40, 276, 390, 276, 40, 426, 390, 426};
-//		int[] locType = {40, 157, 390, 157, 40, 307, 390, 307, 40, 457, 390, 457};
-//		int[] locCombo = {139, 163, 489, 163, 139, 313, 489, 313, 139, 463, 489, 463};
-//		for (int i = 0; (i/2) < crewSize; i+=2) {
-//			// add components to the panel
-//			JTextField textField = new JTextField();
-//			textField.setBounds(locTxt[i], locTxt[i+1], 137, 21);
-//			panel.add(textField);
-//			textField.setColumns(10);
-//			crewName.add(textField);
-//			
-//			JLabel lblNewLabel = new JLabel("CREW #" + ((i/2) + 1));
-//			lblNewLabel.setFont(new Font("Unispace", Font.PLAIN, 18));
-//			lblNewLabel.setBounds(locLbl[i], locLbl[i+1], 103, 27);
-//			panel.add(lblNewLabel);
-//			
-//			JLabel lblCrewName = new JLabel("CREW NAME:");
-//			lblCrewName.setFont(new Font("Rockwell", Font.PLAIN, 14));
-//			lblCrewName.setBounds(locName[i], locName[i+1], 114, 21);
-//			panel.add(lblCrewName);
-//			
-//			JLabel lblCrewType = new JLabel("CREW TYPE:");
-//			lblCrewType.setFont(new Font("Rockwell", Font.PLAIN, 14));
-//			lblCrewType.setBounds(locType[i], locType[i+1], 103, 27);
-//			panel.add(lblCrewType);
-//			
-//			JComboBox<Object> comboBox = new JComboBox<Object>();
-//			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Captain", "Engineer", "Medic", "Scout"}));
-//			comboBox.setBounds(locCombo[i], locCombo[i+1], 137, 21);
-//			panel.add(comboBox);
-//			crewCombo.add(comboBox);
-//		}
-//	}
-	
+	/**
+	 * This is a function that will add the required number of crew edit sets to the given panel.
+	 * @param size An Integer the describes the size of the crew, given by the user.
+	 * @param panel A JPanel which refers to the panel that should have the crew edit sets added.
+	 */
 	private void createCrewFields(int size, JPanel panel) {
 		int[] xCoord = {139, 40, 40, 40, 139}; // X coordinate for each component.
 		int[] yCoord = {47, 3, 46, 77, 83}; // Y coordinate for each component.
@@ -386,6 +357,44 @@ public class SetupScreen {
 		}
 		
 	}
+	
+	/**
+	 * This a function that will remove all components previously added by the createCrewFields method call. Essentially reseting the panel.
+	 * @param size An Integer that describes the crew size number given by the user.
+	 * @param panel A JPanel that refers to the panel for which crew edit sets should be removed from.
+	 */
+	private void resetCrewFields(int size, JPanel panel) {
+		int[] xCoord = {489, 390, 390, 390, 489}; // X coordinate for each component in a set, starting with the last set.
+		int[] yCoord = {347, 303, 346, 377, 383}; // Y coordinate for each component in a set, starting with the last set.
+		int current = 0;
+		
+		while(current < size) { // Gets the component at each set of coordinates and removes them.
+			int comp = 0;
+			while(comp < xCoord.length && comp < yCoord.length) {
+				Component component = panel.getComponentAt(xCoord[comp], yCoord[comp]);
+				panel.remove(component);
+				comp ++;
+			}
+			
+			if((current%2) == 0) { // even numbers change only the X coordinate, so next item will have new X but same Y.
+				int i = 0;
+				while(i < xCoord.length) {
+					xCoord[i] -= 350;
+					i ++;
+				}
+			}
+			else { // Odd numbers get the X coordinate taken back to previous value, and increases Y coordinate to new value.
+				int i = 0;
+				while(i < xCoord.length && i < yCoord.length) {
+					xCoord[i] += 350;
+					yCoord[i] -= 150;
+					i ++;
+				}
+			}
+			current ++; // Increment the current, so the next crew member field is processed next.
+		}
+	}
+	
 	
 	// Not Complete, it will change a buttons icons based on a icon selected.
 	public static void getSelectedIcon(JButton button, JButton selected) {
