@@ -27,55 +27,44 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import management.GameManager;
+
 public class SetupScreen {
 
-	private JFrame frmInterstellarAdventures;
+	private JFrame frame;
 	private JTextField shipNameFld;
 	private int crewSize;
 	private int gameDuration;
+	private GuiManager manager;
 	
 	//For setup3 window
 	private ArrayList<JTextField> crewName = new ArrayList<JTextField>();
 	private ArrayList<JComboBox<Object>> crewCombo = new ArrayList<JComboBox<Object>>();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SetupScreen window = new SetupScreen();
-					window.frmInterstellarAdventures.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
-	public SetupScreen() {
+	public SetupScreen(GuiManager incomingManager) {
 		initialize();
+		this.manager = incomingManager;
+		frame.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmInterstellarAdventures = new JFrame();
-		frmInterstellarAdventures.setTitle("Interstellar Adventures");
-		frmInterstellarAdventures.setBounds(100, 100, 1000, 600);
-		frmInterstellarAdventures.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmInterstellarAdventures.setResizable(false);
-		frmInterstellarAdventures.getContentPane().setLayout(null);
+		frame = new JFrame();
+		frame.setTitle("Interstellar Adventures");
+		frame.setBounds(100, 100, 1000, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.getContentPane().setLayout(null);
 		
-		// Create a Jpanel that will act as a card stack / Also the first card of the deck, where player starts new game.
+		// Create a JPanel that will act as a card stack / Also the first card of the deck, where player starts new game.
 		JPanel setup = new JPanel();
 		setup.setBounds(0, 0, 994, 571);
-		frmInterstellarAdventures.getContentPane().add(setup);
+		frame.getContentPane().add(setup);
 		setup.setLayout(new CardLayout(0, 0));
 		
 		// Create setup1 card that will be added to the setup card stack
@@ -109,6 +98,9 @@ public class SetupScreen {
 		gameLogo.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/game_logo.png")));
 		gameLogo.setBounds(0, 0, 984, 348);
 		setup1.add(gameLogo);
+		
+		// Create setup3 before setup2's Next Button creation
+		JPanel setup3 = new JPanel();
 		
 		// ======Window 2: Game Parameters======
 		
@@ -253,18 +245,11 @@ public class SetupScreen {
 		testBtn.setBounds(520, 350, 50, 50);
 		setup2.add(testBtn);
 		
-		// Create setup3 before setup2's Next Button creation
-		JPanel setup3 = new JPanel();
-		
 		// Create the users set game parameters.
 		JButton setup2Next = new JButton("Next");
 		setup2Next.setBounds(150, 340, 100, 50);
 		setup2Next.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//	T			System.out.println("Crew size: " + crewSize);
-//	T			System.out.println("Game duration: " + gameDuration);
-//	T			System.out.println(shipNameFld.getText());
-				
 				//---can be removed
 				CardLayout cl = (CardLayout)(setup.getLayout());
 				createCrewFields(crewSize, setup3);
@@ -296,6 +281,13 @@ public class SetupScreen {
 		// Creat3 next button for Window 3
 		JButton setup3Next = new JButton("Next");
 		setup3Next.setBounds(350, 450, 100, 50);
+		setup3Next.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameManager gameManager = GameManager.getInstance();
+				gameManager.initializeManager(gameDuration, crewSize, shipNameFld.getText());
+				closeWindow();
+			}
+		});
 		setup3.add(setup3Next);
 		
 	}
@@ -306,8 +298,8 @@ public class SetupScreen {
 	 * @param panel A JPanel which refers to the panel that should have the crew edit sets added.
 	 */
 	private void createCrewFields(int size, JPanel panel) {
-		int[] xCoord = {139, 40, 40, 40, 139}; // X coordinate for each component.
-		int[] yCoord = {47, 3, 46, 77, 83}; // Y coordinate for each component.
+		int[] xCoord = {139, 40, 40, 40, 139}; // X coordinate for each component, starting from the first set.
+		int[] yCoord = {47, 3, 46, 77, 83}; // Y coordinate for each component, starting from the first set.
 		int current = 0;
 		
 		while(current < size) {
@@ -401,5 +393,12 @@ public class SetupScreen {
 		Icon iconSelected = button.getIcon();
 		selected.setIcon(iconSelected);
 		
+	}
+	
+	/**
+	 * Will clear all content from window, close it.
+	 */
+	public void closeWindow() {
+		frame.dispose();
 	}
 }
