@@ -20,6 +20,12 @@ public class GuiManager {
 	 */
 	public void closeSetupScreen(SetupScreen setupWindow) {
 		setupWindow.closeWindow();
+		this.launchMain();
 		System.out.println("this worked");
+	}
+	
+	private void launchMain() {
+		@SuppressWarnings("unused")
+		MainScreen mainWindow = new MainScreen(this);
 	}
 }
