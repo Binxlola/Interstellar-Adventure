@@ -262,7 +262,6 @@ public class SetupScreen {
 		// ======Window 3: Crew Editor======
 		
 		// Create setup3 card which will be added to the setup card stack
-		// Card is created on line 255
 		setup.add(setup3, "name_621220876675248");
 		setup3.setLayout(null);
 		
@@ -285,7 +284,7 @@ public class SetupScreen {
 			public void actionPerformed(ActionEvent e) {
 				GameManager gameManager = GameManager.getInstance();
 				gameManager.initializeManager(gameDuration, crewSize, shipNameFld.getText());
-				closeWindow();
+				finishedWindow();
 			}
 		});
 		setup3.add(setup3Next);
@@ -400,5 +399,12 @@ public class SetupScreen {
 	 */
 	public void closeWindow() {
 		frame.dispose();
+	}
+	
+	/**
+	 * Uses the GuiManager close function to clear contents from frame and close application.
+	 */
+	public void finishedWindow() {
+		manager.closeSetupScreen(this);
 	}
 }
