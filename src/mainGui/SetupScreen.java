@@ -29,6 +29,12 @@ import javax.swing.event.ChangeListener;
 
 import management.GameManager;
 
+/**
+ * Represents and application window that will act as the main entry point to the game, where a user can set the game parameters when starting a new game.
+ * User may also load a previously saved game from this setup window.
+ * @author Jason Smit
+ *
+ */
 public class SetupScreen {
 
 	private JFrame frame;
