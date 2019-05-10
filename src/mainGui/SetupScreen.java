@@ -8,6 +8,7 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -256,11 +257,13 @@ public class SetupScreen {
 		setup2Next.setBounds(150, 340, 100, 50);
 		setup2Next.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//---can be removed
-				CardLayout cl = (CardLayout)(setup.getLayout());
-				createCrewFields(crewSize, setup3);
-		        cl.next(setup);
-				//-----------------
+				if (shipNameFld.getText().equals("")) {
+					JOptionPane.showMessageDialog(frame, "Please enter the name of your ship!");
+				} else {
+					CardLayout cl = (CardLayout)(setup.getLayout());
+					createCrewFields(crewSize, setup3);
+			        cl.next(setup);
+				}
 			}
 		});
 		setup2.add(setup2Next);
@@ -283,14 +286,27 @@ public class SetupScreen {
 		});
 		setup3.add(setup3Back);
 		
-		// Creat3 next button for Window 3
+		// Create next button for Window 3
 		JButton setup3Next = new JButton("Next");
 		setup3Next.setBounds(350, 450, 100, 50);
 		setup3Next.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameManager gameManager = GameManager.getInstance();
-				gameManager.initializeManager(gameDuration, crewSize, shipNameFld.getText());
-				finishedWindow();
+				
+				boolean crewNameFldCheck = true;
+				
+				for (JTextField crewNameFld: crewName) {
+					if (crewNameFld.getText().equals("")) {
+						JOptionPane.showMessageDialog(frame, "Crew names cannot be empty!");
+						crewNameFldCheck = false;
+						break;
+					}
+				}
+				
+				if (crewNameFldCheck) {
+					GameManager gameManager = GameManager.getInstance();
+					gameManager.initializeManager(gameDuration, crewSize, shipNameFld.getText());
+					finishedWindow();
+				}
 			}
 		});
 		setup3.add(setup3Next);
