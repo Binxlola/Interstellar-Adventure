@@ -43,8 +43,8 @@ public class GuiManager {
 	 * Will create a new PlanetMain JPanel,
 	 * @return Will return a PlanetMain JPanel that will then be loaded onto the main screen.
 	 */
-	public PlanetMain getPlanetPanel() {
-		PlanetMain content = new PlanetMain();
+	public PlanetMain getPlanetPanel(MainScreen window) {
+		PlanetMain content = new PlanetMain(window);
 		return content;
 	}
 }
