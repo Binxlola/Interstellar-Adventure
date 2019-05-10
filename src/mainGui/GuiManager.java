@@ -28,4 +28,9 @@ public class GuiManager {
 		@SuppressWarnings("unused")
 		MainScreen mainWindow = new MainScreen(this);
 	}
+	
+	public PlanetMain getPlanetPanel() {
+		PlanetMain content = new PlanetMain();
+		return content;
+	}
 }
