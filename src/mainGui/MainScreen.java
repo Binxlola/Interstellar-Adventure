@@ -10,6 +10,7 @@ public class MainScreen {
 
 	private JFrame frame;
 	private GuiManager manager;
+	private JPanel mainScreen;
 
 	/**
 	 * Create the application.
@@ -24,11 +25,12 @@ public class MainScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		JPanel gameNav = new GameNavigation(this);
+		mainScreen = new GameNavigation(this);
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1000, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setContentPane(gameNav);
+		frame.setContentPane(mainScreen);
+		
 	}
 	
 	/**
@@ -46,8 +48,12 @@ public class MainScreen {
 	public void changeContent(String type) {
 		switch(type) {
 		case "Planet":
-			JPanel content = manager.getPlanetPanel();
+			JPanel content = manager.getPlanetPanel(this);
 			this.setContent(content);
+			break;
+		case "mainScreen":
+			this.setContent(mainScreen);
+			break;
 		}
 	}
 
