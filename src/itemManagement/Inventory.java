@@ -38,6 +38,7 @@ public class Inventory {
 	 * @return A string describing if the item was already in the list, or it it was not.
 	 */
 	public String addItem(Item item) {
+		// Need to implement the incremeant functionality.
 		if(inventory.contains(item)) {
 			return "Item is here";
 			}
