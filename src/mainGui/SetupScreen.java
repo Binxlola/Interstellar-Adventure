@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 
@@ -28,6 +29,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import crewManagement.Crew;
 import management.GameManager;
 
 /**
@@ -45,8 +47,8 @@ public class SetupScreen {
 	private GuiManager manager;
 	
 	//For setup3 window
-	private ArrayList<JTextField> crewName = new ArrayList<JTextField>();
-	private ArrayList<JComboBox<Object>> crewCombo = new ArrayList<JComboBox<Object>>();
+	private List<JTextField> crewNames = new ArrayList<JTextField>();
+	private List<JComboBox<Object>> crewTypes = new ArrayList<JComboBox<Object>>();
 
 	/**
 	 * Create the application.
@@ -294,7 +296,7 @@ public class SetupScreen {
 				
 				boolean crewNameFldCheck = true;
 				
-				for (JTextField crewNameFld: crewName) {
+				for (JTextField crewNameFld: crewNames) {
 					if (crewNameFld.getText().equals("")) {
 						JOptionPane.showMessageDialog(frame, "Crew names cannot be empty!");
 						crewNameFldCheck = false;
@@ -303,8 +305,11 @@ public class SetupScreen {
 				}
 				
 				if (crewNameFldCheck) {
-					GameManager gameManager = GameManager.getInstance();
+					GameManager gameManager = GameManager.getInstance(); // Create the game manager instance
 					gameManager.initializeManager(gameDuration, crewSize, shipNameFld.getText());
+					Crew crew = Crew.getInstance(); // Create the crew instance 
+					crew.createMembers(crewNames, crewTypes);
+					crew.presentCrew(); // JUST A TEST
 					finishedWindow();
 				}
 			}
@@ -328,7 +333,7 @@ public class SetupScreen {
 			textField.setBounds(xCoord[0], yCoord[0], 137, 21);
 			panel.add(textField);
 			textField.setColumns(10);
-			crewName.add(textField);
+			crewNames.add(textField);
 			
 			JLabel lblNewLabel = new JLabel("CREW #" + (current + 1)); // taken out that weird math calculation.
 			lblNewLabel.setFont(new Font("Unispace", Font.PLAIN, 18));
@@ -349,7 +354,7 @@ public class SetupScreen {
 			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Captain", "Engineer", "Medic", "Scout"}));
 			comboBox.setBounds(xCoord[4], yCoord[4], 137, 21);
 			panel.add(comboBox);
-			crewCombo.add(comboBox);
+			crewTypes.add(comboBox);
 			
 			if((current%2) == 0) { // even numbers change only the X coordinate, so next item will have new X but same Y.
 				int i = 0;
