@@ -35,8 +35,8 @@ public class Crew {
 	 * @param crewNames A List containing the JTextField's that hold the names for each crew memeber.
 	 * @param crewTypes A List containing the JComboBox's that hold the types for each crew member.
 	 */
-	public void createMembers(List<JTextField> crewNames, List<JComboBox<Object>> crewTypes) {
-		for (int i = 0; i < crewNames.size() && i < crewTypes.size(); i++) { 
+	public void createCrew(List<JTextField> crewNames, List<JComboBox<Object>> crewTypes, int size) {
+		for (int i = 0; i < size; i++) { 
 		    String name = crewNames.get(i).getText(); // Get the name for each crew member
 		    String type= (String) crewTypes.get(i).getSelectedItem(); // Get the type for each crew member
 		    
@@ -45,6 +45,7 @@ public class Crew {
 		    case "Captain":
 		    	Captain captain = new Captain(name);
 		    	this.addMember(captain);
+		    	break;
 		    case "Engineer":
 		    	Engineer engineer = new Engineer(name);
 		    	this.addMember(engineer);

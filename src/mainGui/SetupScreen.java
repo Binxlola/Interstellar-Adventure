@@ -49,6 +49,9 @@ public class SetupScreen {
 	//For setup3 window
 	private List<JTextField> crewNames = new ArrayList<JTextField>();
 	private List<JComboBox<Object>> crewTypes = new ArrayList<JComboBox<Object>>();
+	private List<JLabel> crewNumLbl = new ArrayList<JLabel>();
+	private List<JLabel> crewNamesLbl = new ArrayList<JLabel>();
+	private List<JLabel> crewTypesLbl = new ArrayList<JLabel>();
 
 	/**
 	 * Create the application.
@@ -254,6 +257,8 @@ public class SetupScreen {
 		testBtn.setBounds(520, 350, 50, 50);
 		setup2.add(testBtn);
 		
+		createCrewFields(setup3); // Pre-emptive initialization for setup3
+		
 		// Create the users set game parameters.
 		JButton setup2Next = new JButton("Next");
 		setup2Next.setBounds(150, 340, 100, 50);
@@ -261,9 +266,12 @@ public class SetupScreen {
 			public void actionPerformed(ActionEvent e) {
 				if (shipNameFld.getText().equals("")) {
 					JOptionPane.showMessageDialog(frame, "Please enter the name of your ship!");
+				} else if (shipNameFld.getText().length() > 20){
+					JOptionPane.showMessageDialog(frame, "Ship name must be up to 20 characters long!");
+					shipNameFld.setText("");
 				} else {
 					CardLayout cl = (CardLayout)(setup.getLayout());
-					createCrewFields(crewSize, setup3);
+					resetCrewFields();
 			        cl.next(setup);
 				}
 			}
@@ -282,7 +290,7 @@ public class SetupScreen {
 		setup3Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cl = (CardLayout)(setup.getLayout());
-				resetCrewFields(crewSize, setup3);
+				resetCrewFields();
 		        cl.previous(setup);;
 			}
 		});
@@ -296,20 +304,41 @@ public class SetupScreen {
 				
 				boolean crewNameFldCheck = true;
 				
+				// Checks if any fields are empty
+				int i = 0;
 				for (JTextField crewNameFld: crewNames) {
-					if (crewNameFld.getText().equals("")) {
+					if (crewNameFld.getText().equals("") && crewNameFldCheck && i < crewSize) {
 						JOptionPane.showMessageDialog(frame, "Crew names cannot be empty!");
 						crewNameFldCheck = false;
 						break;
+					} else if (crewNameFld.getText().length() > 20) {
+						JOptionPane.showMessageDialog(frame, "Crew names must be up to 20 characters long!");
+						crewNameFld.setText("");
 					}
+					
+					// Checks if a field value is the same as any other field
+					int j = 0;
+					for (JTextField otherNameFld: crewNames) {
+						if (crewNameFld.getText().equals(otherNameFld.getText())
+								&& crewNames.indexOf(crewNameFld) != crewNames.indexOf(otherNameFld)
+								&& crewNameFldCheck
+								&& j < crewSize) {
+							JOptionPane.showMessageDialog(frame, "Crew names cannot be the same!");
+							crewNameFldCheck = false;
+							break;
+						}
+						j++;
+					}
+					i++;
 				}
 				
+				
 				if (crewNameFldCheck) {
-					GameManager gameManager = GameManager.getInstance(); // Create the game manager instance
+					GameManager gameManager = GameManager.getInstance();
 					gameManager.initializeManager(gameDuration, crewSize, shipNameFld.getText());
-					Crew crew = Crew.getInstance(); // Create the crew instance 
-					crew.createMembers(crewNames, crewTypes);
-					crew.presentCrew(); // JUST A TEST
+					Crew crew = Crew.getInstance();
+					crew.createCrew(crewNames, crewTypes, crewSize);
+					crew.presentCrew();
 					finishedWindow();
 				}
 			}
@@ -323,12 +352,12 @@ public class SetupScreen {
 	 * @param size An Integer the describes the size of the crew, given by the user.
 	 * @param panel A JPanel which refers to the panel that should have the crew edit sets added.
 	 */
-	private void createCrewFields(int size, JPanel panel) {
+	private void createCrewFields(JPanel panel) {
 		int[] xCoord = {139, 40, 40, 40, 139}; // X coordinate for each component, starting from the first set.
 		int[] yCoord = {47, 3, 46, 77, 83}; // Y coordinate for each component, starting from the first set.
 		int current = 0;
 		
-		while(current < size) {
+		while(current < 6) {
 			JTextField textField = new JTextField();
 			textField.setBounds(xCoord[0], yCoord[0], 137, 21);
 			panel.add(textField);
@@ -339,16 +368,19 @@ public class SetupScreen {
 			lblNewLabel.setFont(new Font("Unispace", Font.PLAIN, 18));
 			lblNewLabel.setBounds(xCoord[1], yCoord[1], 103, 27);
 			panel.add(lblNewLabel);
+			crewNumLbl.add(lblNewLabel);
 			
 			JLabel lblCrewName = new JLabel("CREW NAME:");
 			lblCrewName.setFont(new Font("Rockwell", Font.PLAIN, 14));
 			lblCrewName.setBounds(xCoord[2], yCoord[2], 114, 21);
 			panel.add(lblCrewName);
+			crewNamesLbl.add(lblCrewName);
 			
 			JLabel lblCrewType = new JLabel("CREW TYPE:");
 			lblCrewType.setFont(new Font("Rockwell", Font.PLAIN, 14));
 			lblCrewType.setBounds(xCoord[3], yCoord[3], 103, 27);
 			panel.add(lblCrewType);
+			crewTypesLbl.add(lblCrewType);
 			
 			JComboBox<Object> comboBox = new JComboBox<Object>();
 			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Captain", "Engineer", "Medic", "Scout"}));
@@ -381,38 +413,24 @@ public class SetupScreen {
 	 * @param size An Integer that describes the crew size number given by the user.
 	 * @param panel A JPanel that refers to the panel for which crew edit sets should be removed from.
 	 */
-	private void resetCrewFields(int size, JPanel panel) {
-		int[] xCoord = {489, 390, 390, 390, 489}; // X coordinate for each component in a set, starting with the last set.
-		int[] yCoord = {347, 303, 346, 377, 383}; // Y coordinate for each component in a set, starting with the last set.
-		int current = 0;
-		
-		while(current < size) { // Gets the component at each set of coordinates and removes them.
-			int comp = 0;
-			while(comp < xCoord.length && comp < yCoord.length) {
-				Component component = panel.getComponentAt(xCoord[comp], yCoord[comp]);
-				panel.remove(component);
-				comp ++;
+	private void resetCrewFields() {
+		for (int i = 0; i < 6; i++) {
+			crewNames.get(i).setText("");
+			if (i < crewSize) {
+				crewNames.get(i).setVisible(true);
+				crewTypes.get(i).setVisible(true);
+				crewNumLbl.get(i).setVisible(true);
+				crewNamesLbl.get(i).setVisible(true);
+				crewTypesLbl.get(i).setVisible(true);
+			} else {
+				crewNames.get(i).setVisible(false);
+				crewTypes.get(i).setVisible(false);
+				crewNumLbl.get(i).setVisible(false);
+				crewNamesLbl.get(i).setVisible(false);
+				crewTypesLbl.get(i).setVisible(false);
 			}
-			
-			if((current%2) == 0) { // even numbers change only the X coordinate, so next item will have new X but same Y.
-				int i = 0;
-				while(i < xCoord.length) {
-					xCoord[i] -= 350;
-					i ++;
-				}
-			}
-			else { // Odd numbers get the X coordinate taken back to previous value, and increases Y coordinate to new value.
-				int i = 0;
-				while(i < xCoord.length && i < yCoord.length) {
-					xCoord[i] += 350;
-					yCoord[i] -= 150;
-					i ++;
-				}
-			}
-			current ++; // Increment the current, so the next crew member field is processed next.
 		}
 	}
-	
 	
 	// Not Complete, it will change a buttons icons based on a icon selected.
 	public static void getSelectedIcon(JButton button, JButton selected) {
