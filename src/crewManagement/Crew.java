@@ -106,5 +106,12 @@ public class Crew {
 			member.resetMoves();
 		}
 	}
+	
+	/**
+	 * Returns the current number of crews
+	 */
+	public int size() {
+		return crewMembers.size();
+	}
 
 }
