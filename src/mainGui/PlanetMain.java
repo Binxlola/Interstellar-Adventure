@@ -46,6 +46,16 @@ public class PlanetMain extends JPanel {
 		
 		JButton confirmBtn = new JButton("Confirm");
 		confirmBtn.setBounds(200, 450, 140, 30);
+		confirmBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (maxSelected < 2) {
+					JOptionPane.showMessageDialog(null, "Please select at least two crew members to pilot your ship!");
+				} else {
+					deductMoves();
+					window.changeContent("PlanetSelect");
+				}
+			}
+		});
 		add(confirmBtn);
 		
 		JLabel selectLbl = new JLabel("SELECT CREW MEMBERS TO PILOT");
@@ -99,6 +109,18 @@ public class PlanetMain extends JPanel {
 				checkBoxList.add(crewCheckBox);
 			} else {
 				crewCheckBox.setEnabled(false);
+			}
+		}
+	}
+	
+	/**
+	 * Deducts the move of checked crew members by 1
+	 */
+	private void deductMoves() {
+		for (JCheckBox checkBox: checkBoxList) {
+			int i = checkBoxList.indexOf(checkBox);
+			if (checkBox.isSelected()) {
+				crew.getCrew().get(i).deductMove();
 			}
 		}
 	}
