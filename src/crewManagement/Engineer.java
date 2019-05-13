@@ -24,7 +24,7 @@ public class Engineer extends CrewMember {
 	 * @return Will return a String representing the type of crew member.
 	 */
 	public String getType() {
-		return this.name;
+		return this.type;
 	}
 	
 	public String getName() {
