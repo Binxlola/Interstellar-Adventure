@@ -46,11 +46,15 @@ public class MainScreen {
 	 * @param type A String that describes what content panel should be retrieved and loaded.
 	 */
 	public void changeContent(String type) {
+		JPanel content;
 		switch(type) {
 		case "Planet":
-			JPanel content = manager.getPlanetPanel(this);
+			content = manager.getPlanetPanel(this);
 			this.setContent(content);
 			break;
+		case "PlanetSelect":
+			content = manager.getPlanetSelect(this);
+			this.setContent(content);
 		case "mainScreen":
 			this.setContent(mainScreen);
 			break;
