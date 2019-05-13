@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -22,13 +23,15 @@ public class PlanetMain extends JPanel {
 	
 	GameManager gameManager = GameManager.getInstance();
 	Crew crew = Crew.getInstance();
+	MainScreen window;
 	private List<JCheckBox> checkBoxList = new ArrayList<JCheckBox>();
 	private int maxSelected = 0;
 
 	/**
 	 * Create the panel.
 	 */
-	public PlanetMain(MainScreen window) {
+	public PlanetMain(MainScreen incomingWindow) {
+		window = incomingWindow;
 		setBounds(0, 0, 1000, 600);
 		setLayout(null);
 		
@@ -37,7 +40,6 @@ public class PlanetMain extends JPanel {
 		backBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.changeContent("mainScreen");
-				System.out.println(checkBoxList.size());
 			}
 		});
 		add(backBtn);
@@ -46,7 +48,13 @@ public class PlanetMain extends JPanel {
 		confirmBtn.setBounds(200, 450, 140, 30);
 		add(confirmBtn);
 		
+		JLabel selectLbl = new JLabel("SELECT CREW MEMBERS TO PILOT");
+		selectLbl.setFont(new Font("Distant Galaxy", Font.PLAIN, 24));
+		selectLbl.setBounds(45, 40, 600, 40);
+		this.add(selectLbl);
+		
 		createCheckBtn();
+		checkAvailableCrew();
 	}
 	
 	/*
@@ -68,7 +76,7 @@ public class PlanetMain extends JPanel {
 			crewTypeLbl.setBounds(50, y+20, 150, 20);
 			this.add(crewTypeLbl);
 			
-			JCheckBox crewCheckBox = new JCheckBox("");
+			JCheckBox crewCheckBox = new JCheckBox("   " + crew.getCrew().get(i).getMoves() + " moves left");
 			crewCheckBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					JCheckBox source = (JCheckBox) e.getSource();
@@ -85,7 +93,24 @@ public class PlanetMain extends JPanel {
 			});
 			crewCheckBox.setBounds(300, y, 150, 20);
 			this.add(crewCheckBox);
-			checkBoxList.add(crewCheckBox);
+			
+			// Checks if the crew member has moves left
+			if (crew.getCrew().get(i).getMoves() > 0) {
+				checkBoxList.add(crewCheckBox);
+			} else {
+				crewCheckBox.setEnabled(false);
+			}
+		}
+	}
+	
+	/**
+	 * Checks the number of crews available to pilot.
+	 * If the number of crews available is 1 or less,
+	 * this method pops a notification to the player.
+	 */
+	private void checkAvailableCrew() {
+		if (checkBoxList.size() < 2) {
+			JOptionPane.showMessageDialog(null, "You don't have enough crew to pilot the ship!");
 		}
 	}
 	
