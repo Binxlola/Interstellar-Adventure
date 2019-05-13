@@ -1,5 +1,7 @@
 package management;
 
+import environment.Environment;
+
 /**
  * Control center of a players game.
  * @author Jason Smit
@@ -38,6 +40,8 @@ public class GameManager {
 		this.setDuration(duration);
 		this.setCrewSize(size);
 		this.setShipName(name);
+		Environment env = Environment.getInstance();
+		env.buildEnvironment(gameDuration);
 		System.out.println(this.gameDuration);
 		System.out.println(this.crewSize);
 		System.out.println(this.shipName);
