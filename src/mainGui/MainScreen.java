@@ -55,6 +55,7 @@ public class MainScreen {
 		case "PlanetSelect":
 			content = manager.getPlanetSelect(this);
 			this.setContent(content);
+			break;
 		case "mainScreen":
 			this.setContent(mainScreen);
 			break;
