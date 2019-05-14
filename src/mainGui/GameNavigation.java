@@ -30,7 +30,7 @@ public class GameNavigation extends JPanel {
 		travelPlanetBtn.setBounds(0, 0, 140, 30);
 		travelPlanetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				window.changeContent("Planet");
+				window.changeContent("TravelPlanetSelect");
 			}
 		});
 		add(travelPlanetBtn);
