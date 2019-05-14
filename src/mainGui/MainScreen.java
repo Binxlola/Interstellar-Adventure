@@ -48,12 +48,12 @@ public class MainScreen {
 	public void changeContent(String type) {
 		JPanel content;
 		switch(type) {
-		case "Planet":
-			content = manager.getPlanetPanel(this);
+		case "TravelCrewSelect":
+			content = manager.getTravelCrewPanel(this);
 			this.setContent(content);
 			break;
-		case "PlanetSelect":
-			content = manager.getPlanetSelect(this);
+		case "TravelPlanetSelect":
+			content = manager.getTravelPlanetPanel(this);
 			this.setContent(content);
 			break;
 		case "mainScreen":
