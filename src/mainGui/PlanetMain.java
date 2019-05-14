@@ -112,8 +112,6 @@ public class PlanetMain extends JPanel {
 		searchCrewList.add(radBtn6);
 		String msg = "Select a search crew";
 		Object[] params = {msg, radBtn1, radBtn2, radBtn3, radBtn4, radBtn5, radBtn6};
-		System.out.println(searchCrewList.size());
-		System.out.println(crew.size());
 		for (int i = 0; i < searchCrewList.size(); i++) {
 			if (i < crew.size()) {
 				String name = crew.getCrew().get(i).getName();
