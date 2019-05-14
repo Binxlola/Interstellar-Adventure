@@ -129,7 +129,19 @@ public class Environment {
 	 * Get the index of selected planet to travel to
 	 * @return Returns the index of the planet the ship will travel to
 	 */
-	public int getSelectedPlanet() {
+	public int getSelectedPlanetIndex() {
 		return selectedPlanet;
+	}
+	
+	/*
+	 * Get the selected Planet object to travel to
+	 * @return Returns the selected planet object the ship will travel to
+	 */
+	public Planet getSelectedPlanet() {
+		if (selectedPlanet == -1) {
+			return null;
+		} else {
+			return planets.get(selectedPlanet);
+		}
 	}
 }
