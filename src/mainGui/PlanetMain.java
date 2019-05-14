@@ -132,20 +132,18 @@ public class PlanetMain extends JPanel {
 		}
 		
 		boolean searchCrewSelected = false;
-		int input = 0;
 		
-		while (!searchCrewSelected && input == 0) {
-			input = JOptionPane.showConfirmDialog(null, params, "Search", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-			if (input == 0) {
-				for (JRadioButton btn: searchCrewList) {
-					if (btn.isSelected()) {
-						int radioIndex = searchCrewList.indexOf(btn);
-						searchCrewSelected = true;
-						searchCrew = crew.getCrew().get(radioIndex);
-					}
+		int input = JOptionPane.showConfirmDialog(null, params, "Search", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		if (input == 0) {
+			for (JRadioButton btn: searchCrewList) {
+				if (btn.isSelected()) {
+					int radioIndex = searchCrewList.indexOf(btn);
+					searchCrewSelected = true;
+					searchCrew = crew.getCrew().get(radioIndex);
+					searchCrew.deductMove();
 				}
-				if (!searchCrewSelected) JOptionPane.showMessageDialog(null, "You must select one crew to search!");
 			}
+			if (!searchCrewSelected) JOptionPane.showMessageDialog(null, "You must select one crew to search!");
 		}
 		
 		return searchCrewSelected;
@@ -165,6 +163,8 @@ public class PlanetMain extends JPanel {
 							btn.setSelected(false);
 						}
 					}
+				} else {
+					source.setSelected(true);
 				}
 			}
 		});
