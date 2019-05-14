@@ -56,4 +56,13 @@ public class GuiManager {
 		TravelPlanetSelect content = new TravelPlanetSelect(window);
 		return content;
 	}
+	
+	/**
+	 * Will create a new PlanetMain JPanel
+	 * @return Will return a PlanetMain JPanel that will then be loaded onto the main screen.
+	 */
+	public PlanetMain getPlanetMain(MainScreen window) {
+		PlanetMain content = new PlanetMain(window);
+		return content;
+	}
 }
