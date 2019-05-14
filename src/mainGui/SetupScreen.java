@@ -359,7 +359,7 @@ public class SetupScreen {
 		int crewTypeDifference = -1;
 		
 		while(current < 6) {
-			if (crewTypeDifference >= 3) crewTypeDifference = -1;
+			if (crewTypeDifference >= 3) crewTypeDifference = 0;
 			JTextField textField = new JTextField();
 			textField.setBounds(xCoord[0], yCoord[0], 137, 21);
 			panel.add(textField);
@@ -386,7 +386,7 @@ public class SetupScreen {
 			
 			JComboBox<Object> comboBox = new JComboBox<Object>();
 			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Captain", "Engineer", "Medic", "Scout"}));
-			comboBox.setSelectedIndex(crewTypeDifference+1);
+			comboBox.setSelectedIndex(crewTypeDifference+=1);
 			comboBox.setBounds(xCoord[4], yCoord[4], 137, 21);
 			panel.add(comboBox);
 			crewTypes.add(comboBox);
