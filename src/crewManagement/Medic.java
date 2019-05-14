@@ -19,7 +19,7 @@ public class Medic extends CrewMember {
 	 */
 	public Medic(String newName) {
 		name = newName;
-		memberMoves = 3;
+		memberMoves = 2;
 		memberHealth = 100;
 	}
 	

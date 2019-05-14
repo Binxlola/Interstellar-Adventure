@@ -19,7 +19,7 @@ public class Scout extends CrewMember {
 	
 	public Scout(String newName) {
 		name = newName;
-		memberMoves = 3;
+		memberMoves = 2;
 		memberHealth = 100;
 	}
 	
