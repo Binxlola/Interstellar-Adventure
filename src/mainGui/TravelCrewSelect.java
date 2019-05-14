@@ -135,7 +135,7 @@ public class TravelCrewSelect extends JPanel {
 	 */
 	private void checkAvailableCrew() {
 		if (checkBoxList.size() < 2) {
-			JOptionPane.showMessageDialog(null, "You don't have enough crew to pilot the ship!\n      Time to start a new day!");
+			JOptionPane.showMessageDialog(null, "You don't have enough crew to pilot the ship!\n         Time to start a new day!");
 		}
 	}
 	
