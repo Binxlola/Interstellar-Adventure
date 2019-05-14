@@ -95,7 +95,7 @@ public class PlanetMain extends JPanel {
 	}
 	
 	/**
-	 * Produces the Message Dialog containing a checkboxes of all crews available
+	 * Produces the Message Dialog containing checkboxes of all crews available
 	 * to search and returns true or false if searching or not
 	 * @return Returns true (ok) or false (cancel) based on the user preference
 	 */
