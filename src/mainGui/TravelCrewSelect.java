@@ -25,6 +25,7 @@ public class TravelCrewSelect extends JPanel {
 	Crew crew = Crew.getInstance();
 	MainScreen window;
 	private List<JCheckBox> checkBoxList = new ArrayList<JCheckBox>();
+	private List<JCheckBox> crewCheckBoxList = new ArrayList<JCheckBox>();
 	private int maxSelected = 0;
 
 	/**
@@ -110,6 +111,8 @@ public class TravelCrewSelect extends JPanel {
 			} else {
 				crewCheckBox.setEnabled(false);
 			}
+			
+			crewCheckBoxList.add(crewCheckBox);
 		}
 	}
 	
@@ -117,8 +120,8 @@ public class TravelCrewSelect extends JPanel {
 	 * Deducts the move of checked crew members by 1
 	 */
 	private void deductMoves() {
-		for (JCheckBox checkBox: checkBoxList) {
-			int i = checkBoxList.indexOf(checkBox);
+		for (JCheckBox checkBox: crewCheckBoxList) {
+			int i = crewCheckBoxList.indexOf(checkBox);
 			if (checkBox.isSelected()) {
 				crew.getCrew().get(i).deductMove();
 			}
