@@ -45,6 +45,7 @@ public class GameManager {
 		System.out.println(this.gameDuration);
 		System.out.println(this.crewSize);
 		System.out.println(this.shipName);
+		System.out.println(env.getPlanets().size());
 	}
 	
 	/**
