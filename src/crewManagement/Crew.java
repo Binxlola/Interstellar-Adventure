@@ -113,5 +113,16 @@ public class Crew {
 	public int size() {
 		return crewMembers.size();
 	}
+	
+	/**
+	 * Returns the number of all actions remaining for the crew
+	 */
+	public int getAllMoves() {
+		int sum = 0;
+		for (CrewMember crew: crewMembers) {
+			sum += crew.getMoves();
+		}
+		return sum;
+	}
 
 }
