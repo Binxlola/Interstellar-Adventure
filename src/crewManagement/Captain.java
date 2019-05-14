@@ -15,7 +15,7 @@ public class Captain extends CrewMember {
 	
 	public Captain(String newName) {
 		name = newName;
-		memberMoves = 3;
+		memberMoves = 2;
 		memberHealth = 100;
 	}
 	
