@@ -56,6 +56,10 @@ public class MainScreen {
 			content = manager.getTravelPlanetPanel(this);
 			this.setContent(content);
 			break;
+		case "PlanetMain":
+			content = manager.getPlanetMain(this);
+			this.setContent(content);
+			break;
 		case "mainScreen":
 			this.setContent(mainScreen);
 			break;
