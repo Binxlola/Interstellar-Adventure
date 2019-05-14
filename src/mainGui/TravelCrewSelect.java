@@ -53,7 +53,7 @@ public class TravelCrewSelect extends JPanel {
 					JOptionPane.showMessageDialog(null, "Please select at least two crew members to pilot your ship!");
 				} else {
 					deductMoves();
-					window.changeContent("mainScreen");
+					window.changeContent("PlanetMain");
 				}
 			}
 		});
