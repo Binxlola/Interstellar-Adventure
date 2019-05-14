@@ -43,8 +43,8 @@ public class GuiManager {
 	 * Will create a new PlanetMain JPanel,
 	 * @return Will return a PlanetMain JPanel that will then be loaded onto the main screen.
 	 */
-	public PlanetMain getPlanetPanel(MainScreen window) {
-		PlanetMain content = new PlanetMain(window);
+	public TravelCrewSelect getTravelCrewPanel(MainScreen window) {
+		TravelCrewSelect content = new TravelCrewSelect(window);
 		return content;
 	}
 	
@@ -52,8 +52,8 @@ public class GuiManager {
 	 * Will create a new PlanetSelect JPanel
 	 * @return Will return a PlanetSelect JPanel that will then be loaded onto the main screen.
 	 */
-	public PlanetSelect getPlanetSelect(MainScreen window) {
-		PlanetSelect content = new PlanetSelect(window);
+	public TravelPlanetSelect getTravelPlanetPanel(MainScreen window) {
+		TravelPlanetSelect content = new TravelPlanetSelect(window);
 		return content;
 	}
 }
