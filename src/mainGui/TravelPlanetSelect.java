@@ -57,7 +57,7 @@ public class TravelPlanetSelect extends JPanel {
 		confirmBtn.setBounds(200, 500, 140, 30);
 		confirmBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (env.getSelectedPlanet() == -1) {
+				if (env.getSelectedPlanetIndex() == -1) {
 					JOptionPane.showMessageDialog(null, "Please select a planet to travel to!");
 				} else {
 					window.changeContent("TravelCrewSelect");
