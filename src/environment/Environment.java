@@ -11,7 +11,7 @@ public class Environment {
 	
 	// Disabled until Item Wheel is implemented
 	//private ItemWheel itemWheel = ItemWheel.getInstance();
-	private int selectedPlanet;
+	private int selectedPlanet = -1;
 	private ArrayList<Planet> planets = new ArrayList<Planet>();
 	private String[] planetNames = {
 			"Inater",
@@ -118,7 +118,7 @@ public class Environment {
 	*/
 	
 	/*
-	 * Sets the index of selected planet
+	 * Sets the index of selected planet to travel to
 	 * @param Index of the planet to be selected
 	 */
 	public void selectPlanet(int i) {
@@ -126,7 +126,8 @@ public class Environment {
 	}
 	
 	/*
-	 * Get the index of selected planet
+	 * Get the index of selected planet to travel to
+	 * @return Returns the index of the planet the ship will travel to
 	 */
 	public int getSelectedPlanet() {
 		return selectedPlanet;
