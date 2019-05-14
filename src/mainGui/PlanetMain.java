@@ -18,6 +18,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import crewManagement.Crew;
+import crewManagement.CrewMember;
 import environment.Environment;
 import environment.Planet;
 import management.GameManager;
@@ -28,6 +29,7 @@ public class PlanetMain extends JPanel {
 	private Environment env = Environment.getInstance();
 	private Planet currentPlanet = env.getSelectedPlanet();
 	private Crew crew = Crew.getInstance();
+	private CrewMember searchCrew;
 	private List<JRadioButton> searchCrewList = new ArrayList<JRadioButton>();
 
 	/**
@@ -129,21 +131,24 @@ public class PlanetMain extends JPanel {
 	
 		}
 		
-		int input = JOptionPane.showConfirmDialog(null, params, "Search", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-		// 0=yes, 1=no, 2=cancel
+		boolean searchCrewSelected = false;
+		int input = 0;
 		
-		if (input == 0) {
-			for (JRadioButton btn: searchCrewList) {
-				if (btn.isSelected()) {
-					int searchCrew = searchCrewList.indexOf(btn);
-					crew.getCrew().get(searchCrew).deductMove();
+		while (!searchCrewSelected && input == 0) {
+			input = JOptionPane.showConfirmDialog(null, params, "Search", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+			if (input == 0) {
+				for (JRadioButton btn: searchCrewList) {
+					if (btn.isSelected()) {
+						int radioIndex = searchCrewList.indexOf(btn);
+						searchCrewSelected = true;
+						searchCrew = crew.getCrew().get(radioIndex);
+					}
 				}
+				if (!searchCrewSelected) JOptionPane.showMessageDialog(null, "You must select one crew to search!");
 			}
-			
-			return true;
-		} else {
-			return false;
 		}
+		
+		return searchCrewSelected;
 	}
 	
 	/*
