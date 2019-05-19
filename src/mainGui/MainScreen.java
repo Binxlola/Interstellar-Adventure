@@ -63,6 +63,10 @@ public class MainScreen {
 		case "mainScreen":
 			this.setContent(mainScreen);
 			break;
+		case "Inventory":
+			content = manager.getInventoryPanel(this);
+			this.setContent(content);
+			break;
 		}
 	}
 

@@ -6,7 +6,10 @@ import java.util.List;
 public class Inventory {
 	
 	public static Inventory _session = null;
-	private List<Item> inventory = new ArrayList<Item>();
+	private List<Item> potions = new ArrayList<Item>();
+	private List<Item> foods = new ArrayList<Item>();
+	private List<Item> misc = new ArrayList<Item>();
+
 	private int wallet;
 	
 	/** Private constructor for Inventory class, and as such can only be created from inside. */
@@ -27,8 +30,8 @@ public class Inventory {
 	 * Gets the list of all items in inventory and returns it.
 	 * @return A List<Item> holding all the items currently in the players inventory.
 	 */
-	public List<Item> getInventory() {
-		return this.inventory;
+	public List<Item> getPotions() {
+		return this.potions;
 	}
 	
 	/**
@@ -37,14 +40,32 @@ public class Inventory {
 	 * @param item A Item object representing the item to be added to the inventory.
 	 * @return A string describing if the item was already in the list, or it it was not.
 	 */
-	public String addItem(Item item) {
-		// Need to implement the incremeant functionality.
-		if(inventory.contains(item)) {
-			return "Item is here";
-			}
+	public void addItem(Item item) {
+		String itemType = item.getType();
+		
+		switch(itemType) {
+		case "Potion":
+			this.addPotion(item);
+			break;
+		case "Food":
+			break;
+		case "Misc":
+			break;
+		}
+	}
+	
+	/**
+	 * Adds the item of type potion to the potions array.
+	 * @param item The Item that is to be added to the players inventory.
+	 */
+	private void addPotion(Item item) {
+		if(potions.contains(item) ) {
+			int indx = potions.indexOf(item);
+			Item owned = potions.get(indx);
+			owned.addCount();
+		}
 		else {
-			inventory.add(item);
-			return "Item is not here";
+			potions.add(item);
 		}
 	}
 }

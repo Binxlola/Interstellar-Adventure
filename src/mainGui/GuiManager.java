@@ -1,5 +1,8 @@
 package mainGui;
 
+import itemManagement.Inventory;
+import items.LargeHP;
+
 /**
  * Control center for the core GUI functionality, primarily acting as a middle man between the main screen and content panes.
  * @author jasonsmit
@@ -63,6 +66,16 @@ public class GuiManager {
 	 */
 	public PlanetMain getPlanetMain(MainScreen window) {
 		PlanetMain content = new PlanetMain(window);
+		return content;
+	}
+	
+	public InventoryDisplay getInventoryPanel(MainScreen window) {
+		//Test block
+		LargeHP test = new LargeHP();
+		Inventory inv = Inventory.getInstance();
+		inv.addItem(test);
+		//
+		InventoryDisplay content = new InventoryDisplay(window);
 		return content;
 	}
 }
