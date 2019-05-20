@@ -73,8 +73,10 @@ public class Inventory {
 			this.addPotion(item);
 			break;
 		case "Food":
+			this.addFood(item);
 			break;
 		case "Misc":
+			this.addMisc(item);
 			break;
 		}
 	}
@@ -91,6 +93,36 @@ public class Inventory {
 		}
 		else {
 			potions.add(item);
+		}
+	}
+	
+	/**
+	 * Adds the item of type potion to the potions array.
+	 * @param item The Item that is to be added to the players inventory.
+	 */
+	private void addFood(Item item) {
+		if(potions.contains(item) ) {
+			int indx = foods.indexOf(item);
+			Item owned = foods.get(indx);
+			owned.addCount();
+		}
+		else {
+			foods.add(item);
+		}
+	}
+	
+	/**
+	 * Adds the item of type potion to the potions array.
+	 * @param item The Item that is to be added to the players inventory.
+	 */
+	private void addMisc(Item item) {
+		if(potions.contains(item) ) {
+			int indx = misc.indexOf(item);
+			Item owned = misc.get(indx);
+			owned.addCount();
+		}
+		else {
+			misc.add(item);
 		}
 	}
 }
