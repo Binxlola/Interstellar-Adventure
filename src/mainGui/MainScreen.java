@@ -29,6 +29,7 @@ public class MainScreen {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1000, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.setContentPane(mainScreen);
 		
 	}

@@ -10,7 +10,7 @@ public class Inventory {
 	private List<Item> foods = new ArrayList<Item>();
 	private List<Item> misc = new ArrayList<Item>();
 
-	private int wallet;
+	private int wallet = 1000;
 	
 	/** Private constructor for Inventory class, and as such can only be created from inside. */
 	private Inventory() {}
@@ -27,11 +27,36 @@ public class Inventory {
 	}
 	
 	/**
-	 * Gets the list of all items in inventory and returns it.
-	 * @return A List<Item> holding all the items currently in the players inventory.
+	 * Gets the list of all items in the players inventory that are of type potion and returns it.
+	 * @return A List<Item> holding all the potions currently in the players inventory.
 	 */
 	public List<Item> getPotions() {
 		return this.potions;
+	}
+	
+	/**
+	 * Gets the list of all items in the players inventory that are of type food and returns it.
+	 * @return A List<Item> holding all the foods currently in the players inventory.
+	 */
+	public List<Item> getFoods() {
+		return this.foods;
+	}
+	
+	/**
+	 * Gets the list of all items in the players inventory that are of type misc and returns it.
+	 * @return A List<Item> holding all the miscs currently in the players inventory.
+	 */
+	public List<Item> getMisc() {
+		return this.misc;
+	}
+	
+	/**
+	 * Returns the players wallet value as a string to be displayed in the inventory window.
+	 * @return A String describing the players wallet value.
+	 */
+	public String getWallet() {
+		String temp = String.format("%s coins", this.wallet);
+		return temp;
 	}
 	
 	/**

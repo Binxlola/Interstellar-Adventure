@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +22,8 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InventoryDisplay extends JPanel {
 	MainScreen window;
@@ -67,12 +71,6 @@ public class InventoryDisplay extends JPanel {
 		micLbl.setBounds(671, 60, 300, 24);
 		add(micLbl);
 		
-		JLabel walletLbl = new JLabel("Wallet:");
-		walletLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		walletLbl.setFont(new Font("Courier New", Font.PLAIN, 15));
-		walletLbl.setBounds(10, 565, 100, 24);
-		add(walletLbl);
-		
 		JLabel invLbl = new JLabel("INVENTORY");
 		invLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		invLbl.setBounds(341, 11, 300, 25);
@@ -80,10 +78,15 @@ public class InventoryDisplay extends JPanel {
 		add(invLbl);
 		
 		// Button to close inventory
-		JButton closeBtn = new JButton("Close");
-		closeBtn.setBounds(882, 566, 89, 23);
-		closeBtn.setFont(new Font("Courier New", Font.PLAIN, 15));
-		add(closeBtn);
+		JButton backBtn = new JButton("Back");
+		backBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				window.changeContent("mainScreen");
+			}
+		});
+		backBtn.setBounds(882, 566, 89, 23);
+		backBtn.setFont(new Font("Courier New", Font.PLAIN, 15));
+		add(backBtn);
 		
 		// Potion item display section
 		JScrollPane potionScroll = new JScrollPane();
@@ -98,22 +101,42 @@ public class InventoryDisplay extends JPanel {
 		List<Item> potions = inventory.getPotions();
 		this.populateItems(potionPanel, potions);
 		
-//		JButton btnItem_1 = new JButton("item 2");
-//		btnItem_1.setBounds(6, 5, 64, 64);
-//		panel.add(btnItem_1);
-//		
-//		JButton btnItem = new JButton("item 1");
-//		btnItem.setBounds(142, 5, 64, 64);
-//		panel.add(btnItem);
-//		
-//		JLabel lblNewLabel = new JLabel("x5");
-//		lblNewLabel.setBounds(218, 43, 16, 16);
-//		panel.add(lblNewLabel);
-//		
-//		JLabel lblX = new JLabel("x3");
-//		lblX.setBounds(74, 43, 61, 16);
-//		panel.add(lblX);
+		// Food item display section
+		JScrollPane foodScroll = new JScrollPane();
+		foodScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		foodScroll.setBounds(20, 96, 305, 364);
+		add(foodScroll);
 		
+		JPanel foodPanel = new JPanel();
+		foodScroll.setViewportView(foodPanel);
+		foodPanel.setLayout(null);
+		
+		List<Item> foods = inventory.getFoods();
+		this.populateItems(foodPanel, foods);
+		
+		// Misc item display section
+		JScrollPane miscScroll = new JScrollPane();
+		miscScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		miscScroll.setBounds(20, 96, 305, 364);
+		add(miscScroll);
+		
+		JPanel miscPanel = new JPanel();
+		miscScroll.setViewportView(miscPanel);
+		miscPanel.setLayout(null);
+		
+		List<Item> misc = inventory.getMisc();
+		this.populateItems(miscPanel, misc);
+		
+		// Wallet display section
+		JLabel walletLbl = new JLabel("Wallet:");
+		walletLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		walletLbl.setFont(new Font("Courier New", Font.PLAIN, 15));
+		walletLbl.setBounds(10, 565, 100, 24);
+		add(walletLbl);
+		
+		JLabel walletValLbl = new JLabel(inventory.getWallet());
+		walletValLbl.setBounds(100, 568, 100, 16);
+		add(walletValLbl);
 
 	}
 	
@@ -129,6 +152,7 @@ public class InventoryDisplay extends JPanel {
 			}
 			else { // Set coords for next item on the bottom left.
 				btnXY[0] -= 136;
+				btnXY[1] += 65;
 			}
 			current += 1;
 		}
