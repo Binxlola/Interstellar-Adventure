@@ -79,13 +79,12 @@ public class InventoryDisplay extends JPanel {
 		
 		// Button to close inventory
 		JButton backBtn = new JButton("Back");
+		backBtn.setBounds(50, 500, 140, 30);
 		backBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.changeContent("mainScreen");
 			}
 		});
-		backBtn.setBounds(882, 566, 89, 23);
-		backBtn.setFont(new Font("Courier New", Font.PLAIN, 15));
 		add(backBtn);
 		
 		// Potion item display section
