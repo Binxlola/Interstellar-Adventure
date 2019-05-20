@@ -58,6 +58,14 @@ public class Crew {
 		    	Scout scout = new Scout(name);
 		    	this.addMember(scout);
 		    	break;
+		    case "Pilot":
+		    	Pilot pilot = new Pilot(name);
+		    	this.addMember(pilot);
+		    	break;
+		    case "Scientist":
+		    	Scientist scientist = new Scientist(name);
+		    	this.addMember(scientist);
+		    	break;
 		    }
 		}
 		
