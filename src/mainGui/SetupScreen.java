@@ -181,8 +181,8 @@ public class SetupScreen {
 			}
 		});
 		crewSizeSldr.setSnapToTicks(true);
-		crewSizeSldr.setMinimum(4);
-		crewSizeSldr.setMaximum(6);
+		crewSizeSldr.setMinimum(2);
+		crewSizeSldr.setMaximum(4);
 		crewSizeSldr.setValue(1);
 		crewSizeSldr.setPaintLabels(true);
 		crewSizeSldr.setMajorTickSpacing(1);
@@ -354,11 +354,11 @@ public class SetupScreen {
 	 */
 	private void createCrewFields(JPanel panel) {
 		int[] xCoord = {139, 40, 40, 40, 139}; // X coordinate for each component, starting from the first set.
-		int[] yCoord = {47, 3, 46, 77, 83}; // Y coordinate for each component, starting from the first set.
+		int[] yCoord = {167, 123, 166, 197, 203}; // Y coordinate for each component, starting from the first set.
 		int current = 0;
 		int crewTypeDifference = -1;
 		
-		while(current < 6) {
+		while(current < 4) {
 			if (crewTypeDifference >= 3) crewTypeDifference = 0;
 			JTextField textField = new JTextField();
 			textField.setBounds(xCoord[0], yCoord[0], 137, 21);
@@ -385,7 +385,7 @@ public class SetupScreen {
 			crewTypesLbl.add(lblCrewType);
 			
 			JComboBox<Object> comboBox = new JComboBox<Object>();
-			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Captain", "Engineer", "Medic", "Scout"}));
+			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Captain", "Engineer", "Medic", "Scout", "Pilot", "Scientist"}));
 			comboBox.setSelectedIndex(crewTypeDifference+=1);
 			comboBox.setBounds(xCoord[4], yCoord[4], 137, 21);
 			panel.add(comboBox);
@@ -417,7 +417,7 @@ public class SetupScreen {
 	 * @param panel A JPanel that refers to the panel for which crew edit sets should be removed from.
 	 */
 	private void resetCrewFields() {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 4; i++) {
 			crewNames.get(i).setText("");
 			if (i < crewSize) {
 				crewNames.get(i).setVisible(true);
