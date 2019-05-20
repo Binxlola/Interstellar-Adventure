@@ -32,8 +32,8 @@ public class LargeHP implements Item {
 	 * @return The created item JButton
 	 */
 	public JButton getBtn(int x, int y) {
-		JButton test = new JButton("LageHP");
-		test.setBounds(x, y, 64, 64);
+		JButton test = new JButton("LargeHP");
+		test.setBounds(x, y, 100, 50);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
