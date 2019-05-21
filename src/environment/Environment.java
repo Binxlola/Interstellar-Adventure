@@ -76,6 +76,7 @@ public class Environment {
 	}
 	
 	private void createPlanets(int gameLength) {
+		planets.removeAll(planets);
 		Random rand = new Random();
 		ArrayList<Integer> usedNames = new ArrayList<Integer>();
 		
@@ -109,13 +110,6 @@ public class Environment {
 	public ArrayList<Planet> getPlanets() {
 		return planets;
 	}
-	/* Will be re-implemented to fit the GUI
-	public Planet selectPlanet() {
-		int selection = Utilities.getInputInt(1, planets.size(), "The selected planet is invalid");
-		Planet planet = planets.get(selection - 1);
-		return planet;
-	}
-	*/
 	
 	/*
 	 * Sets the index of selected planet to travel to
