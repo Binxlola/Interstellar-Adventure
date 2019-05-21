@@ -28,12 +28,20 @@ public class ShipPart implements Item {
 	}
 	
 	/**
+	 * Gets the current number of item of this type
+	 * @return Current number of item of this type
+	 */
+	public int getCount() {
+		return this.itemCount;
+	}
+	
+	/**
 	 * Creates a JButton that can be used to display the item in a players inventory.
 	 * @return The created item JButton
 	 */
 	public JButton getBtn(int x, int y) {
-		JButton test = new JButton("Ship Part");
-		test.setBounds(x, y, 64, 64);
+		JButton test = new JButton("Ship Part (" + getCount() + ")");
+		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
