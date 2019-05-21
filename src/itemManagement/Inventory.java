@@ -90,8 +90,6 @@ public class Inventory {
 	private int itemInList(Item newItem, List<Item> itemList) {
 		for (Item item: itemList) {
 			if (item.getClass() == newItem.getClass()) {
-				System.out.println(item.getClass());
-				System.out.println(newItem.getClass());
 				return itemList.indexOf(item);
 			}
 		}
