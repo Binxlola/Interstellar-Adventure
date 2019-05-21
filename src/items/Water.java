@@ -8,9 +8,18 @@ import javax.swing.JButton;
 import itemManagement.Item;
 
 public class Water implements Item {
-	private int dropChance;
-	public String type = "Food";
+	private double dropChance = 0.5;
+	private String name = "Water";
+	private String type = "Food";
 	private int itemCount = 1;
+	
+	/**
+	 * Will return the name the item
+	 * @return A String representing the name of the item.
+	 */
+	public String getName() {
+		return this.name;
+	}
 	
 	/**
 	 * Will return the category the item would fall into (the items type)
@@ -36,11 +45,19 @@ public class Water implements Item {
 	}
 	
 	/**
+	 * Gets the chance of this item to drop
+	 * @return The chance of this item to drop
+	 */
+	public double getDropChance() {
+		return this.dropChance;
+	}
+	
+	/**
 	 * Creates a JButton that can be used to display the item in a players inventory.
 	 * @return The created item JButton
 	 */
 	public JButton getBtn(int x, int y) {
-		JButton test = new JButton("Water (" + getCount() + ")");
+		JButton test = new JButton(this.name + " (" + getCount() + ")");
 		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
