@@ -339,7 +339,23 @@ public class SetupScreen {
 					Crew crew = Crew.getInstance();
 					crew.createCrew(crewNames, crewTypes, crewSize);
 					crew.presentCrew();
+					
 					finishedWindow();
+					
+					String day = Integer.toString(gameManager.getCurrentDay());
+					String duration = Integer.toString(gameManager.getGameDuration());
+					String msg = "                                                               Welcome Aboard!"
+							+ "\nHumans achieved great success within centuries of advancing technology.  A group of spacemans"
+							+ "\nwas  secretly  tasked to develop  a  prototype FTL engine  device called warp drive.  But the project"
+							+ "\nfailed when the unexpected happened. The prototype warp drive malfunctioned beyond explanation"
+							+ "\nand they have been transported to an unknown planetary system.  Some parts of the ship was torn"
+							+ "\ninto pieces. Luckily, these pieces emits radiation and was detected across the surrounding planets."
+							+ "\nTheir task was to retrieve the parts within a few days before the alien pirates find about this secret"
+							+ "\n                                                                  technology!";
+					JOptionPane.showMessageDialog(null, msg);
+					String notif = "You are now on day " + day + " of your " + duration + " day journey.";
+					notif += "\n                   Good Luck!";
+					JOptionPane.showMessageDialog(null, notif);
 				}
 			}
 		});
