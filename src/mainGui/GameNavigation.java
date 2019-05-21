@@ -1,10 +1,12 @@
 package mainGui;
 
 import javax.swing.JPanel;
-import javax.swing.JButton;
 
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
+import management.GameManager;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,6 +19,8 @@ import javax.swing.ImageIcon;
  *
  */
 public class GameNavigation extends JPanel {
+	
+	GameManager gameManager = GameManager.getInstance();
 
 	/**
 	 * Create the panel.
@@ -48,7 +52,26 @@ public class GameNavigation extends JPanel {
 		newDayBtn.setBounds(0, 60, 140, 30);
 		newDayBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				window.changeContent("New Day");
+				gameManager.startNewDay();
+				String day = Integer.toString(gameManager.getCurrentDay());
+				String duration = Integer.toString(gameManager.getGameDuration());
+				if (!gameManager.endGame()) {
+					String msg = "Today is a new day, you are now on day " + day;
+					msg += " of your " + duration + " day journey.";
+					JOptionPane.showMessageDialog(null, msg);
+				} else {
+					String msg = "You have reached the end of your " + duration + " day journey.";
+					
+					if(gameManager.allPartsFound()) {
+						msg += "\nYou have found all the missing ship parts, you need to install them to win the game.";
+					}
+					else {
+						msg += "\nYou are still missing " + gameManager.getPartsToFind() + " Ship Parts";
+						msg += "\n You Lose!";
+					}
+					window.finishedWindow();
+					JOptionPane.showMessageDialog(null, msg);
+				}
 			}
 		});
 		add(newDayBtn);
