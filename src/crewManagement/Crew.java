@@ -36,6 +36,7 @@ public class Crew {
 	 * @param crewTypes A List containing the JComboBox's that hold the types for each crew member.
 	 */
 	public void createCrew(List<JTextField> crewNames, List<JComboBox<Object>> crewTypes, int size) {
+		crewMembers.removeAll(crewMembers);
 		for (int i = 0; i < size; i++) { 
 		    String name = crewNames.get(i).getText(); // Get the name for each crew member
 		    String type= (String) crewTypes.get(i).getSelectedItem(); // Get the type for each crew member
@@ -132,5 +133,4 @@ public class Crew {
 		}
 		return sum;
 	}
-
 }
