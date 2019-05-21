@@ -147,7 +147,7 @@ public class InventoryDisplay extends JPanel {
 		// 6, 5
 		int[] btnXY = new int[] {20, 5};
 		for(Item item: items) {
-			JButton btn = item.getBtn(btnXY[0], btnXY[1]);
+			JButton btn = item.getUseBtn(btnXY[0], btnXY[1]);
 			section.add(btn);
 			
 			if((current % 2) == 1) { // Set coords for the next item on the right
