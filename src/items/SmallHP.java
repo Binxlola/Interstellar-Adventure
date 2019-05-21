@@ -71,7 +71,7 @@ public class SmallHP implements Item {
 	 * @return The created item JButton
 	 */
 	public JButton getBuyBtn(int x, int y) {
-		JButton test = new JButton(this.name + " (" + getCount() + ")");
+		JButton test = new JButton(this.name);
 		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -86,7 +86,7 @@ public class SmallHP implements Item {
 	 */
 	public JButton getSellBtn(int x, int y) {
 		JButton test = new JButton(this.name + " (" + getCount() + ")");
-		test.setBounds(x, y, 130, 30);
+		test.setBounds(x, y, 120, 30);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
