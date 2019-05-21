@@ -90,6 +90,7 @@ public class InventoryDisplay extends JPanel {
 		// Potion item display section
 		JScrollPane potionScroll = new JScrollPane();
 		potionScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		potionScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		potionScroll.setBounds(20, 96, 305, 364);
 		add(potionScroll);
 		
@@ -103,7 +104,8 @@ public class InventoryDisplay extends JPanel {
 		// Food item display section
 		JScrollPane foodScroll = new JScrollPane();
 		foodScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		foodScroll.setBounds(20, 96, 305, 364);
+		foodScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		foodScroll.setBounds(343, 96, 305, 364);
 		add(foodScroll);
 		
 		JPanel foodPanel = new JPanel();
@@ -116,7 +118,8 @@ public class InventoryDisplay extends JPanel {
 		// Misc item display section
 		JScrollPane miscScroll = new JScrollPane();
 		miscScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		miscScroll.setBounds(20, 96, 305, 364);
+		miscScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		miscScroll.setBounds(675, 96, 305, 364);
 		add(miscScroll);
 		
 		JPanel miscPanel = new JPanel();
@@ -141,17 +144,19 @@ public class InventoryDisplay extends JPanel {
 	
 	private void populateItems(JPanel section, List<Item> items) {
 		int current = 1;
-		int[] btnXY = new int[] {6, 5};
+		// 6, 5
+		int[] btnXY = new int[] {20, 5};
 		for(Item item: items) {
 			JButton btn = item.getBtn(btnXY[0], btnXY[1]);
 			section.add(btn);
 			
 			if((current % 2) == 1) { // Set coords for the next item on the right
+				// 136
 				btnXY[0] += 136;
 			}
 			else { // Set coords for next item on the bottom left.
 				btnXY[0] -= 136;
-				btnXY[1] += 65;
+				btnXY[1] += 35;
 			}
 			current += 1;
 		}
