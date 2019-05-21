@@ -105,7 +105,6 @@ public class Inventory {
 		if(indx > -1) {
 			Item owned = potions.get(indx);
 			owned.addCount();
-			System.out.println("FOUND IT!");
 		}
 		else {
 			potions.add(item);
