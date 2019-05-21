@@ -27,13 +27,17 @@ public class LargeHP implements Item {
 		this.itemCount += 1;
 	}
 	
+	public int getCount() {
+		return this.itemCount;
+	}
+	
 	/**
 	 * Creates a JButton that can be used to display the item in a players inventory.
 	 * @return The created item JButton
 	 */
 	public JButton getBtn(int x, int y) {
-		JButton test = new JButton("LargeHP");
-		test.setBounds(x, y, 100, 50);
+		JButton test = new JButton("Large HP (" + getCount() + ")");
+		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
