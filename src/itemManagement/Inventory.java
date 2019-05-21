@@ -11,6 +11,7 @@ public class Inventory {
 	private List<Item> misc = new ArrayList<Item>();
 
 	private int wallet = 1000;
+
 	
 	/** Private constructor for Inventory class, and as such can only be created from inside. */
 	private Inventory() {}
@@ -140,4 +141,5 @@ public class Inventory {
 			misc.add(item);
 		}
 	}
+
 }
