@@ -30,7 +30,7 @@ public class GameNavigation extends JPanel {
 		setLayout(null);
 		
 		// ======Nav Buttons======
-		JButton travelPlanetBtn = new JButton("Travel to planet");
+		JButton travelPlanetBtn = new JButton("Travel to Planet");
 		travelPlanetBtn.setBounds(0, 0, 140, 30);
 		travelPlanetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -39,7 +39,7 @@ public class GameNavigation extends JPanel {
 		});
 		add(travelPlanetBtn);
 		
-		JButton travelOutpostBtn = new JButton("Travel to outpost");
+		JButton travelOutpostBtn = new JButton("Visit an Outpost");
 		travelOutpostBtn.setBounds(0, 30, 140, 30);
 		travelOutpostBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -48,7 +48,7 @@ public class GameNavigation extends JPanel {
 		});
 		add(travelOutpostBtn);
 		
-		JButton newDayBtn = new JButton("Start a new day");
+		JButton newDayBtn = new JButton("Next Day");
 		newDayBtn.setBounds(0, 60, 140, 30);
 		newDayBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -68,31 +68,31 @@ public class GameNavigation extends JPanel {
 					else {
 						msg += "\nYou are still missing " + gameManager.getPartsToFind() + " Ship Parts";
 						msg += "\n You Lose!";
+						window.finishedWindow();
 					}
-					window.finishedWindow();
 					JOptionPane.showMessageDialog(null, msg);
 				}
 			}
 		});
 		add(newDayBtn);
 		
-		JButton viewProgressBtn = new JButton("View progress");
-		viewProgressBtn.setBounds(0, 90, 140, 30);
-		viewProgressBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				window.changeContent("Progress");
-			}
-		});
-		add(viewProgressBtn);
-		
-		JButton viewShipBtn = new JButton("View ship");
-		viewShipBtn.setBounds(0, 120, 140, 30);
+		JButton viewShipBtn = new JButton("View Ship");
+		viewShipBtn.setBounds(0, 90, 140, 30);
 		viewShipBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.changeContent("Ship");
 			}
 		});
 		add(viewShipBtn);
+		
+		JButton viewCrewBtn = new JButton("View Crew");
+		viewCrewBtn.setBounds(0, 120, 140, 30);
+		viewCrewBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				window.changeContent("CrewStatus");
+			}
+		});
+		add(viewCrewBtn);
 		
 		JButton inventoryBtn = new JButton("");
 		inventoryBtn.setIcon(new ImageIcon(GameNavigation.class.getResource("/images/inventory.png")));

@@ -83,4 +83,9 @@ public class GuiManager {
 		OutpostContent content = new OutpostContent(window);
 		return content;
 	}
+	
+	public CrewStatus getCrewStatusPanel(MainScreen window) {
+		CrewStatus content = new CrewStatus(window);
+		return content;
+	}
 }

@@ -62,6 +62,15 @@ public class OutpostContent extends JPanel {
 		});
 		add(backBtn);
 		
+		JButton refreshBtn = new JButton("Refresh");
+		refreshBtn.setBounds(525, 500, 140, 30);
+		refreshBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				window.changeContent("Outpost");
+			}
+		});
+		add(refreshBtn);
+		
 		walletValLbl = new JLabel("Wallet: " + inventory.getWallet());
 		walletValLbl.setBounds(200, 500, 300, 30);
 		walletValLbl.setFont(new Font("Unispace", Font.PLAIN, 18));
@@ -138,18 +147,6 @@ public class OutpostContent extends JPanel {
 			for(Item item: cat) {
 				if (item.getCount() > 0) {
 				JButton btn = item.getSellBtn(btnXY[0], btnXY[1]);
-				btn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						walletValLbl.setText("Wallet: " + inventory.getWallet());
-						btn.setVisible(false);
-						//JButton newBtn = item.getSellBtn(btnXY[0], btnXY[1]);
-						//newBtn.addActionListener(this);
-						//section.add(newBtn);
-						section.revalidate();
-						section.repaint();
-						btn.setVisible(true);
-					}
-				});
 				section.add(btn);
 				
 				if((current % 2) == 1) { // Set coords for the next item on the right
@@ -208,19 +205,6 @@ public class OutpostContent extends JPanel {
 				btn = storeItems.get(i).getBuyBtn(x+380, y+=110);
 			}
 			
-			btn.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					walletValLbl.setText("Wallet: " + inventory.getWallet());
-					
-					window.changeContent("Outpost");
-					invPanel.removeAll();
-					invPanel.revalidate();
-					invPanel.repaint();
-					section.removeAll();
-					section.revalidate();
-					section.repaint();
-				}
-			});
 			section.add(btn);
 			
 		}

@@ -16,11 +16,15 @@ public class Pilot extends CrewMember {
 	private int memberMoves;
 	private double memberHealth;
 	private boolean infected = false;
+	private double memberHunger;
+	private double memberTiredness;
 	
 	public Pilot(String newName) {
 		name = newName;
 		memberMoves = 2;
 		memberHealth = 100;
+		memberHunger = 0;
+		memberTiredness = 0;
 	}
 	
 	/**
@@ -40,6 +44,9 @@ public class Pilot extends CrewMember {
 			this.memberHealth = health;
 	}
 	
+	/**
+	 * Returns the current health of this crew member
+	 */
 	public double getHealth() {
 		return this.memberHealth;
 	}
@@ -106,10 +113,91 @@ public class Pilot extends CrewMember {
 	
 	/**
 	 * Deducts a move from the members current available moves.
+	 * Each move will increase tiredness by 20
 	 */
 	public void deductMove() {
 		if((memberMoves - 1) >= 0) {
 			memberMoves -= 1;
+			memberTiredness += 20;
+			if (memberTiredness >= 100) memberTiredness = 100;
 		}
+	}
+	
+	/**
+	 * Get the current hunger rate of this crew member
+	 * @return The current hunger rate of this crew member
+	 */
+	public double getHunger() {
+		return this.memberHunger;
+	}
+	
+	/*
+	 * Get the current tiredness rate of this crew member
+	 * @return The current tiredness rate of this crew member
+	 */
+	public double getTiredness() {
+		return this.memberTiredness;
+	}
+	
+	/**
+	 * Will set infected to false if current crew member is infected.
+	 */
+	public void cureInfection() {
+		if(this.infected) {
+			this.infected = false;
+		}
+	}
+	
+	/**
+	 * Returns true if the crew member is currently infected
+	 */
+	public boolean isInfected() {
+		return this.infected;
+	}
+	
+	/**
+	 * Will apply certain effects after new day is called
+	 * Hunger: Increases by 50 (max 100)
+	 * Tiredness: Increases by 10 (max 100)
+	 * 
+	 * Infected: Decreases health by 20
+	 * Hunger at 100%: Decreases health by 10
+	 * Tiredness at 100%: Maximum moves capped at 1
+	 */
+	public void newDay() {
+		if (memberHealth > 0) {
+			if(isInfected()) memberHealth -= 20;
+			if(memberHunger >= 100) memberHealth -= 10;
+			if (memberHealth < 0) setHealth(0);
+			
+			memberTiredness += 10;
+			memberHunger += 50;
+			if (memberHunger > 100) memberHunger = 100;
+			if (memberTiredness > 100) memberTiredness = 100;
+			
+			resetMoves();
+			
+			if(memberTiredness >= 100) deductMove();
+		}
+	}
+	
+	/**
+	 * Crew Member sleeps becoming less tired by 80 units
+	 */
+	public void sleep() {
+		if((memberMoves - 1) >= 0) {
+			memberMoves -= 1;
+			memberTiredness -= 80;
+			if (memberTiredness < 0) memberTiredness = 0;
+		}
+	}
+	
+	/**
+	 * Crew Member eats becoming less hungry by certain amount
+	 * @param amount The unit to be deducted to this member's hungriness
+	 */
+	public void eat(int amount) {
+		memberHealth += amount;
+		if (memberHealth > 100) memberHealth = 100;
 	}
 }

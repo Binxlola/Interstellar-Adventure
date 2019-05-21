@@ -117,6 +117,15 @@ public class Crew {
 	}
 	
 	/**
+	 * Will call new day for each member and applies effects
+	 */
+	public void newDay() {
+		for (CrewMember member: crewMembers) {
+			member.newDay();
+		}
+	}
+	
+	/**
 	 * Returns the current number of crews
 	 */
 	public int size() {

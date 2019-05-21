@@ -29,5 +29,18 @@ public abstract class CrewMember {
 	abstract public void resetMoves();
 	
 	abstract public void setInfection();
-
+	
+	abstract public double getHunger();
+	
+	abstract public double getTiredness();
+	
+	abstract public void cureInfection();
+	
+	abstract public boolean isInfected();
+	
+	abstract public void newDay();
+	
+	abstract public void sleep();
+	
+	abstract public void eat(int amount);
 }

@@ -83,6 +83,10 @@ public class MainScreen {
 			content = manager.getOutpostPanel(this);
 			this.setContent(content);
 			break;
+		case "CrewStatus":
+			content = manager.getCrewStatusPanel(this);
+			this.setContent(content);
+			break;
 		}
 	}
 }

@@ -55,27 +55,27 @@ public class InventoryDisplay extends JPanel {
 		
 		// Labels for content being displayed
 		JLabel potionsLbl = new JLabel("Potions");
-		potionsLbl.setFont(new Font("Courier New", Font.PLAIN, 15));
+		potionsLbl.setFont(new Font("Rockwell", Font.PLAIN, 18));
 		potionsLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		potionsLbl.setBounds(10, 60, 300, 24);
 		add(potionsLbl);
 		
 		JLabel foodLbl = new JLabel("Food");
 		foodLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		foodLbl.setFont(new Font("Courier New", Font.PLAIN, 15));
+		foodLbl.setFont(new Font("Rockwell", Font.PLAIN, 18));
 		foodLbl.setBounds(341, 60, 300, 24);
 		add(foodLbl);
 		
 		JLabel micLbl = new JLabel("Misc");
 		micLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		micLbl.setFont(new Font("Courier New", Font.PLAIN, 15));
+		micLbl.setFont(new Font("Rockwell", Font.PLAIN, 18));
 		micLbl.setBounds(671, 60, 300, 24);
 		add(micLbl);
 		
 		JLabel invLbl = new JLabel("INVENTORY");
 		invLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		invLbl.setBounds(341, 11, 300, 25);
-		invLbl.setFont(new Font("Dialog", Font.PLAIN, 24));
+		invLbl.setFont(new Font("Distant Galaxy", Font.PLAIN, 24));
 		add(invLbl);
 		
 		// Button to close inventory
@@ -131,16 +131,10 @@ public class InventoryDisplay extends JPanel {
 		this.populateItems(miscPanel, misc);
 		
 		// Wallet display section
-		JLabel walletLbl = new JLabel("Wallet:");
-		walletLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		walletLbl.setFont(new Font("Courier New", Font.PLAIN, 15));
-		walletLbl.setBounds(10, 565, 100, 24);
+		JLabel walletLbl = new JLabel("Wallet: " + inventory.getWallet());
+		walletLbl.setBounds(200, 500, 300, 30);
+		walletLbl.setFont(new Font("Unispace", Font.PLAIN, 18));
 		add(walletLbl);
-		
-		JLabel walletValLbl = new JLabel(inventory.getWallet());
-		walletValLbl.setBounds(0, 0, 100, 16);
-		add(walletValLbl);
-
 	}
 	
 	private void populateItems(JPanel section, List<Item> items) {

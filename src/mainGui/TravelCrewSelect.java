@@ -79,12 +79,12 @@ public class TravelCrewSelect extends JPanel {
 			// Get the crew members name
 			JLabel crewNameLbl = new JLabel(crew.getCrew().get(i).getName());
 			crewNameLbl.setFont(new Font("Rockwell", Font.PLAIN, 14));
-			crewNameLbl.setBounds(50, y+=50, 150, 20);
+			crewNameLbl.setBounds(50, y+=50, 150, 50);
 			this.add(crewNameLbl);
 			
 			JLabel crewTypeLbl = new JLabel(crew.getCrew().get(i).getType());
 			crewTypeLbl.setFont(new Font("Rockwell", Font.ITALIC, 11));
-			crewTypeLbl.setBounds(50, y+20, 150, 20);
+			crewTypeLbl.setBounds(50, y+20, 150, 50);
 			this.add(crewTypeLbl);
 			
 			JCheckBox crewCheckBox = new JCheckBox("   " + crew.getCrew().get(i).getMoves() + " moves left");
@@ -102,7 +102,7 @@ public class TravelCrewSelect extends JPanel {
 					}
 				}
 			});
-			crewCheckBox.setBounds(300, y, 150, 20);
+			crewCheckBox.setBounds(300, y+20, 150, 20);
 			this.add(crewCheckBox);
 			
 			// Checks if the crew member has moves left

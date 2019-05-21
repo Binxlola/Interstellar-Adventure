@@ -9,14 +9,14 @@ import javax.swing.JOptionPane;
 import itemManagement.Inventory;
 import itemManagement.Item;
 
-public class Meat implements Item {
+public class Coin implements Item {
 	
 	private Inventory inv = Inventory.getInstance();
 	private double dropChance = 15;
-	private String name = "Meat";
-	private String type = "Food";
+	private String name = "Coin";
+	private String type = "Coin";
 	private int itemCount = 1;
-	private int price = 50;
+	private int price = 1;
 	
 	/**
 	 * Will return the name the item
@@ -96,7 +96,7 @@ public class Meat implements Item {
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (inv.canAfford(getPrice()) ) {
-					Meat item = new Meat();
+					Coin item = new Coin();
 					inv.addItem(item);
 					inv.payItem(getPrice());
 					JOptionPane.showMessageDialog(null, "You bought a " + getName());

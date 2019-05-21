@@ -14,6 +14,7 @@ public class GameManager {
 	private int gameDuration;
 	private int crewSize;
 	private String shipName;
+	private int shipShield;
 	private int currentDay;
 	private int partsFound;
 	private int partsToFind;
@@ -46,6 +47,7 @@ public class GameManager {
 		this.setDuration(duration);
 		this.setCrewSize(size);
 		this.setShipName(name);
+		this.setShipShield(100);
 		this.setPartsToFind(duration);
 		this.currentDay = 1;
 		Environment env = Environment.getInstance();
@@ -81,6 +83,14 @@ public class GameManager {
 	}
 	
 	/**
+	 * Sets the ship shield by a certain amount
+	 * @param name An integer that represents the ship shield.
+	 */
+	private void setShipShield(int amount) {
+		this.shipShield = amount;
+	}
+	
+	/**
 	 * A method to calculate and set the number of ship parts to find, based on the players desired game length.
 	 * @param duration An Integer value describing the players desired game length.
 	 */
@@ -95,7 +105,7 @@ public class GameManager {
 		// Move to new day if possible.
 		if(!this.endGame()) {
 			this.currentDay += 1;
-			crew.resetCrewMoves(); // reset all crew member move counts.
+			crew.newDay(); // reset all crew member move counts and apply some effects
 			// RANDOM OCCURENCE
 			//alienPirates.randomAttack();
 		}

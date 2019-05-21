@@ -12,7 +12,7 @@ import itemManagement.Item;
 public class Water implements Item {
 	
 	private Inventory inv = Inventory.getInstance();
-	private double dropChance = 0.5;
+	private double dropChance = 20;
 	private String name = "Water";
 	private String type = "Food";
 	private int itemCount = 1;

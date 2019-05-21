@@ -103,6 +103,8 @@ public class Inventory {
 		case "Misc":
 			this.addMisc(item);
 			break;
+		case "Coin":
+			this.addCoins(item.getCount());
 		}
 	}
 	

@@ -11,7 +11,7 @@ import itemManagement.Item;
 
 public class ShipPart implements Item {
 	
-	private double dropChance = 0.1;
+	private double dropChance = 10;
 	private String name = "Ship Part";
 	private String type = "Misc";
 	private int itemCount = 1;

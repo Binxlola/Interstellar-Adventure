@@ -12,7 +12,7 @@ import itemManagement.Item;
 public class SmallHP implements Item {
 	
 	private Inventory inv = Inventory.getInstance();
-	private double dropChance = 0.4;
+	private double dropChance = 50;
 	private String name = "Small HP";
 	private String type = "Potion";
 	private int itemCount = 1;

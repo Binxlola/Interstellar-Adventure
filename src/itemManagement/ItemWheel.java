@@ -5,6 +5,7 @@ import java.util.Random;
 
 import items.Bread;
 import items.Chips;
+import items.Coin;
 import items.EnergyDrink;
 import items.IceCream;
 import items.LargeHP;
@@ -18,33 +19,42 @@ import java.util.List;
 
 public class ItemWheel {
 	
-	private List<Item> items = new ArrayList<Item>();
+	private List<Item> potions = new ArrayList<Item>();
+	private List<Item> foods = new ArrayList<Item>();
+	private List<Item> misc = new ArrayList<Item>();
 	
 	private static ItemWheel _session = null;
 	
 	private ItemWheel() {
 		// Initialize list with all items
+		
+		// Potions
 		LargeHP largeHP = new LargeHP();
-		ShipPart shipPart = new ShipPart();
 		SmallHP smallHP = new SmallHP();
-		Water water = new Water();
 		SpacePills spacePills = new SpacePills();
+		
+		// Foods
+		Water water = new Water();
 		Bread bread = new Bread();
 		Chips chips = new Chips();
 		EnergyDrink energyDrink = new EnergyDrink();
 		IceCream iceCream = new IceCream();
 		Meat meat = new Meat();
 		
-		items.add(largeHP);
-		items.add(shipPart);
-		items.add(smallHP);
-		items.add(water);
-		items.add(spacePills);
-		items.add(bread);
-		items.add(chips);
-		items.add(energyDrink);
-		items.add(iceCream);
-		items.add(meat);
+		// Misc
+		ShipPart shipPart = new ShipPart();
+
+		potions.add(largeHP);
+		potions.add(smallHP);
+		potions.add(spacePills);
+		foods.add(water);
+		foods.add(bread);
+		foods.add(chips);
+		foods.add(energyDrink);
+		foods.add(iceCream);
+		foods.add(meat);
+		misc.add(shipPart);
+
 		
 	}
 	
@@ -57,6 +67,24 @@ public class ItemWheel {
 	
 	// Returns the selected index based on the weights(probabilities)
 	private Item rouletteSelect() {
+		
+		// 30%: Food, 20%: Potion, 20% Ship Part, 20% Money, 10% Nothing
+		List<Item> items = new ArrayList<Item>();
+		double type = randUniformPositive();
+		if (type < 0.3) items = foods;
+		else if (type < 0.50) items = potions;
+		else if (type < 0.70) items = misc;
+		else if (type < 0.90) {
+			Coin coin = new Coin();
+			double temp = randUniformPositive() * 100;
+			double temp2 = randUniformPositive() * 10;
+			int multiplier = (int)temp2;
+			int cost = (int)temp;
+			for (int i = 0; i < cost*multiplier; i++) coin.addCount();
+			return coin;
+		}
+		else return null;
+		
 		// calculate the total weight
 		double weight_sum = 0;
 		for(Item item: items) {

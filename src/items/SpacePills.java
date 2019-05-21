@@ -12,7 +12,7 @@ import itemManagement.Item;
 public class SpacePills implements Item {
 	
 	private Inventory inv = Inventory.getInstance();
-	private double dropChance = 0.2;
+	private double dropChance = 20;
 	private String name = "Space Pills";
 	private String type = "Potion";
 	private int itemCount = 1;
