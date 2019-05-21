@@ -2,6 +2,9 @@ package mainGui;
 
 import itemManagement.Inventory;
 import items.LargeHP;
+import items.ShipPart;
+import items.SmallHP;
+import items.Water;
 
 /**
  * Control center for the core GUI functionality, primarily acting as a middle man between the main screen and content panes.
@@ -70,11 +73,6 @@ public class GuiManager {
 	}
 	
 	public InventoryDisplay getInventoryPanel(MainScreen window) {
-		//Test block
-		LargeHP test = new LargeHP();
-		Inventory inv = Inventory.getInstance();
-		inv.addItem(test);
-		//
 		InventoryDisplay content = new InventoryDisplay(window);
 		return content;
 	}
