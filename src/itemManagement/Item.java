@@ -1,5 +1,8 @@
 package itemManagement;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public interface Item {
@@ -37,6 +40,18 @@ public interface Item {
 	 * Creates a JButton that can be used to display the item in a players inventory.
 	 * @return The created item JButton
 	 */
-	public JButton getBtn(int x, int y);
+	public JButton getUseBtn(int x, int y);
+	
+	/**
+	 * Creates a JButton that can be used to display the item in the space outpost.
+	 * @return The created item JButton
+	 */
+	public JButton getBuyBtn(int x, int y);
+	
+	/**
+	 * Creates a JButton that can be used to display the item in a player's inventory at the space outpost.
+	 * @return The created item JButton
+	 */
+	public JButton getSellBtn(int x, int y);
 
 }
