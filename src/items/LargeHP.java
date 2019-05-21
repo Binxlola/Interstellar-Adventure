@@ -27,6 +27,10 @@ public class LargeHP implements Item {
 		this.itemCount += 1;
 	}
 	
+	/**
+	 * Gets the current number of item of this type
+	 * @return Current number of item of this type
+	 */
 	public int getCount() {
 		return this.itemCount;
 	}
