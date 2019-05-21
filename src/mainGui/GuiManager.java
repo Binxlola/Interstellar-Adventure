@@ -1,11 +1,5 @@
 package mainGui;
 
-import itemManagement.Inventory;
-import items.LargeHP;
-import items.ShipPart;
-import items.SmallHP;
-import items.Water;
-
 /**
  * Control center for the core GUI functionality, primarily acting as a middle man between the main screen and content panes.
  * @author jasonsmit
@@ -43,6 +37,14 @@ public class GuiManager {
 	private void launchMain() {
 		@SuppressWarnings("unused")
 		MainScreen mainWindow = new MainScreen(this);
+	}
+	
+	/**
+	 * Close up the main screen of the game and launch a new game
+	 */
+	public void finishGame(MainScreen mainScreen) {
+		mainScreen.closeWindow();
+		this.startGame();
 	}
 	
 	/**
