@@ -78,4 +78,9 @@ public class GuiManager {
 		InventoryDisplay content = new InventoryDisplay(window);
 		return content;
 	}
+	
+	public OutpostContent getOutpostPanel(MainScreen window) {
+		OutpostContent content = new OutpostContent(window);
+		return content;
+	}
 }
