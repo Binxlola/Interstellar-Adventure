@@ -27,6 +27,7 @@ public class MainScreen {
 		frame.setBounds(100, 100, 1000, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
+		frame.setTitle("Interstellar Adventures");
 		frame.setContentPane(mainScreen);
 		
 	}

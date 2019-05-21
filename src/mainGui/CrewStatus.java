@@ -1,5 +1,6 @@
 package mainGui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,8 +15,11 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -57,6 +61,18 @@ public class CrewStatus extends JPanel {
 		selectLbl.setFont(new Font("Distant Galaxy", Font.PLAIN, 24));
 		selectLbl.setBounds(42, 33, 600, 40);
 		this.add(selectLbl);
+		
+		JSeparator crewSeparatorVert = new JSeparator();
+		crewSeparatorVert.setOrientation(SwingConstants.VERTICAL);
+		crewSeparatorVert.setBounds(300, 120, 1, 320);
+		crewSeparatorVert.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		add(crewSeparatorVert);
+		
+		JSeparator crewSeparatorHori = new JSeparator();
+		crewSeparatorHori.setOrientation(SwingConstants.HORIZONTAL);
+		crewSeparatorHori.setBounds(40, 280, 580, 1);
+		crewSeparatorHori.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		add(crewSeparatorHori);
 		
 		createCrewFields();
 	}

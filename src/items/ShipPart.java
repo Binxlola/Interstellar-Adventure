@@ -15,7 +15,7 @@ public class ShipPart implements Item {
 	private String name = "Ship Part";
 	private String type = "Misc";
 	private int itemCount = 1;
-	private int price;
+	private int price = 500;
 	
 	/**
 	 * Will return the name the item
@@ -76,7 +76,7 @@ public class ShipPart implements Item {
 	 * @return The created item JButton
 	 */
 	public JButton getUseBtn(int x, int y) {
-		JButton test = new JButton(this.name + " (" + getPrice() + " coins)");
+		JButton test = new JButton(this.name + " (" + getCount() + ")");
 		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

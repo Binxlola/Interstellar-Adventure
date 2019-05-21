@@ -379,7 +379,7 @@ public class SetupScreen {
 							+ "\n                                                                  technology!";
 					JOptionPane.showMessageDialog(null, msg);
 					String notif = "You are now on day " + day + " of your " + duration + " day journey.";
-					notif += "\n                   Good Luck!";
+					notif += "\n                    Good Luck!";
 					JOptionPane.showMessageDialog(null, notif);
 				}
 			}

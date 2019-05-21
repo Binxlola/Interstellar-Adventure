@@ -91,12 +91,12 @@ public class ShipStatus extends JPanel {
 					if (input == 0) {
 						repairCrewList.removeAll(repairCrewList);
 						boolean search = getRepairCrew();
-						if (search) JOptionPane.showMessageDialog(null, "The ship was repaird and regained some shields!");
+						if (search) JOptionPane.showMessageDialog(null, "The ship was repaired and regained some lost shields!");
 					}
 				} else {
 					repairCrewList.removeAll(repairCrewList);
 					boolean search = getRepairCrew();
-					if (search) JOptionPane.showMessageDialog(null, "The ship was repaird and regained some shields!");
+					if (search) JOptionPane.showMessageDialog(null, "The ship was repaird and regained some lost shields!");
 				}
 			}
 		});

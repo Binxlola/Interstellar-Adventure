@@ -67,6 +67,7 @@ public class SpaceShip {
 	 */
 	public void addShield(int amount) {
 		this.shipShield += amount;
+		if (this.shipShield > 100) this.shipShield = 100;
 	}
 	
 	/**
@@ -75,5 +76,6 @@ public class SpaceShip {
 	 */
 	public void deductShield(int amount) {
 		this.shipShield -= amount;
+		if (this.shipShield < 0) this.shipShield = 0;
 	}
 }
