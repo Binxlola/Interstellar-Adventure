@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class InventoryDisplay extends JPanel {
+	
 	MainScreen window;
 	private JTable table;
 	private Inventory inventory = Inventory.getInstance();
@@ -137,7 +138,7 @@ public class InventoryDisplay extends JPanel {
 		add(walletLbl);
 		
 		JLabel walletValLbl = new JLabel(inventory.getWallet());
-		walletValLbl.setBounds(100, 568, 100, 16);
+		walletValLbl.setBounds(0, 0, 100, 16);
 		add(walletValLbl);
 
 	}
