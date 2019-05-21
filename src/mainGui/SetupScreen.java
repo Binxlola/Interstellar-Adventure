@@ -284,6 +284,12 @@ public class SetupScreen {
 		setup.add(setup3, "name_621220876675248");
 		setup3.setLayout(null);
 		
+		// Create label for setup3 card
+		JLabel CustomizeCrewMemberslbl = new JLabel("CUSTOMIZE YOUR CREW");
+		CustomizeCrewMemberslbl.setFont(new Font("Distant Galaxy", Font.PLAIN, 24));
+		CustomizeCrewMemberslbl.setBounds(42, 33, 600, 40);
+		setup3.add(CustomizeCrewMemberslbl);
+		
 		// Create back button for Window 3
 		JButton setup3Back = new JButton("Back");
 		setup3Back.setBounds(150, 450, 100, 50);
