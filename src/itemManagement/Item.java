@@ -25,6 +25,11 @@ public interface Item {
 	public void addCount();
 	
 	/**
+	 * Deducts 1 to the items count, representing how many of this type item the player owns.
+	 */
+	public void deductCount();
+	
+	/**
 	 * Gets the current number of item of this type
 	 * @return Current number of item of this type
 	 */
@@ -35,6 +40,12 @@ public interface Item {
 	 * @return The chance of this item to drop
 	 */
 	public double getDropChance();
+	
+	/**
+	 * Gets the price of this item
+	 * @return The price of this item
+	 */
+	public int getPrice();
 	
 	/**
 	 * Creates a JButton that can be used to display the item in a players inventory.

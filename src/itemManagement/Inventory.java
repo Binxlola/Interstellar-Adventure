@@ -61,10 +61,34 @@ public class Inventory {
 	}
 	
 	/**
+	 * Check if the player can afford some item
+	 * @param cost The cost of the item a player tries to buy
+	 * @return Returns true if the player can afford the item
+	 */
+	public boolean canAfford(int cost) {
+		return (this.wallet >= cost);
+	}
+	
+	/**
+	 * Pays for an item bought by the player
+	 * @param cost The cost of the item a player bought
+	 */
+	public void payItem(int cost) {
+		this.wallet -= cost;
+	}
+	
+	/**
+	 * Add coins to the player's wallet
+	 * @param cost The number of coins to be added to the wallet
+	 */
+	public void addCoins(int cost) {
+		this.wallet += cost;
+	}
+	
+	/**
 	 * Adds a given item to the players inventory, if the item is not in the list then the item will be added. 
 	 * If the item is already in the list then it's count will be incremented.
 	 * @param item A Item object representing the item to be added to the inventory.
-	 * @return A string describing if the item was already in the list, or it it was not.
 	 */
 	public void addItem(Item item) {
 		String itemType = item.getType();
@@ -78,6 +102,26 @@ public class Inventory {
 			break;
 		case "Misc":
 			this.addMisc(item);
+			break;
+		}
+	}
+	
+	/**
+	 * Deducts a given item to the players inventory then it's count will be incremented.
+	 * @param item A Item object representing the item to be deducted to the inventory.
+	 */
+	public void deductItem(Item item) {
+		String itemType = item.getType();
+		
+		switch(itemType) {
+		case "Potion":
+			this.deductPotion(item);
+			break;
+		case "Food":
+			this.deductFood(item);
+			break;
+		case "Misc":
+			this.deductMisc(item);
 			break;
 		}
 	}
@@ -140,6 +184,36 @@ public class Inventory {
 		else {
 			misc.add(item);
 		}
+	}
+	
+	/**
+	 * Deducts an item of type potion from the potions array.
+	 * @param item The Item that is to be deducted to the players inventory.
+	 */
+	private void deductPotion(Item item) {
+		int indx = itemInList(item, potions);
+		Item owned = potions.get(indx);
+		owned.deductCount();
+	}
+	
+	/**
+	 * Deducts an item of type food from the foods array.
+	 * @param item The Item that is to be deducted to the players inventory.
+	 */
+	private void deductFood(Item item) {
+		int indx = itemInList(item, foods);
+		Item owned = foods.get(indx);
+		owned.deductCount();
+	}
+	
+	/**
+	 * Deducts an item of type misc from the misc array.
+	 * @param item The Item that is to be deducted to the players inventory.
+	 */
+	private void deductMisc(Item item) {
+		int indx = itemInList(item, misc);
+		Item owned = misc.get(indx);
+		owned.deductCount();
 	}
 
 }

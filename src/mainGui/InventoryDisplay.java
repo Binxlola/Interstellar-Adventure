@@ -148,18 +148,20 @@ public class InventoryDisplay extends JPanel {
 		// 6, 5
 		int[] btnXY = new int[] {20, 5};
 		for(Item item: items) {
-			JButton btn = item.getUseBtn(btnXY[0], btnXY[1]);
-			section.add(btn);
-			
-			if((current % 2) == 1) { // Set coords for the next item on the right
-				// 136
-				btnXY[0] += 136;
+			if (item.getCount() > 0) {
+				JButton btn = item.getUseBtn(btnXY[0], btnXY[1]);
+				section.add(btn);
+				
+				if((current % 2) == 1) { // Set coords for the next item on the right
+					// 136
+					btnXY[0] += 136;
+				}
+				else { // Set coords for next item on the bottom left.
+					btnXY[0] -= 136;
+					btnXY[1] += 35;
+				}
+				current += 1;
 			}
-			else { // Set coords for next item on the bottom left.
-				btnXY[0] -= 136;
-				btnXY[1] += 35;
-			}
-			current += 1;
 		}
 	}
 }

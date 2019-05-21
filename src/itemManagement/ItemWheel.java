@@ -3,9 +3,15 @@ package itemManagement;
 import java.util.ArrayList;
 import java.util.Random;
 
+import items.Bread;
+import items.Chips;
+import items.EnergyDrink;
+import items.IceCream;
 import items.LargeHP;
+import items.Meat;
 import items.ShipPart;
 import items.SmallHP;
+import items.SpacePills;
 import items.Water;
 
 import java.util.List;
@@ -22,11 +28,24 @@ public class ItemWheel {
 		ShipPart shipPart = new ShipPart();
 		SmallHP smallHP = new SmallHP();
 		Water water = new Water();
+		SpacePills spacePills = new SpacePills();
+		Bread bread = new Bread();
+		Chips chips = new Chips();
+		EnergyDrink energyDrink = new EnergyDrink();
+		IceCream iceCream = new IceCream();
+		Meat meat = new Meat();
 		
 		items.add(largeHP);
 		items.add(shipPart);
 		items.add(smallHP);
 		items.add(water);
+		items.add(spacePills);
+		items.add(bread);
+		items.add(chips);
+		items.add(energyDrink);
+		items.add(iceCream);
+		items.add(meat);
+		
 	}
 	
 	public static ItemWheel getInstance() {

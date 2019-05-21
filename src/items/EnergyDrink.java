@@ -9,14 +9,14 @@ import javax.swing.JOptionPane;
 import itemManagement.Inventory;
 import itemManagement.Item;
 
-public class Water implements Item {
+public class EnergyDrink implements Item {
 	
 	private Inventory inv = Inventory.getInstance();
-	private double dropChance = 0.5;
-	private String name = "Water";
+	private double dropChance = 0.3;
+	private String name = "Energy Drink";
 	private String type = "Food";
 	private int itemCount = 1;
-	private int price = 20;
+	private int price = 75;
 	
 	/**
 	 * Will return the name the item
@@ -45,9 +45,7 @@ public class Water implements Item {
 	 * Deducts 1 to the items count, representing how many of this type item the player owns.
 	 */
 	public void deductCount() {
-		if (this.itemCount > 0) {
-			this.itemCount -= 1;
-		}
+		this.itemCount -= 1;
 	}
 	
 	/**
@@ -98,7 +96,7 @@ public class Water implements Item {
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (inv.canAfford(getPrice()) ) {
-					Water item = new Water();
+					EnergyDrink item = new EnergyDrink();
 					inv.addItem(item);
 					inv.payItem(getPrice());
 					JOptionPane.showMessageDialog(null, "You bought a " + getName());
@@ -121,7 +119,6 @@ public class Water implements Item {
 			public void actionPerformed(ActionEvent e) {
 				if (getCount() > 0) {
 					deductCount();
-					if (getCount() <= 0) test.setVisible(false);
 					if (getCount() <= 0) test.setVisible(false);
 					inv.addCoins((int)(0.5*getPrice()));
 					JOptionPane.showMessageDialog(null, "You sold a " + getName() + " for " + (int)(0.5*getPrice()) + " coins!");

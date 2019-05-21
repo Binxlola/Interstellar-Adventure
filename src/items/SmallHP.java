@@ -4,14 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
+import itemManagement.Inventory;
 import itemManagement.Item;
 
 public class SmallHP implements Item {
+	
+	private Inventory inv = Inventory.getInstance();
 	private double dropChance = 0.4;
 	private String name = "Small HP";
 	private String type = "Potion";
 	private int itemCount = 1;
+	private int price = 60;
 	
 	/**
 	 * Will return the name the item
@@ -37,6 +42,13 @@ public class SmallHP implements Item {
 	}
 	
 	/**
+	 * Deducts 1 to the items count, representing how many of this type item the player owns.
+	 */
+	public void deductCount() {
+		this.itemCount -= 1;
+	}
+	
+	/**
 	 * Gets the current number of item of this type
 	 * @return Current number of item of this type
 	 */
@@ -50,6 +62,14 @@ public class SmallHP implements Item {
 	 */
 	public double getDropChance() {
 		return this.dropChance;
+	}
+	
+	/**
+	 * Gets the price of this item
+	 * @return The price of this item
+	 */
+	public int getPrice() {
+		return this.price;
 	}
 	
 	/**
@@ -71,10 +91,18 @@ public class SmallHP implements Item {
 	 * @return The created item JButton
 	 */
 	public JButton getBuyBtn(int x, int y) {
-		JButton test = new JButton(this.name);
-		test.setBounds(x, y, 130, 30);
+		JButton test = new JButton(this.name + " (" + getPrice() + " coins)");
+		test.setBounds(x, y, 180, 100);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (inv.canAfford(getPrice()) ) {
+					SmallHP item = new SmallHP();
+					inv.addItem(item);
+					inv.payItem(getPrice());
+					JOptionPane.showMessageDialog(null, "You bought a " + getName());
+				} else {
+					JOptionPane.showMessageDialog(null, "Sorry! You don't have enough coins!");
+				}
 			}
 		});
 		return test;
@@ -85,10 +113,19 @@ public class SmallHP implements Item {
 	 * @return The created item JButton
 	 */
 	public JButton getSellBtn(int x, int y) {
-		JButton test = new JButton(this.name + " (" + getCount() + ")");
-		test.setBounds(x, y, 120, 30);
+		JButton test = new JButton(this.name + " (" + (int)(0.5*getPrice()) + " coins)");
+		test.setBounds(x, y, 170, 40);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (getCount() > 0) {
+					deductCount();
+					if (getCount() <= 0) test.setVisible(false);
+					inv.addCoins((int)(0.5*getPrice()));
+					JOptionPane.showMessageDialog(null, "You sold a " + getName() + " for " + (int)(0.5*getPrice()) + " coins!");
+				} else {
+					test.setVisible(false);
+					JOptionPane.showMessageDialog(null, "You no longer have " + getName() + "!");
+				}
 			}
 		});
 		return test;

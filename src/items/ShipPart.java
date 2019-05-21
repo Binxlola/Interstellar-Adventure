@@ -6,13 +6,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import itemManagement.Inventory;
 import itemManagement.Item;
 
 public class ShipPart implements Item {
+	
 	private double dropChance = 0.1;
 	private String name = "Ship Part";
 	private String type = "Misc";
 	private int itemCount = 1;
+	private int price;
 	
 	/**
 	 * Will return the name the item
@@ -38,6 +41,13 @@ public class ShipPart implements Item {
 	}
 	
 	/**
+	 * Deducts 1 to the items count, representing how many of this type item the player owns.
+	 */
+	public void deductCount() {
+		this.itemCount -= 1;
+	}
+	
+	/**
 	 * Gets the current number of item of this type
 	 * @return Current number of item of this type
 	 */
@@ -54,11 +64,19 @@ public class ShipPart implements Item {
 	}
 	
 	/**
+	 * Gets the price of this item
+	 * @return The price of this item
+	 */
+	public int getPrice() {
+		return this.price;
+	}
+	
+	/**
 	 * Creates a JButton that can be used to display the item in a players inventory.
 	 * @return The created item JButton
 	 */
 	public JButton getUseBtn(int x, int y) {
-		JButton test = new JButton(this.name + " (" + getCount() + ")");
+		JButton test = new JButton(this.name + " (" + getPrice() + " coins)");
 		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,9 +91,10 @@ public class ShipPart implements Item {
 	 */
 	public JButton getBuyBtn(int x, int y) {
 		JButton test = new JButton(this.name);
-		test.setBounds(x, y, 130, 30);
+		test.setBounds(x, y, 180, 100);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "You cannot buy this ship part!");
 			}
 		});
 		return test;
@@ -86,8 +105,8 @@ public class ShipPart implements Item {
 	 * @return The created item JButton
 	 */
 	public JButton getSellBtn(int x, int y) {
-		JButton test = new JButton(this.name + " (" + getCount() + ")");
-		test.setBounds(x, y, 120, 30);
+		JButton test = new JButton(this.name + " (" + (int)(0.5*getPrice()) + " coins)");
+		test.setBounds(x, y, 170, 40);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "You cannot sell this ship part!");
