@@ -79,6 +79,10 @@ public class MainScreen {
 			content = manager.getInventoryPanel(this);
 			this.setContent(content);
 			break;
+		case "Outpost":
+			content = manager.getOutpostPanel(this);
+			this.setContent(content);
+			break;
 		}
 	}
 
