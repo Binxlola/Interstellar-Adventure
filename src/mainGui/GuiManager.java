@@ -88,4 +88,9 @@ public class GuiManager {
 		CrewStatus content = new CrewStatus(window);
 		return content;
 	}
+	
+	public ShipStatus getShipStatusPanel(MainScreen window) {
+		ShipStatus content = new ShipStatus(window);
+		return content;
+	}
 }

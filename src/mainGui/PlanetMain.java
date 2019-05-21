@@ -69,9 +69,6 @@ public class PlanetMain extends JPanel {
 				searchCrewList.removeAll(searchCrewList);
 				boolean search = getSearchCrew();
 				if (search) {
-					//Item Wheel! I dont know how it works hehe
-					// just add some item on the inventory and change the notification below!
-					//JOptionPane.showMessageDialog(null, "Item Wheel must be implemented first!");
 					Item item = itemWheel.getItem();
 					if (item == null)  {
 						JOptionPane.showMessageDialog(null, "You did not find anything.");
@@ -94,7 +91,7 @@ public class PlanetMain extends JPanel {
 		});
 		add(backBtn);
 		
-		JButton confirmBtn = new JButton("Finish");
+		JButton confirmBtn = new JButton("Exit Planet");
 		confirmBtn.setBounds(200, 500, 140, 30);
 		confirmBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

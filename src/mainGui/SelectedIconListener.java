@@ -27,7 +27,6 @@ public class SelectedIconListener implements ActionListener {
 		JButton button = (JButton)(e.getSource());
 		JButton toChange = (JButton) frame.getComponentAt(xCoord, yCoord);
 		SetupScreen.getSelectedIcon(button, toChange);
-		
 	}
 
 }

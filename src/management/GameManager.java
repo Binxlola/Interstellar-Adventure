@@ -1,6 +1,9 @@
 package management;
 
+import javax.swing.Icon;
+
 import crewManagement.Crew;
+import crewManagement.SpaceShip;
 import environment.Environment;
 
 /**
@@ -13,12 +16,11 @@ public class GameManager {
 	
 	private int gameDuration;
 	private int crewSize;
-	private String shipName;
-	private int shipShield;
 	private int currentDay;
 	private int partsFound;
 	private int partsToFind;
 	private Crew crew = Crew.getInstance();
+	private SpaceShip spaceShip = SpaceShip.getInstance();
 
 	
 	/**
@@ -42,20 +44,16 @@ public class GameManager {
 	 * @param duration
 	 * @param size
 	 * @param name
+	 * @param shipIcon
 	 */
-	public void initializeManager(int duration, int size, String name) {
+	public void initializeManager(int duration, int size, String name, Icon shipIcon) {
 		this.setDuration(duration);
 		this.setCrewSize(size);
-		this.setShipName(name);
-		this.setShipShield(100);
+		spaceShip.initializeShip(name, shipIcon);
 		this.setPartsToFind(duration);
 		this.currentDay = 1;
 		Environment env = Environment.getInstance();
 		env.buildEnvironment(gameDuration);
-		System.out.println(this.gameDuration);
-		System.out.println(this.crewSize);
-		System.out.println(this.shipName);
-		System.out.println(env.getPlanets().size());
 	}
 	
 	/**
@@ -72,22 +70,6 @@ public class GameManager {
 	 */
 	private void setCrewSize(int size) {
 		this.crewSize = size;
-	}
-	
-	/**
-	 * Sets the ship name to the given String 'name'.
-	 * @param name A String that represents the players desired ship name.
-	 */
-	private void setShipName(String name) {
-		this.shipName = name;
-	}
-	
-	/**
-	 * Sets the ship shield by a certain amount
-	 * @param name An integer that represents the ship shield.
-	 */
-	private void setShipShield(int amount) {
-		this.shipShield = amount;
 	}
 	
 	/**
