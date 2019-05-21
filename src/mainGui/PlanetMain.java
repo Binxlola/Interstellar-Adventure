@@ -21,6 +21,9 @@ import crewManagement.Crew;
 import crewManagement.CrewMember;
 import environment.Environment;
 import environment.Planet;
+import itemManagement.Inventory;
+import itemManagement.Item;
+import itemManagement.ItemWheel;
 import management.GameManager;
 
 public class PlanetMain extends JPanel {
@@ -31,6 +34,8 @@ public class PlanetMain extends JPanel {
 	private Crew crew = Crew.getInstance();
 	private CrewMember searchCrew;
 	private List<JRadioButton> searchCrewList = new ArrayList<JRadioButton>();
+	private ItemWheel itemWheel = ItemWheel.getInstance();
+	private Inventory inventory = Inventory.getInstance();
 
 	/**
 	 * Create the panel.
@@ -66,7 +71,14 @@ public class PlanetMain extends JPanel {
 				if (search) {
 					//Item Wheel! I dont know how it works hehe
 					// just add some item on the inventory and change the notification below!
-					JOptionPane.showMessageDialog(null, "Item Wheel must be implemented first!");
+					//JOptionPane.showMessageDialog(null, "Item Wheel must be implemented first!");
+					Item item = itemWheel.getItem();
+					if (item == null)  {
+						JOptionPane.showMessageDialog(null, "You did not find anything.");
+					} else {
+						JOptionPane.showMessageDialog(null, "You found a " + item.getName() + "!");
+						inventory.addItem(item);
+					}
 				}
 			}
 		});
