@@ -1,10 +1,7 @@
 package mainGui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 
 public class MainScreen {
 
@@ -32,6 +29,20 @@ public class MainScreen {
 		frame.setResizable(false);
 		frame.setContentPane(mainScreen);
 		
+	}
+	
+	/**
+	 * Will clear all content from window, close it.
+	 */
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	/**
+	 * Uses the GuiManager close function to clear contents from frame and close application.
+	 */
+	public void finishedWindow() {
+		manager.finishGame(this);
 	}
 	
 	/**
