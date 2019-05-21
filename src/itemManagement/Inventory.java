@@ -82,14 +82,32 @@ public class Inventory {
 	}
 	
 	/**
+	 * Checks if the item already exists in an item list
+	 * @param newItem The Item that is to be found
+	 * @param itemList The list of Item where the newItem are to be searched
+	 * @return the index of the item in the list
+	 */
+	private int itemInList(Item newItem, List<Item> itemList) {
+		for (Item item: itemList) {
+			if (item.getClass() == newItem.getClass()) {
+				System.out.println(item.getClass());
+				System.out.println(newItem.getClass());
+				return itemList.indexOf(item);
+			}
+		}
+		return -1;
+	}
+	
+	/**
 	 * Adds the item of type potion to the potions array.
 	 * @param item The Item that is to be added to the players inventory.
 	 */
 	private void addPotion(Item item) {
-		if(potions.contains(item) ) {
-			int indx = potions.indexOf(item);
+		int indx = itemInList(item, potions);
+		if(indx > -1) {
 			Item owned = potions.get(indx);
 			owned.addCount();
+			System.out.println("FOUND IT!");
 		}
 		else {
 			potions.add(item);
@@ -101,8 +119,8 @@ public class Inventory {
 	 * @param item The Item that is to be added to the players inventory.
 	 */
 	private void addFood(Item item) {
-		if(potions.contains(item) ) {
-			int indx = foods.indexOf(item);
+		int indx = itemInList(item, foods);
+		if(indx > -1) {
 			Item owned = foods.get(indx);
 			owned.addCount();
 		}
@@ -116,8 +134,8 @@ public class Inventory {
 	 * @param item The Item that is to be added to the players inventory.
 	 */
 	private void addMisc(Item item) {
-		if(potions.contains(item) ) {
-			int indx = misc.indexOf(item);
+		int indx = itemInList(item, misc);
+		if(indx > -1) {
 			Item owned = misc.get(indx);
 			owned.addCount();
 		}
