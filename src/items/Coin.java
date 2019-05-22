@@ -95,14 +95,6 @@ public class Coin implements Item {
 		test.setBounds(x, y, 180, 100);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (inv.canAfford(getPrice()) ) {
-					Coin item = new Coin();
-					inv.addItem(item);
-					inv.payItem(getPrice());
-					JOptionPane.showMessageDialog(null, "You bought a " + getName());
-				} else {
-					JOptionPane.showMessageDialog(null, "Sorry! You don't have enough coins!");
-				}
 			}
 		});
 		return test;
@@ -117,15 +109,6 @@ public class Coin implements Item {
 		test.setBounds(x, y, 170, 40);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (getCount() > 0) {
-					deductCount();
-					if (getCount() <= 0) test.setVisible(false);
-					inv.addCoins((int)(0.5*getPrice()));
-					JOptionPane.showMessageDialog(null, "You sold a " + getName() + " for " + (int)(0.5*getPrice()) + " coins!");
-				} else {
-					test.setVisible(false);
-					JOptionPane.showMessageDialog(null, "You no longer have " + getName() + "!");
-				}
 			}
 		});
 		return test;

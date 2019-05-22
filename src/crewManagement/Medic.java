@@ -200,7 +200,7 @@ public class Medic extends CrewMember {
 	 * @param amount The unit to be deducted to this member's hungriness
 	 */
 	public void eat(int amount) {
-		memberHealth += amount;
-		if (memberHealth > 100) memberHealth = 100;
+		memberHunger -= amount;
+		if (memberHunger < 0) memberHunger = 0;
 	}
 }

@@ -74,6 +74,9 @@ public class PlanetMain extends JPanel {
 						JOptionPane.showMessageDialog(null, "You did not find anything.");
 					} else {
 						JOptionPane.showMessageDialog(null, "You found a " + item.getName() + "!");
+						if (item.getName() == "Ship Part") {
+							
+						}
 						inventory.addItem(item);
 					}
 				}

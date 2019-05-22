@@ -64,13 +64,13 @@ public class CrewStatus extends JPanel {
 		
 		JSeparator crewSeparatorVert = new JSeparator();
 		crewSeparatorVert.setOrientation(SwingConstants.VERTICAL);
-		crewSeparatorVert.setBounds(300, 120, 1, 320);
+		crewSeparatorVert.setBounds(430, 100, 1, 380);
 		crewSeparatorVert.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		add(crewSeparatorVert);
 		
 		JSeparator crewSeparatorHori = new JSeparator();
 		crewSeparatorHori.setOrientation(SwingConstants.HORIZONTAL);
-		crewSeparatorHori.setBounds(40, 280, 580, 1);
+		crewSeparatorHori.setBounds(40, 280, 800, 1);
 		crewSeparatorHori.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		add(crewSeparatorHori);
 		
@@ -88,7 +88,8 @@ public class CrewStatus extends JPanel {
 		
 		while(current < crew.size()) {
 			
-			JLabel crewNameLbl = new JLabel(crew.getCrew().get(current).getType() + " " + crew.getCrew().get(current).getName());
+			JLabel crewNameLbl = new JLabel(crew.getCrew().get(current).getType() + " " + crew.getCrew().get(current).getName()
+					+ " (" + crew.getCrew().get(current).getMoves() + " moves left)");
 			crewNameLbl.setFont(new Font("Rockwell", Font.PLAIN, 18));
 			crewNameLbl.setBounds(xCoord[0], yCoord[0], 500, 50);
 			this.add(crewNameLbl);
@@ -155,14 +156,14 @@ public class CrewStatus extends JPanel {
 			if((current%2) == 0) { // even numbers change only the X coordinate, so next item will have new X but same Y.
 				int i = 0;
 				while(i < xCoord.length) {
-					xCoord[i] += 350;
+					xCoord[i] += 420;
 					i ++;
 				}
 			}
 			else { // Odd numbers get the X coordinate taken back to previous value, and increases Y coordinate to new value.
 				int i = 0;
 				while(i < xCoord.length && i < yCoord.length) {
-					xCoord[i] -= 350;
+					xCoord[i] -= 420;
 					yCoord[i] += 150;
 					i ++;
 				}

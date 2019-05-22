@@ -23,6 +23,7 @@ import javax.swing.event.ChangeListener;
 import crewManagement.Crew;
 import crewManagement.CrewMember;
 import crewManagement.SpaceShip;
+import crewManagement.CrewSelector;
 import management.GameManager;
 
 public class ShipStatus extends JPanel {
@@ -31,9 +32,6 @@ public class ShipStatus extends JPanel {
 	GameManager gameManager = GameManager.getInstance();
 	SpaceShip spaceShip = SpaceShip.getInstance();
 	MainScreen window;
-	
-	private CrewMember repairCrew;
-	private List<JRadioButton> repairCrewList = new ArrayList<JRadioButton>();
 
 	/**
 	 * Create the panel.
@@ -89,14 +87,22 @@ public class ShipStatus extends JPanel {
 					int input = JOptionPane.showConfirmDialog(null, "The ship still has 100% of its shields.\n Are you sure you want to repair it?",
 							"Repair", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 					if (input == 0) {
-						repairCrewList.removeAll(repairCrewList);
-						boolean search = getRepairCrew();
-						if (search) JOptionPane.showMessageDialog(null, "The ship was repaired and regained some lost shields!");
+						CrewSelector selectedCrew = new CrewSelector("Select a Repair Crew:", "Repair Ship");
+						CrewMember repairCrew = selectedCrew.getCrew();
+						if (repairCrew == null) {
+							JOptionPane.showMessageDialog(null, "You must select one crew to repair the ship!");
+						} else {
+							repairShip(repairCrew);
+						}
 					}
 				} else {
-					repairCrewList.removeAll(repairCrewList);
-					boolean search = getRepairCrew();
-					if (search) JOptionPane.showMessageDialog(null, "The ship was repaird and regained some lost shields!");
+					CrewSelector selectedCrew = new CrewSelector("Select a Repair Crew:", "Repair Ship");
+					CrewMember repairCrew = selectedCrew.getCrew();
+					if (repairCrew == null) {
+						JOptionPane.showMessageDialog(null, "You must select one crew to repair the ship!");
+					} else {
+						repairShip(repairCrew);
+					}
 				}
 			}
 		});
@@ -105,79 +111,18 @@ public class ShipStatus extends JPanel {
 	
 	
 	/**
-	 * Produces the Message Dialog containing checkboxes of all crews available
-	 * to search and returns true or false if searching or not
-	 * @return Returns true (ok) or false (cancel) based on the user preference
+	 * Repairs the ship and regain 50 of its shield.
+	 * If Engineer repairs the ship, it gains 20 more shield
+	 * @param repairCrew The Crew to repair the ship
 	 */
-	private boolean getRepairCrew() {
-		JRadioButton radBtn1 = new JRadioButton("");
-		JRadioButton radBtn2 = new JRadioButton("");
-		JRadioButton radBtn3 = new JRadioButton("");
-		JRadioButton radBtn4 = new JRadioButton("");
-		JRadioButton radBtn5 = new JRadioButton("");
-		JRadioButton radBtn6 = new JRadioButton("");
-		repairCrewList.add(radBtn1);
-		repairCrewList.add(radBtn2);
-		repairCrewList.add(radBtn3);
-		repairCrewList.add(radBtn4);
-		repairCrewList.add(radBtn5);
-		repairCrewList.add(radBtn6);
-		String msg = "Select a repair crew";
-		Object[] params = {msg, radBtn1, radBtn2, radBtn3, radBtn4, radBtn5, radBtn6};
-		for (int i = 0; i < repairCrewList.size(); i++) {
-			if (i < crew.size()) {
-				String name = crew.getCrew().get(i).getName();
-				String type = crew.getCrew().get(i).getType();
-				int move = crew.getCrew().get(i).getMoves();
-				
-				repairCrewList.get(i).setText(type + " " + name + " (" + move + " moves left)");
-				
-				addListener(repairCrewList.get(i));
-				
-				if (move <= 0) repairCrewList.get(i).setEnabled(false);
-			} else {
-				repairCrewList.get(i).setVisible(false);
-			}
-	
+	private void repairShip(CrewMember repairCrew) {
+		repairCrew.deductMove();
+		if (repairCrew.getType() == "Engineer") {
+			spaceShip.addShield(70);
+			JOptionPane.showMessageDialog(null, "The ship was repaired and regained 70 shields!");
+		} else {
+			spaceShip.addShield(50);
+			JOptionPane.showMessageDialog(null, "The ship was repaired and regained 50 shields!");
 		}
-		
-		boolean repairCrewSelected = false;
-		
-		int input = JOptionPane.showConfirmDialog(null, params, "Repair", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-		if (input == 0) {
-			for (JRadioButton btn: repairCrewList) {
-				if (btn.isSelected()) {
-					int radioIndex = repairCrewList.indexOf(btn);
-					repairCrewSelected = true;
-					repairCrew = crew.getCrew().get(radioIndex);
-					repairCrew.deductMove();
-					spaceShip.addShield(50);
-				}
-			}
-			if (!repairCrewSelected) JOptionPane.showMessageDialog(null, "You must select one crew to repair the ship!");
-		}
-		
-		return repairCrewSelected;
-	}
-	
-	/*
-	 * Adds an event listener to a given radio button
-	 * @param Radio button to be added an event listener
-	 */
-	private void addListener(JRadioButton rb) {
-		rb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JRadioButton source = (JRadioButton) e.getSource();
-				if (source.isSelected()) {
-					for (JRadioButton btn: repairCrewList) {
-						if (btn != source) {
-							btn.setSelected(false);
-						}
-					}
-				} else {
-					source.setSelected(true);
-				}
-			}
-		});
 	}
 }

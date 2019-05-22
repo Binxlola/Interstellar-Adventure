@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import crewManagement.CrewMember;
+import crewManagement.CrewSelector;
 import itemManagement.Inventory;
 import itemManagement.Item;
 
@@ -80,6 +82,9 @@ public class ShipPart implements Item {
 		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Ahh! What a nice part of the warp drive!"
+						+ "\nI can't wait to collect all of them"
+						+ "\nand return home using light speed!");
 			}
 		});
 		return test;

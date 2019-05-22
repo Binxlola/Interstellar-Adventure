@@ -1,7 +1,10 @@
 package mainGui;
 
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
+import crewManagement.Crew;
+import itemManagement.Inventory;
 import management.GameManager;
 
 import javax.swing.JButton;
@@ -23,6 +26,8 @@ import javax.swing.ImageIcon;
 public class GameNavigation extends JPanel {
 	
 	GameManager gameManager = GameManager.getInstance();
+	Inventory inventory = Inventory.getInstance();
+	Crew crew = Crew.getInstance();
 
 	/**
 	 * Create the panel.
@@ -30,6 +35,34 @@ public class GameNavigation extends JPanel {
 	public GameNavigation(MainScreen window) {
 		setBounds(0, 0, 1000, 600);
 		setLayout(null);
+		
+		// Labels for day
+		JLabel dayLbl = new JLabel("DAY " + gameManager.getCurrentDay() + " OF " + gameManager.getGameDuration());
+		dayLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
+		dayLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		dayLbl.setBounds(355, 115, 300, 24);
+		this.add(dayLbl);
+		
+		// Labels for ship parts
+		JLabel partsLbl = new JLabel("Ship Parts: " + gameManager.getPartsFound() + " / " + (gameManager.getPartsFound() + gameManager.getPartsToFind()));
+		partsLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
+		partsLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		partsLbl.setBounds(355, 165, 300, 24);
+		this.add(partsLbl);
+		
+		// Labels for all moves left
+		JLabel movesLbl = new JLabel("Moves Left: " + crew.getAllMoves());
+		movesLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
+		movesLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		movesLbl.setBounds(355, 225, 300, 24);
+		this.add(movesLbl);
+		
+		
+		// Wallet display section
+		JLabel walletLbl = new JLabel("Wallet: " + inventory.getWallet());
+		walletLbl.setBounds(425, 315, 300, 30);
+		walletLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
+		this.add(walletLbl);
 		
 		JLabel titleLbl = new JLabel("INTERSTELLAR ADVENTURES");
 		titleLbl.setFont(new Font("Distant Galaxy", Font.PLAIN, 24));

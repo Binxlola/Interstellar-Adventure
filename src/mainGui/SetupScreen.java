@@ -312,19 +312,19 @@ public class SetupScreen {
 		
 		// Create back button for Window 3
 		JButton setup3Back = new JButton("Back");
-		setup3Back.setBounds(150, 450, 100, 50);
+		setup3Back.setBounds(50, 500, 140, 30);
 		setup3Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cl = (CardLayout)(setup.getLayout());
 				resetCrewFields();
-		        cl.previous(setup);;
+		        cl.previous(setup);
 			}
 		});
 		setup3.add(setup3Back);
 		
 		// Create next button for Window 3
 		JButton setup3Next = new JButton("Next");
-		setup3Next.setBounds(350, 450, 100, 50);
+		setup3Next.setBounds(200, 500, 140, 30);
 		setup3Next.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

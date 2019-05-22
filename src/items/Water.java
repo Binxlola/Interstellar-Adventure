@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import crewManagement.CrewMember;
+import crewManagement.CrewSelector;
 import itemManagement.Inventory;
 import itemManagement.Item;
 
@@ -16,7 +18,7 @@ public class Water implements Item {
 	private String name = "Water";
 	private String type = "Food";
 	private int itemCount = 1;
-	private int price = 20;
+	private int price = 15;
 	
 	/**
 	 * Will return the name the item
@@ -83,6 +85,20 @@ public class Water implements Item {
 		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (getCount() > 0) {
+					CrewSelector useItem = new CrewSelector("Select a Crew to drink " + getName() + ":", "Use Item");
+					CrewMember crewUser = useItem.getCrew();
+					if (crewUser == null) JOptionPane.showMessageDialog(null, "You have to select a Crew to drink this item!");
+					else {
+						deductCount();
+						crewUser.eat(15);
+						crewUser.deductMove();
+						JOptionPane.showMessageDialog(null, crewUser.getName() + " drank the " + getName() + " and become 15 less hungry!"
+								+ "\nAnd probably is not thirsty anymore!");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Sorry! You don't have this item anymore!");
+				}
 			}
 		});
 		return test;
@@ -98,10 +114,14 @@ public class Water implements Item {
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (inv.canAfford(getPrice()) ) {
-					Water item = new Water();
-					inv.addItem(item);
-					inv.payItem(getPrice());
-					JOptionPane.showMessageDialog(null, "You bought a " + getName());
+					int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to buy " + getName() +"?",
+							"Buy", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+					if (input == 0) {
+						Water item = new Water();
+						inv.addItem(item);
+						inv.payItem(getPrice());
+						JOptionPane.showMessageDialog(null, "You bought " + getName() + "!");
+					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have enough coins!");
 				}
@@ -120,11 +140,14 @@ public class Water implements Item {
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (getCount() > 0) {
-					deductCount();
-					if (getCount() <= 0) test.setVisible(false);
-					if (getCount() <= 0) test.setVisible(false);
-					inv.addCoins((int)(0.5*getPrice()));
-					JOptionPane.showMessageDialog(null, "You sold a " + getName() + " for " + (int)(0.5*getPrice()) + " coins!");
+					int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to sell " + getName() +"?",
+							"Sell", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+					if (input == 0) {
+						deductCount();
+						if (getCount() <= 0) test.setVisible(false);
+						inv.addCoins((int)(0.5*getPrice()));
+						JOptionPane.showMessageDialog(null, "You sold a " + getName() + " for " + (int)(0.5*getPrice()) + " coins!");
+					}
 				} else {
 					test.setVisible(false);
 					JOptionPane.showMessageDialog(null, "You no longer have " + getName() + "!");

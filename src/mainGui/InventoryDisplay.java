@@ -40,6 +40,15 @@ public class InventoryDisplay extends JPanel {
 		setBounds(0, 0, 1000, 600);
 		setLayout(null);
 		
+		JButton refreshBtn = new JButton("Refresh");
+		refreshBtn.setBounds(525, 500, 140, 30);
+		refreshBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				window.changeContent("Inventory");
+			}
+		});
+		add(refreshBtn);
+		
 		// Item type searator's
 		JSeparator invSeparator1 = new JSeparator();
 		invSeparator1.setOrientation(SwingConstants.VERTICAL);
