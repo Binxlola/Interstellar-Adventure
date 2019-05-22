@@ -96,6 +96,7 @@ public class GameNavigation extends JPanel {
 						"New Day", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 				if (input == 0) {
 					gameManager.startNewDay();
+					window.changeContent("mainScreen");
 					String day = Integer.toString(gameManager.getCurrentDay());
 					String duration = Integer.toString(gameManager.getGameDuration());
 					if (!gameManager.endGame()) {
@@ -111,6 +112,7 @@ public class GameNavigation extends JPanel {
 						else {
 							msg += "\nYou are still missing " + gameManager.getPartsToFind() + " Ship Parts";
 							msg += "\n You Lose!";
+							inventory.resetInv();
 							window.finishedWindow();
 						}
 						JOptionPane.showMessageDialog(null, msg);
@@ -156,7 +158,5 @@ public class GameNavigation extends JPanel {
 			}
 		});
 		add(inventoryBtn);
-		
-
 	}
 }

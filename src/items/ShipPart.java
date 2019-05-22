@@ -10,6 +10,7 @@ import crewManagement.CrewMember;
 import crewManagement.CrewSelector;
 import itemManagement.Inventory;
 import itemManagement.Item;
+import mainGui.MainScreen;
 
 public class ShipPart implements Item {
 	
@@ -77,7 +78,7 @@ public class ShipPart implements Item {
 	 * Creates a JButton that can be used to display the item in a players inventory.
 	 * @return The created item JButton
 	 */
-	public JButton getUseBtn(int x, int y) {
+	public JButton getUseBtn(int x, int y, MainScreen window) {
 		JButton test = new JButton(this.name + " (" + getCount() + ")");
 		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
@@ -94,7 +95,7 @@ public class ShipPart implements Item {
 	 * Creates a JButton that can be used to display the item in the space outpost.
 	 * @return The created item JButton
 	 */
-	public JButton getBuyBtn(int x, int y) {
+	public JButton getBuyBtn(int x, int y, MainScreen window) {
 		JButton test = new JButton(this.name);
 		test.setBounds(x, y, 180, 100);
 		test.addActionListener(new ActionListener() {
@@ -109,8 +110,8 @@ public class ShipPart implements Item {
 	 * Creates a JButton that can be used to display the item in a player's inventory at the space outpost.
 	 * @return The created item JButton
 	 */
-	public JButton getSellBtn(int x, int y) {
-		JButton test = new JButton(this.name + " (" + (int)(0.5*getPrice()) + " coins)");
+	public JButton getSellBtn(int x, int y, MainScreen window) {
+		JButton test = new JButton(this.name + " (" + getCount() + ")");
 		test.setBounds(x, y, 170, 40);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

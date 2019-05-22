@@ -40,15 +40,6 @@ public class InventoryDisplay extends JPanel {
 		setBounds(0, 0, 1000, 600);
 		setLayout(null);
 		
-		JButton refreshBtn = new JButton("Refresh");
-		refreshBtn.setBounds(525, 500, 140, 30);
-		refreshBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				window.changeContent("Inventory");
-			}
-		});
-		add(refreshBtn);
-		
 		// Item type searator's
 		JSeparator invSeparator1 = new JSeparator();
 		invSeparator1.setOrientation(SwingConstants.VERTICAL);
@@ -146,13 +137,18 @@ public class InventoryDisplay extends JPanel {
 		add(walletLbl);
 	}
 	
+	/**
+	 * Populates the inventory with the player's items
+	 * @param section The panel to be populated
+	 * @param items The items to populate the panel
+	 */
 	private void populateItems(JPanel section, List<Item> items) {
 		int current = 1;
 		// 6, 5
 		int[] btnXY = new int[] {20, 5};
 		for(Item item: items) {
 			if (item.getCount() > 0) {
-				JButton btn = item.getUseBtn(btnXY[0], btnXY[1]);
+				JButton btn = item.getUseBtn(btnXY[0], btnXY[1], window);
 				section.add(btn);
 				
 				if((current % 2) == 1) { // Set coords for the next item on the right

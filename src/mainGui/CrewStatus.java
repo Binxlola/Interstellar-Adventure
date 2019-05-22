@@ -48,15 +48,6 @@ public class CrewStatus extends JPanel {
 		});
 		add(backBtn);
 		
-		JButton refreshBtn = new JButton("Refresh");
-		refreshBtn.setBounds(525, 500, 140, 30);
-		refreshBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				window.changeContent("CrewStatus");
-			}
-		});
-		add(refreshBtn);
-		
 		JLabel selectLbl = new JLabel("CREW MEMBERS STATUS");
 		selectLbl.setFont(new Font("Distant Galaxy", Font.PLAIN, 24));
 		selectLbl.setBounds(42, 33, 600, 40);
@@ -148,6 +139,8 @@ public class CrewStatus extends JPanel {
 									+ " doesn't have any moves left!");
 						}
 					}
+					
+					window.changeContent("CrewStatus");
 				}
 			});
 			add(sleepBtn);

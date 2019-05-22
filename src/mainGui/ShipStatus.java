@@ -50,15 +50,6 @@ public class ShipStatus extends JPanel {
 		});
 		add(backBtn);
 		
-		JButton refreshBtn = new JButton("Refresh");
-		refreshBtn.setBounds(525, 500, 140, 30);
-		refreshBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				window.changeContent("ShipStatus");
-			}
-		});
-		add(refreshBtn);
-		
 		JLabel shipStatusLbl = new JLabel("SHIP STATUS");
 		shipStatusLbl.setFont(new Font("Distant Galaxy", Font.PLAIN, 24));
 		shipStatusLbl.setBounds(42, 33, 600, 40);
@@ -104,6 +95,8 @@ public class ShipStatus extends JPanel {
 						repairShip(repairCrew);
 					}
 				}
+				
+				window.changeContent("ShipStatus");
 			}
 		});
 		add(repairBtn);

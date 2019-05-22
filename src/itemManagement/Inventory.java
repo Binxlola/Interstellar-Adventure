@@ -10,7 +10,7 @@ public class Inventory {
 	private List<Item> foods = new ArrayList<Item>();
 	private List<Item> misc = new ArrayList<Item>();
 
-	private int wallet = 1000;
+	private int wallet = 500;
 
 	
 	/** Private constructor for Inventory class, and as such can only be created from inside. */
@@ -216,6 +216,16 @@ public class Inventory {
 		int indx = itemInList(item, misc);
 		Item owned = misc.get(indx);
 		owned.deductCount();
+	}
+	
+	/**
+	 * Resets the inventory fresh for a new game
+	 */
+	public void resetInv() {
+		potions.removeAll(potions);
+		foods.removeAll(foods);
+		misc.removeAll(misc);
+		this.wallet = 500;
 	}
 
 }

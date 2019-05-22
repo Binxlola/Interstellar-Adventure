@@ -19,6 +19,7 @@ import javax.swing.event.ChangeListener;
 
 import crewManagement.Crew;
 import crewManagement.CrewMember;
+import crewManagement.CrewSelector;
 import environment.Environment;
 import environment.Planet;
 import itemManagement.Inventory;
@@ -28,12 +29,9 @@ import management.GameManager;
 
 public class PlanetMain extends JPanel {
 	
-	MainScreen window;
+	private MainScreen window;
 	private Environment env = Environment.getInstance();
 	private Planet currentPlanet = env.getSelectedPlanet();
-	private Crew crew = Crew.getInstance();
-	private CrewMember searchCrew;
-	private List<JRadioButton> searchCrewList = new ArrayList<JRadioButton>();
 	private ItemWheel itemWheel = ItemWheel.getInstance();
 	private Inventory inventory = Inventory.getInstance();
 
@@ -66,20 +64,57 @@ public class PlanetMain extends JPanel {
 		searchBtn.setBounds(50, 430, 290, 60);
 		searchBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				searchCrewList.removeAll(searchCrewList);
-				boolean search = getSearchCrew();
-				if (search) {
+				CrewSelector selectCrew = new CrewSelector("Select a Search Crew:", "Search");
+				CrewMember searchCrew = selectCrew.getCrew();
+				if (searchCrew == null) {
+					JOptionPane.showMessageDialog(null, "You must select one crew to search!");
+				} else {
+					searchCrew.deductMove();
+					
 					Item item = itemWheel.getItem();
+					
 					if (item == null)  {
 						JOptionPane.showMessageDialog(null, "You did not find anything.");
 					} else {
-						JOptionPane.showMessageDialog(null, "You found a " + item.getName() + "!");
-						if (item.getName() == "Ship Part") {
-							
+						if (currentPlanet.isPieceFound()) {
+							while (item.getName() == "Ship Part") {
+								item = itemWheel.getItem();
+							}
+						}
+						
+						if (item.getName() == "Ship Part" && !currentPlanet.isPieceFound()) {
+							currentPlanet.pieceFound();
+							JOptionPane.showMessageDialog(null, "You found a part of your ship!");
+						} else {
+							JOptionPane.showMessageDialog(null, "You found a " + item.getName() + "!");
 						}
 						inventory.addItem(item);
 					}
+					
+					// Another item if there is a Scout
+					if (searchCrew.getType() == "Scout") {
+						Item extraItem = itemWheel.getItem();
+						
+						if (extraItem != null)  {
+							if (currentPlanet.isPieceFound()) {
+								while (extraItem.getName() == "Ship Part") {
+									extraItem = itemWheel.getItem();
+								}
+							}
+							
+							if (extraItem.getName() == "Ship Part" && !currentPlanet.isPieceFound()) {
+								currentPlanet.pieceFound();
+								JOptionPane.showMessageDialog(null, "Scouts can find extra items!\nYou found a part of your ship!");
+							} else {
+								JOptionPane.showMessageDialog(null, "Scouts can find extra items!\nYou found a " + extraItem.getName() + "!");
+							}
+							inventory.addItem(item);
+						}
+					}
 				}
+				
+				window.changeContent("PlanetMain");
+				
 			}
 		});
 		this.add(searchBtn);
@@ -104,81 +139,5 @@ public class PlanetMain extends JPanel {
 		});
 		add(confirmBtn);
 		
-	}
-	
-	/**
-	 * Produces the Message Dialog containing checkboxes of all crews available
-	 * to search and returns true or false if searching or not
-	 * @return Returns true (ok) or false (cancel) based on the user preference
-	 */
-	private boolean getSearchCrew() {
-		JRadioButton radBtn1 = new JRadioButton("");
-		JRadioButton radBtn2 = new JRadioButton("");
-		JRadioButton radBtn3 = new JRadioButton("");
-		JRadioButton radBtn4 = new JRadioButton("");
-		JRadioButton radBtn5 = new JRadioButton("");
-		JRadioButton radBtn6 = new JRadioButton("");
-		searchCrewList.add(radBtn1);
-		searchCrewList.add(radBtn2);
-		searchCrewList.add(radBtn3);
-		searchCrewList.add(radBtn4);
-		searchCrewList.add(radBtn5);
-		searchCrewList.add(radBtn6);
-		String msg = "Select a search crew";
-		Object[] params = {msg, radBtn1, radBtn2, radBtn3, radBtn4, radBtn5, radBtn6};
-		for (int i = 0; i < searchCrewList.size(); i++) {
-			if (i < crew.size()) {
-				String name = crew.getCrew().get(i).getName();
-				String type = crew.getCrew().get(i).getType();
-				int move = crew.getCrew().get(i).getMoves();
-				
-				searchCrewList.get(i).setText(type + " " + name + " (" + move + " moves left)");
-				
-				addListener(searchCrewList.get(i));
-				
-				if (move <= 0) searchCrewList.get(i).setEnabled(false);
-			} else {
-				searchCrewList.get(i).setVisible(false);
-			}
-	
-		}
-		
-		boolean searchCrewSelected = false;
-		
-		int input = JOptionPane.showConfirmDialog(null, params, "Search", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-		if (input == 0) {
-			for (JRadioButton btn: searchCrewList) {
-				if (btn.isSelected()) {
-					int radioIndex = searchCrewList.indexOf(btn);
-					searchCrewSelected = true;
-					searchCrew = crew.getCrew().get(radioIndex);
-					searchCrew.deductMove();
-				}
-			}
-			if (!searchCrewSelected) JOptionPane.showMessageDialog(null, "You must select one crew to search!");
-		}
-		
-		return searchCrewSelected;
-	}
-	
-	/*
-	 * Adds an event listener to a given radio button
-	 * @param Radio button to be added an event listener
-	 */
-	private void addListener(JRadioButton rb) {
-		rb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JRadioButton source = (JRadioButton) e.getSource();
-				if (source.isSelected()) {
-					for (JRadioButton btn: searchCrewList) {
-						if (btn != source) {
-							btn.setSelected(false);
-						}
-					}
-				} else {
-					source.setSelected(true);
-				}
-			}
-		});
 	}
 }

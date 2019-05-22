@@ -10,6 +10,7 @@ import crewManagement.CrewMember;
 import crewManagement.CrewSelector;
 import itemManagement.Inventory;
 import itemManagement.Item;
+import mainGui.MainScreen;
 
 public class SmallHP implements Item {
 	
@@ -78,7 +79,7 @@ public class SmallHP implements Item {
 	 * Creates a JButton that can be used to display the item in a players inventory.
 	 * @return The created item JButton
 	 */
-	public JButton getUseBtn(int x, int y) {
+	public JButton getUseBtn(int x, int y, MainScreen window) {
 		JButton test = new JButton(this.name + " (" + getCount() + ")");
 		test.setBounds(x, y, 130, 30);
 		test.addActionListener(new ActionListener() {
@@ -97,6 +98,7 @@ public class SmallHP implements Item {
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have this item anymore!");
 				}
+				window.changeContent("Inventory");
 			}
 		});
 		return test;
@@ -106,7 +108,7 @@ public class SmallHP implements Item {
 	 * Creates a JButton that can be used to display the item in the space outpost.
 	 * @return The created item JButton
 	 */
-	public JButton getBuyBtn(int x, int y) {
+	public JButton getBuyBtn(int x, int y, MainScreen window) {
 		JButton test = new JButton(this.name + " (" + getPrice() + " coins)");
 		test.setBounds(x, y, 180, 100);
 		test.addActionListener(new ActionListener() {
@@ -118,11 +120,11 @@ public class SmallHP implements Item {
 						SmallHP item = new SmallHP();
 						inv.addItem(item);
 						inv.payItem(getPrice());
-						JOptionPane.showMessageDialog(null, "You bought " + getName() + "!");
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have enough coins!");
 				}
+				window.changeContent("Outpost");
 			}
 		});
 		return test;
@@ -132,8 +134,8 @@ public class SmallHP implements Item {
 	 * Creates a JButton that can be used to display the item in a player's inventory at the space outpost.
 	 * @return The created item JButton
 	 */
-	public JButton getSellBtn(int x, int y) {
-		JButton test = new JButton(this.name + " (" + (int)(0.5*getPrice()) + " coins)");
+	public JButton getSellBtn(int x, int y, MainScreen window) {
+		JButton test = new JButton(this.name + " (" + getCount() + ")");
 		test.setBounds(x, y, 170, 40);
 		test.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -144,12 +146,12 @@ public class SmallHP implements Item {
 						deductCount();
 						if (getCount() <= 0) test.setVisible(false);
 						inv.addCoins((int)(0.5*getPrice()));
-						JOptionPane.showMessageDialog(null, "You sold a " + getName() + " for " + (int)(0.5*getPrice()) + " coins!");
 					}
 				} else {
 					test.setVisible(false);
 					JOptionPane.showMessageDialog(null, "You no longer have " + getName() + "!");
 				}
+				window.changeContent("Outpost");
 			}
 		});
 		return test;

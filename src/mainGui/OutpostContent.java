@@ -35,7 +35,6 @@ public class OutpostContent extends JPanel {
 	private Inventory inventory = Inventory.getInstance();
 	
 	private MainScreen window;
-	private JLabel walletValLbl;
 	private JPanel storePanel;
 	private JPanel invPanel;
 
@@ -62,19 +61,16 @@ public class OutpostContent extends JPanel {
 		});
 		add(backBtn);
 		
-		JButton refreshBtn = new JButton("Refresh");
-		refreshBtn.setBounds(525, 500, 140, 30);
-		refreshBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				window.changeContent("Outpost");
-			}
-		});
-		add(refreshBtn);
-		
-		walletValLbl = new JLabel("Wallet: " + inventory.getWallet());
+		JLabel walletValLbl = new JLabel("Wallet: " + inventory.getWallet());
 		walletValLbl.setBounds(200, 500, 300, 30);
 		walletValLbl.setFont(new Font("Unispace", Font.PLAIN, 18));
 		add(walletValLbl);
+		
+		JLabel noteLbl = new JLabel("Selling an item will give you 50% of its cost!");
+		noteLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		noteLbl.setFont(new Font("Rockwell", Font.PLAIN, 18));
+		noteLbl.setBounds(450, 490, 500, 50);
+		add(noteLbl);
 		
 		populatePanel();
 	}
@@ -146,7 +142,7 @@ public class OutpostContent extends JPanel {
 		for (List<Item> cat: allItems) {
 			for(Item item: cat) {
 				if (item.getCount() > 0) {
-				JButton btn = item.getSellBtn(btnXY[0], btnXY[1]);
+				JButton btn = item.getSellBtn(btnXY[0], btnXY[1], window);
 				section.add(btn);
 				
 				if((current % 2) == 1) { // Set coords for the next item on the right
@@ -196,13 +192,13 @@ public class OutpostContent extends JPanel {
 		for(i = 0; i < storeItems.size(); i++) {
 			JButton btn = new JButton();
 			if (i < 3) {
-				btn = storeItems.get(i).getBuyBtn(x, y+=110);
+				btn = storeItems.get(i).getBuyBtn(x, y+=110, window);
 			} else if (i < 6) {
 				if (i == 3) y = -95;
-				btn = storeItems.get(i).getBuyBtn(x+190, y+=110);
+				btn = storeItems.get(i).getBuyBtn(x+190, y+=110, window);
 			} else if (i < 9) {
 				if (i == 6) y = -95;
-				btn = storeItems.get(i).getBuyBtn(x+380, y+=110);
+				btn = storeItems.get(i).getBuyBtn(x+380, y+=110, window);
 			}
 			
 			section.add(btn);

@@ -74,7 +74,8 @@ public class MainScreen {
 			this.setContent(content);
 			break;
 		case "mainScreen":
-			this.setContent(mainScreen);
+			content = manager.getMainScreenPanel(this);
+			this.setContent(content);
 			break;
 		case "Inventory":
 			content = manager.getInventoryPanel(this);

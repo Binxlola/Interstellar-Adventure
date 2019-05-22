@@ -48,6 +48,16 @@ public class GuiManager {
 	}
 	
 	/**
+	 * Will create a new GameNavigation JPanel
+	 * @param window The current MainScreen window who has the overall control
+	 * @return Will return a GameNavigation JPanel that will be loaded onto the main screen.
+	 */
+	public GameNavigation getMainScreenPanel(MainScreen window) {
+		GameNavigation content = new GameNavigation(window);
+		return content;
+	}
+	
+	/**
 	 * Will create a new TravelCrewSelect JPanel,
 	 * @return Will return a TravelCrewSelect JPanel that will then be loaded onto the main screen.
 	 */
