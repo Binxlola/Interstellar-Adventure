@@ -4,6 +4,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import crewManagement.Crew;
+import crewManagement.CrewMember;
+import crewManagement.CrewSelector;
+import crewManagement.SpaceShip;
+import environment.RandomEvent;
 import itemManagement.Inventory;
 import management.GameManager;
 
@@ -27,6 +31,7 @@ public class GameNavigation extends JPanel {
 	
 	GameManager gameManager = GameManager.getInstance();
 	Inventory inventory = Inventory.getInstance();
+	SpaceShip spaceShip = SpaceShip.getInstance();
 	Crew crew = Crew.getInstance();
 
 	/**
@@ -44,7 +49,7 @@ public class GameNavigation extends JPanel {
 		this.add(dayLbl);
 		
 		// Labels for ship parts
-		JLabel partsLbl = new JLabel("Ship Parts: " + gameManager.getPartsFound() + " / " + (gameManager.getPartsFound() + gameManager.getPartsToFind()));
+		JLabel partsLbl = new JLabel("Ship Parts: " + gameManager.getPartsFound() + " / " + gameManager.getPartsToFind());
 		partsLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
 		partsLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		partsLbl.setBounds(355, 165, 300, 24);
@@ -56,6 +61,13 @@ public class GameNavigation extends JPanel {
 		movesLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		movesLbl.setBounds(355, 225, 300, 24);
 		this.add(movesLbl);
+		
+		// Labels for ship
+		JLabel shipLbl = new JLabel("Ship Shield: " + spaceShip.getShipShield() + "%");
+		shipLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
+		shipLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		shipLbl.setBounds(355, 275, 300, 24);
+		this.add(shipLbl);
 		
 		
 		// Wallet display section
@@ -95,27 +107,21 @@ public class GameNavigation extends JPanel {
 				int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to move on to the next day?",
 						"New Day", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 				if (input == 0) {
-					gameManager.startNewDay();
-					window.changeContent("mainScreen");
-					String day = Integer.toString(gameManager.getCurrentDay());
-					String duration = Integer.toString(gameManager.getGameDuration());
-					if (!gameManager.endGame()) {
+					if (gameManager.allPartsFound()) {
+						gameManager.endGame(true, "You have found all the ship parts!");
+						window.changeContent("GameOver");
+					}
+					else if (!gameManager.endGame()) {
+						String day = Integer.toString(gameManager.getCurrentDay() + 1);
+						String duration = Integer.toString(gameManager.getGameDuration());
 						String msg = "Today is a new day, you are now on day " + day;
 						msg += " of your " + duration + " day journey.";
 						JOptionPane.showMessageDialog(null, msg);
+						gameManager.startNewDay();
+						window.changeContent("mainScreen");
 					} else {
-						String msg = "You have reached the end of your " + duration + " day journey.";
-						
-						if(gameManager.allPartsFound()) {
-							msg += "\nYou have found all the missing ship parts, you need to install them to win the game.";
-						}
-						else {
-							msg += "\nYou are still missing " + gameManager.getPartsToFind() + " Ship Parts";
-							msg += "\n You Lose!";
-							inventory.resetInv();
-							window.finishedWindow();
-						}
-						JOptionPane.showMessageDialog(null, msg);
+						gameManager.endGame(false, "You have failed to find all the ship parts!");
+						window.changeContent("GameOver");
 					}
 				}
 			}

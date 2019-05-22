@@ -11,6 +11,7 @@ import management.*;
 */
 public class Planet {
 	
+	private GameManager gameManager = GameManager.getInstance();
 	private Boolean pieceFound = false;
 	private String planetName = ""; // randomly given from a list of names
 	private boolean visited = false;
@@ -59,6 +60,7 @@ public class Planet {
 	}
 	
 	public void pieceFound() {
+		this.gameManager.partFound();
 		this.pieceFound = true;
 	}
 	

@@ -87,8 +87,7 @@ public class LargeHP implements Item {
 				if (getCount() > 0) {
 					CrewSelector useItem = new CrewSelector("Select a Crew to drink " + getName() + ":", "Use Item");
 					CrewMember crewUser = useItem.getCrew();
-					if (crewUser == null) JOptionPane.showMessageDialog(null, "You have to select a Crew to drink this item!");
-					else {
+					if (crewUser != null) {
 						deductCount();
 						int newHealth = (int)crewUser.getHealth() + 70;
 						crewUser.setHealth(newHealth);

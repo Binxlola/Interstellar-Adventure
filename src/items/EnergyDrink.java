@@ -87,10 +87,10 @@ public class EnergyDrink implements Item {
 				if (getCount() > 0) {
 					CrewSelector useItem = new CrewSelector("Select a Crew to drink " + getName() + ":", "Use Item");
 					CrewMember crewUser = useItem.getCrew();
-					if (crewUser == null) JOptionPane.showMessageDialog(null, "You have to select a Crew to drink this item!");
-					else {
+					if (crewUser != null) {
 						deductCount();
 						crewUser.eat(10);
+						crewUser.addMove();
 						crewUser.addMove();
 						JOptionPane.showMessageDialog(null, crewUser.getName() + " drank the " + getName() + " and become 10 less hungry!"
 								+ "\nBecause of energy boost, he gained one more move!"

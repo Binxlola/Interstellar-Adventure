@@ -87,21 +87,22 @@ public class SpacePills implements Item {
 				if (getCount() > 0) {
 					CrewSelector useItem = new CrewSelector("Select a Crew to take " + getName() + ":", "Use Item");
 					CrewMember crewUser = useItem.getCrew();
-					if (crewUser == null) JOptionPane.showMessageDialog(null, "You have to select a Crew to take this item!");
-					else if (!crewUser.isInfected()) {
-						int input = JOptionPane.showConfirmDialog(null, crewUser.getName() + " is not infected at all. Are you sure you want to use this item?",
-								"Repair", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-						if (input == 0) {
+					if (crewUser != null) {
+						if (!crewUser.isInfected()) {
+							int input = JOptionPane.showConfirmDialog(null, crewUser.getName() + " is not infected at all. Are you sure you want to use this item?",
+									"Repair", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+							if (input == 0) {
+								deductCount();
+								crewUser.deductMove();
+								crewUser.cureInfection();
+								JOptionPane.showMessageDialog(null, crewUser.getName() + " took some " + getName() + " and probably feels dizzy!");
+							}
+						} else {
 							deductCount();
 							crewUser.deductMove();
 							crewUser.cureInfection();
-							JOptionPane.showMessageDialog(null, crewUser.getName() + " took some " + getName() + " and probably feels dizzy!");
+							JOptionPane.showMessageDialog(null, crewUser.getName() + " took some " + getName() + " and is not infected anymore!");
 						}
-					} else {
-						deductCount();
-						crewUser.deductMove();
-						crewUser.cureInfection();
-						JOptionPane.showMessageDialog(null, crewUser.getName() + " took some " + getName() + " and is not infected anymore!");
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have this item anymore!");

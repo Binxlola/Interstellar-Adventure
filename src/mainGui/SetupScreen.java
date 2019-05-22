@@ -154,8 +154,13 @@ public class SetupScreen {
 		// Game Length setup
 		JLabel gameLengthLbl = new JLabel("Game Length:");
 		gameLengthLbl.setFont(new Font("Rockwell", Font.PLAIN, 14));
-		gameLengthLbl.setBounds(50, 228, 95, 20);
+		gameLengthLbl.setBounds(50, 228, 150, 20);
 		setup2.add(gameLengthLbl);
+		
+		JLabel daysLbl = new JLabel("(DAYS)");
+		daysLbl.setFont(new Font("Rockwell", Font.PLAIN, 14));
+		daysLbl.setBounds(75, 248, 150, 20);
+		setup2.add(daysLbl);
 		
 		JSlider gameLengthSldr = new JSlider();
 		gameLengthSldr.addChangeListener(new ChangeListener() {

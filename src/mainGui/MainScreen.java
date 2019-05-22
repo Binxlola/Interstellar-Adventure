@@ -93,6 +93,10 @@ public class MainScreen {
 			content = manager.getShipStatusPanel(this);
 			this.setContent(content);
 			break;
+		case "GameOver":
+			content = manager.getGameOverPanel(this);
+			this.setContent(content);
+			break;
 		}
 	}
 }

@@ -20,6 +20,8 @@ import java.util.List;
 
 public class ItemWheel {
 	
+	private Environment env = Environment.getInstance();
+	private Planet currentPlanet = env.getSelectedPlanet();
 	private List<Item> potions = new ArrayList<Item>();
 	private List<Item> foods = new ArrayList<Item>();
 	private List<Item> misc = new ArrayList<Item>();
@@ -71,14 +73,14 @@ public class ItemWheel {
 		
 		// 30%: Food, 20%: Potion, 20% Ship Part, 20% Money, 10% Nothing
 		List<Item> items = new ArrayList<Item>();
-		double type = randUniformPositive();
+		double type = new Random().nextDouble();
 		if (type < 0.3) items = foods;
 		else if (type < 0.50) items = potions;
 		else if (type < 0.70) items = misc;
 		else if (type < 0.90) {
 			Coin coin = new Coin();
-			double temp = randUniformPositive() * 100;
-			double temp2 = randUniformPositive() * 10;
+			double temp = new Random().nextDouble() * 100;
+			double temp2 = new Random().nextDouble() * 5;
 			int multiplier = (int)temp2;
 			int cost = (int)temp;
 			for (int i = 0; i < cost*multiplier; i++) coin.addCount();
@@ -92,7 +94,7 @@ public class ItemWheel {
 			weight_sum += item.getDropChance();
 		}
 		// get a random value
-		double value = randUniformPositive() * weight_sum;	
+		double value = new Random().nextDouble() * weight_sum;	
 		// locate the random value based on the weights
 		for(Item item: items) {		
 			value -= item.getDropChance();		
@@ -102,12 +104,10 @@ public class ItemWheel {
 		return null;
 	}
 
-	// Returns a uniformly distributed double value between 0.0 and 1.0
-	private double randUniformPositive() {
-		// easiest implementation
-		return new Random().nextDouble();
-	}
-	
+	/**
+	 * Randomly generates an item from the list of all available implemented items
+	 * @return Pseudo-randomly generated item
+	 */
 	public Item getItem() {
 		return this.rouletteSelect();
 	}

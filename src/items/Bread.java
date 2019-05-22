@@ -90,8 +90,7 @@ public class Bread implements Item {
 				if (getCount() > 0) {
 					CrewSelector useItem = new CrewSelector("Select a Crew to eat " + getName() + ":", "Use Item");
 					CrewMember crewUser = useItem.getCrew();
-					if (crewUser == null) JOptionPane.showMessageDialog(null, "You have to select a Crew to eat this item!");
-					else {
+					if (crewUser != null) {
 						deductCount();
 						crewUser.eat(30);
 						crewUser.deductMove();

@@ -91,7 +91,10 @@ public class Inventory {
 	 * @param item A Item object representing the item to be added to the inventory.
 	 */
 	public void addItem(Item item) {
-		String itemType = item.getType();
+		String itemType = "";
+		if (item != null) {
+			itemType = item.getType();
+		}
 		
 		switch(itemType) {
 		case "Potion":

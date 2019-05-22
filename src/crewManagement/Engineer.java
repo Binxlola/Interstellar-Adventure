@@ -110,12 +110,12 @@ public class Engineer extends CrewMember {
 	
 	/**
 	 * Deducts a move from the members current available moves.
-	 * Each move will increase tiredness by 20
+	 * Each move will increase tiredness by 10
 	 */
 	public void deductMove() {
 		if((memberMoves - 1) >= 0) {
 			memberMoves -= 1;
-			memberTiredness += 20;
+			memberTiredness += 10;
 			if (memberTiredness >= 100) memberTiredness = 100;
 		}
 	}
@@ -154,8 +154,7 @@ public class Engineer extends CrewMember {
 	
 	/**
 	 * Will apply certain effects after new day is called
-	 * Hunger: Increases by 50 (max 100)
-	 * Tiredness: Increases by 10 (max 100)
+	 * Hunger: Increases by 20 (max 100)
 	 * 
 	 * Infected: Decreases health by 20
 	 * Hunger at 100%: Decreases health by 10
@@ -167,8 +166,7 @@ public class Engineer extends CrewMember {
 			if(memberHunger >= 100) memberHealth -= 10;
 			if (memberHealth < 0) setHealth(0);
 			
-			memberTiredness += 10;
-			memberHunger += 50;
+			memberHunger += 20;
 			if (memberHunger > 100) memberHunger = 100;
 			if (memberTiredness > 100) memberTiredness = 100;
 			
@@ -195,6 +193,7 @@ public class Engineer extends CrewMember {
 	 */
 	public void eat(int amount) {
 		memberHunger -= amount;
+		memberMoves -= 1;
 		if (memberHunger < 0) memberHunger = 0;
 	}
 }

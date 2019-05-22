@@ -5,6 +5,7 @@ import javax.swing.Icon;
 import crewManagement.Crew;
 import crewManagement.SpaceShip;
 import environment.Environment;
+import environment.RandomEvent;
 
 /**
  * Control center of a players game.
@@ -21,6 +22,10 @@ public class GameManager {
 	private int partsToFind;
 	private Crew crew = Crew.getInstance();
 	private SpaceShip spaceShip = SpaceShip.getInstance();
+	
+	private boolean gameResult;
+	private String gameComment;
+	private int gameScore;
 
 	
 	/**
@@ -52,8 +57,45 @@ public class GameManager {
 		spaceShip.initializeShip(name, shipIcon);
 		this.setPartsToFind(duration);
 		this.currentDay = 1;
+		this.gameScore = 0;
 		Environment env = Environment.getInstance();
 		env.buildEnvironment(gameDuration);
+	}
+	
+	/**
+	 * Stores the result of the game
+	 * @param result True for win, false for lose
+	 * @param message Some message why a win or a lose happened
+	 * @param score The score of the player
+	 */
+	public void endGame(boolean result, String message) {
+		this.gameResult = result;
+		this.gameComment = message;
+	}
+	
+	/**
+	 * Returns the result of the game
+	 * @return String representation of the game result
+	 */
+	public String getGameResult() {
+		if (gameResult) return "YOU WIN!";
+		return "YOU LOSE!";
+	}
+	
+	/**
+	 * Get the comments about the game result
+	 * @return Comments about the game result
+	 */
+	public String getGameComment() {
+		return this.gameComment;
+	}
+	
+	/**
+	 * Get the overall score achieved in the game
+	 * @return The overall score achieved by the player
+	 */
+	public int getGameScore() {
+		return this.gameScore;
 	}
 	
 	/**
@@ -87,29 +129,16 @@ public class GameManager {
 		// Move to new day if possible.
 		if(!this.endGame()) {
 			this.currentDay += 1;
-			crew.newDay(); // reset all crew member move counts and apply some effects
+			crew.newDay();
 			// RANDOM OCCURENCE
-			//alienPirates.randomAttack();
-		}
-		else {
-			System.out.println("You have reached the end of your " + this.gameDuration + " day journey.");
-			
-			if(this.allPartsFound()) {
-				System.out.println("You have found all the missing ship parts, you need to install them to win the game.");
-			}
-			else {
-				// Need to run a check to see if the player could possibly still find and install the missing parts............
-				System.out.println("You are still missing " + this.partsToFind + " Ship Parts, find and install them to win the game." );
-			}
-			// NOT COMPLETE
+			new RandomEvent();
 		}
 	}
 	
 	/**
-	 * Adds 1 to the partsFound and subtracts 1 to the partsToFind
+	 * Adds 1 to the partsFound
 	 */
 	public void partFound() {
-		partsToFind -= 1;
 		partsFound +=1;
 	}
 	
@@ -118,7 +147,7 @@ public class GameManager {
 	 * @return Returns true if the player already found all the parts required
 	 */
 	public boolean allPartsFound() {
-		if(this.partsFound == this.partsToFind) {
+		if (this.partsFound >= this.partsToFind) {
 			return true;
 		}
 		else {
@@ -147,7 +176,7 @@ public class GameManager {
 	 * @return True if the game reached the last day
 	 */
 	public boolean endGame() {
-		if (this.currentDay <= this.gameDuration) {
+		if (this.currentDay < this.gameDuration) {
 			return false;
 		} else {
 			return true;

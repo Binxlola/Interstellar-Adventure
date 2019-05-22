@@ -35,7 +35,6 @@ public class PlanetMain extends JPanel {
 	private Planet currentPlanet = env.getSelectedPlanet();
 	private ItemWheel itemWheel = ItemWheel.getInstance();
 	private Inventory inventory = Inventory.getInstance();
-	private SpaceShip spaceShip = SpaceShip.getInstance();
 
 	/**
 	 * Create the panel.
@@ -68,9 +67,7 @@ public class PlanetMain extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				CrewSelector selectCrew = new CrewSelector("Select a Search Crew:", "Search");
 				CrewMember searchCrew = selectCrew.getCrew();
-				if (searchCrew == null) {
-					JOptionPane.showMessageDialog(null, "You must select one crew to search!");
-				} else {
+				if (searchCrew != null) {
 					searchCrew.deductMove();
 					
 					Item item = itemWheel.getItem();
@@ -78,19 +75,22 @@ public class PlanetMain extends JPanel {
 					if (item == null)  {
 						JOptionPane.showMessageDialog(null, "You did not find anything.");
 					} else {
-						if (currentPlanet.isPieceFound()) {
-							while (item.getName() == "Ship Part") {
-								item = itemWheel.getItem();
+						if (item.getName() == "Ship Part") {
+							if (!currentPlanet.isPieceFound()) {
+								currentPlanet.pieceFound();
+								JOptionPane.showMessageDialog(null, "You found a part of your ship!");
+								inventory.addItem(item);
+							} else {
+								item = null;
+								JOptionPane.showMessageDialog(null, "You did not find anything.");
 							}
-						}
-						
-						if (item.getName() == "Ship Part" && !currentPlanet.isPieceFound()) {
-							currentPlanet.pieceFound();
-							JOptionPane.showMessageDialog(null, "You found a part of your ship!");
+						} else if (item.getName() == "Coin") {
+							JOptionPane.showMessageDialog(null, "You found " + item.getCount() + " coins!");
+							inventory.addItem(item);
 						} else {
-							JOptionPane.showMessageDialog(null, "You found a " + item.getName() + "!");
+							JOptionPane.showMessageDialog(null, "You found " + item.getName() + "!");
+							inventory.addItem(item);
 						}
-						inventory.addItem(item);
 					}
 					
 					// Another item if there is a Scout
@@ -98,19 +98,19 @@ public class PlanetMain extends JPanel {
 						Item extraItem = itemWheel.getItem();
 						
 						if (extraItem != null)  {
-							if (currentPlanet.isPieceFound()) {
-								while (extraItem.getName() == "Ship Part") {
-									extraItem = itemWheel.getItem();
+							if (extraItem.getName() == "Ship Part") {
+								if (!currentPlanet.isPieceFound() ) {
+									currentPlanet.pieceFound();
+									JOptionPane.showMessageDialog(null, "Scouts can find extra items!\nYou found a part of your ship!");
+									inventory.addItem(extraItem);
 								}
-							}
-							
-							if (extraItem.getName() == "Ship Part" && !currentPlanet.isPieceFound()) {
-								currentPlanet.pieceFound();
-								JOptionPane.showMessageDialog(null, "Scouts can find extra items!\nYou found a part of your ship!");
+							} else if (extraItem.getName() == "Coin") {
+								JOptionPane.showMessageDialog(null, "Scouts can find extra items!\nYou found " + extraItem.getCount() + " coins!");
+								inventory.addItem(extraItem);
 							} else {
-								JOptionPane.showMessageDialog(null, "Scouts can find extra items!\nYou found a " + extraItem.getName() + "!");
+								JOptionPane.showMessageDialog(null, "Scouts can find extra items!\nYou found " + extraItem.getName() + "!");
+								inventory.addItem(extraItem);
 							}
-							inventory.addItem(item);
 						}
 					}
 				}

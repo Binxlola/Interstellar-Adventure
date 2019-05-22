@@ -56,7 +56,7 @@ public class TravelCrewSelect extends JPanel {
 				} else {
 					deductMoves();
 					window.changeContent("PlanetMain");
-					new AsteroidEvent(pilot);
+					new AsteroidEvent(pilot, window);
 				}
 			}
 		});

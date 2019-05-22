@@ -103,4 +103,9 @@ public class GuiManager {
 		ShipStatus content = new ShipStatus(window);
 		return content;
 	}
+	
+	public GameOver getGameOverPanel(MainScreen window) {
+		GameOver content = new GameOver(window);
+		return content;
+	}
 }

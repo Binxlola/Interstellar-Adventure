@@ -118,25 +118,30 @@ public class CrewStatus extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (crew.getCrew().get(sleepIndex).getTiredness() == 0) {
 						int input = JOptionPane.showConfirmDialog(null, crew.getCrew().get(sleepIndex).getType() + " " + crew.getCrew().get(sleepIndex).getName()
-								+ " is not tired at all.\n Are you sure you want him to sleep?", "Sleep", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+								+ " is not tired at all.\n Are you sure you want this crew to sleep?", "Sleep", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 						if (input == 0) {
 							if (crew.getCrew().get(sleepIndex).getMoves() > 0) {
 								crew.getCrew().get(sleepIndex).sleep();
 								JOptionPane.showMessageDialog(null, crew.getCrew().get(sleepIndex).getType() + " " + crew.getCrew().get(sleepIndex).getName()
-										+ " slept and became less tired!");
+										+ " slept because of laziness!");
 							} else {
 								JOptionPane.showMessageDialog(null, crew.getCrew().get(sleepIndex).getType() + " " + crew.getCrew().get(sleepIndex).getName()
 										+ " doesn't have any moves left!");
 							}
 						}
 					} else {
-						if (crew.getCrew().get(sleepIndex).getMoves() > 0) {
-							crew.getCrew().get(sleepIndex).sleep();
-							JOptionPane.showMessageDialog(null, crew.getCrew().get(sleepIndex).getType() + " " + crew.getCrew().get(sleepIndex).getName()
-									+ " slept and became less tired!");
-						} else {
-							JOptionPane.showMessageDialog(null, crew.getCrew().get(sleepIndex).getType() + " " + crew.getCrew().get(sleepIndex).getName()
-									+ " doesn't have any moves left!");
+						int input = JOptionPane.showConfirmDialog(null,"Are you sure you want "+ crew.getCrew().get(sleepIndex).getType()
+								+ " " + crew.getCrew().get(sleepIndex).getName()
+								+ " to sleep?", "Sleep", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+						if (input == 0) {
+							if (crew.getCrew().get(sleepIndex).getMoves() > 0) {
+								crew.getCrew().get(sleepIndex).sleep();
+								JOptionPane.showMessageDialog(null, crew.getCrew().get(sleepIndex).getType() + " " + crew.getCrew().get(sleepIndex).getName()
+										+ " slept and became 80 less tired!");
+							} else {
+								JOptionPane.showMessageDialog(null, crew.getCrew().get(sleepIndex).getType() + " " + crew.getCrew().get(sleepIndex).getName()
+										+ " doesn't have any moves left!");
+							}
 						}
 					}
 					

@@ -5,15 +5,19 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 import crewManagement.SpaceShip;
+import mainGui.MainScreen;
+import management.GameManager;
 
 public class AsteroidEvent {
 	
 	private boolean pilot;
+	private MainScreen window;
 	private SpaceShip spaceShip = SpaceShip.getInstance();
+	private GameManager gameManager = GameManager.getInstance();
 	
-	public AsteroidEvent(boolean newPilot) {
+	public AsteroidEvent(boolean newPilot, MainScreen incomingWindow) {
 		this.pilot = newPilot;
-		System.out.println("IM CALLED");
+		this.window = incomingWindow;
 		initialize();
 	}
 	
@@ -33,6 +37,11 @@ public class AsteroidEvent {
 						+ "\n       Your ship took 40 damage!");
 				spaceShip.deductShield(40);
 			}
+		}
+		
+		if (spaceShip.getShipShield() == 0) {
+			gameManager.endGame(false, "Your ship was destroyed!");
+			window.changeContent("GameOver");
 		}
 
 	}

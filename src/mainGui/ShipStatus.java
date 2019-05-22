@@ -80,18 +80,14 @@ public class ShipStatus extends JPanel {
 					if (input == 0) {
 						CrewSelector selectedCrew = new CrewSelector("Select a Repair Crew:", "Repair Ship");
 						CrewMember repairCrew = selectedCrew.getCrew();
-						if (repairCrew == null) {
-							JOptionPane.showMessageDialog(null, "You must select one crew to repair the ship!");
-						} else {
+						if (repairCrew != null) {
 							repairShip(repairCrew);
 						}
 					}
 				} else {
 					CrewSelector selectedCrew = new CrewSelector("Select a Repair Crew:", "Repair Ship");
 					CrewMember repairCrew = selectedCrew.getCrew();
-					if (repairCrew == null) {
-						JOptionPane.showMessageDialog(null, "You must select one crew to repair the ship!");
-					} else {
+					if (repairCrew != null) {
 						repairShip(repairCrew);
 					}
 				}
