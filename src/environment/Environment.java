@@ -95,18 +95,6 @@ public class Environment {
 			
 	}
 	
-	public void presentPlanets() {
-		System.out.println(); // Empty line to make content more readable
-		
-		int currentPosition = 1;
-		for (Planet planet: planets) {
-			String temp = String.format("%s. %s", currentPosition, planet);
-			System.out.println(temp);
-			currentPosition ++;
-		}
-		
-	}
-	
 	public ArrayList<Planet> getPlanets() {
 		return planets;
 	}

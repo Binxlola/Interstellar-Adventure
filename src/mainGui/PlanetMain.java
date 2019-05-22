@@ -35,6 +35,7 @@ public class PlanetMain extends JPanel {
 	private Planet currentPlanet = env.getSelectedPlanet();
 	private ItemWheel itemWheel = ItemWheel.getInstance();
 	private Inventory inventory = Inventory.getInstance();
+	private GameManager gameManager = GameManager.getInstance();
 
 	/**
 	 * Create the panel.
@@ -115,7 +116,12 @@ public class PlanetMain extends JPanel {
 					}
 				}
 				
-				window.changeContent("PlanetMain");
+				if (gameManager.allPartsFound()) {
+					gameManager.endGame(true, "You have found all the ship parts!");
+					window.changeContent("GameOver");
+				} else {
+					window.changeContent("PlanetMain");
+				}
 				
 			}
 		});

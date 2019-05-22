@@ -77,7 +77,7 @@ public class ItemWheel {
 		else if (type < 0.90) {
 			Coin coin = new Coin();
 			double temp = randUniformPositive() * 100;
-			double temp2 = randUniformPositive() * 10;
+			double temp2 = randUniformPositive() * 1.25;
 			int multiplier = (int)temp2;
 			int cost = (int)temp;
 			for (int i = 0; i < cost*multiplier; i++) coin.addCount();

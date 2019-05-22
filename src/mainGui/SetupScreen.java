@@ -365,10 +365,9 @@ public class SetupScreen {
 				
 				if (crewNameFldCheck) {
 					GameManager gameManager = GameManager.getInstance();
-					gameManager.initializeManager(gameDuration, crewSize, shipNameFld.getText(), shipIcon);
+					gameManager.initializeManager(gameDuration, shipNameFld.getText(), shipIcon);
 					Crew crew = Crew.getInstance();
 					crew.createCrew(crewNames, crewTypes, crewSize);
-					crew.presentCrew();
 					
 					finishedWindow();
 					

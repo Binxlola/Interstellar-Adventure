@@ -59,22 +59,66 @@ public class GameNavigation extends JPanel {
 		JLabel movesLbl = new JLabel("Moves Left: " + crew.getAllMoves());
 		movesLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
 		movesLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		movesLbl.setBounds(355, 225, 300, 24);
+		movesLbl.setBounds(355, 215, 300, 24);
 		this.add(movesLbl);
 		
 		// Labels for ship
 		JLabel shipLbl = new JLabel("Ship Shield: " + spaceShip.getShipShield() + "%");
 		shipLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
 		shipLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		shipLbl.setBounds(355, 275, 300, 24);
+		shipLbl.setBounds(355, 265, 300, 24);
 		this.add(shipLbl);
 		
 		
 		// Wallet display section
 		JLabel walletLbl = new JLabel("Wallet: " + inventory.getWallet());
-		walletLbl.setBounds(425, 315, 300, 30);
+		walletLbl.setBounds(425, 305, 300, 30);
 		walletLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
 		this.add(walletLbl);
+		
+		// Wallet display section
+		JLabel scoreLbl = new JLabel("Score: " + gameManager.getGameScore());
+		scoreLbl.setBounds(455, 355, 300, 30);
+		scoreLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
+		this.add(scoreLbl);
+		
+		// Crew section
+		int y = 25;
+		for (int i = 0; i < crew.size(); i++) {
+			JLabel newCrew = new JLabel(crew.getCrew().get(i).getType() + " " + crew.getCrew().get(i).getName());
+			newCrew.setBounds(700, y+=70, 300, 30);
+			newCrew.setFont(new Font("Rockwell", Font.PLAIN, 15));
+			this.add(newCrew);
+			
+			String status = "";
+			if (crew.getCrew().get(i).isInfected()) status = "Infected";
+			else if (crew.getCrew().get(i).getHealth() <= 0) status = "Dead";
+			else if (crew.getCrew().get(i).getHealth() < 15) status = "Dying";
+			else status = "Healthy";
+			
+			JLabel crewStatusLbl = new JLabel("Status: " + status);
+			crewStatusLbl.setFont(new Font("Rockwell", Font.ITALIC, 10));
+			crewStatusLbl.setBounds(700, y+10, 300, 50);
+			this.add(crewStatusLbl);
+			
+			
+			JLabel crewHealthLbl = new JLabel("Health: " + crew.getCrew().get(i).getHealth() + "%");
+			crewHealthLbl.setFont(new Font("Rockwell", Font.ITALIC, 10));
+			crewHealthLbl.setBounds(700, y+20, 300, 50);
+			this.add(crewHealthLbl);
+			
+			JLabel crewHungerLbl = new JLabel("Hunger: " + crew.getCrew().get(i).getHunger() + "%");
+			crewHungerLbl.setFont(new Font("Rockwell", Font.ITALIC, 10));
+			crewHungerLbl.setBounds(700, y+30, 300, 50);
+			this.add(crewHungerLbl);
+			
+			JLabel crewTirednessLbl = new JLabel("Tiredness: " + crew.getCrew().get(i).getTiredness() + "%");
+			crewTirednessLbl.setFont(new Font("Rockwell", Font.ITALIC, 10));
+			crewTirednessLbl.setBounds(700, y+40, 300, 50);
+			this.add(crewTirednessLbl);
+		}
+
+		
 		
 		JLabel titleLbl = new JLabel("INTERSTELLAR ADVENTURES");
 		titleLbl.setFont(new Font("Distant Galaxy", Font.PLAIN, 24));
@@ -118,7 +162,14 @@ public class GameNavigation extends JPanel {
 						msg += " of your " + duration + " day journey.";
 						JOptionPane.showMessageDialog(null, msg);
 						gameManager.startNewDay();
-						window.changeContent("mainScreen");
+						System.out.println(crew.getAlive());
+						if (crew.getAlive() > 0) {
+							window.changeContent("mainScreen");
+						}
+						else {
+							gameManager.endGame(false, "All of your crew members died!");
+							window.changeContent("GameOver");
+						}
 					} else {
 						gameManager.endGame(false, "You have failed to find all the ship parts!");
 						window.changeContent("GameOver");

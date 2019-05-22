@@ -80,34 +80,6 @@ public class Crew {
 	}
 	
 	/**
-	 * A method to validate if a given crew member has enough moves left to perform an action.
-	 * @return A boolean describing if the given crew member can perform an action or not.
-	 */
-	public static boolean allowedAction(CrewMember member) {
-		if(member.getMoves() < 1) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-	
-	/**
-	 * Presents the list of crew member to the player.
-	 */
-	public void presentCrew() {
-		System.out.println(); // Empty line to make content more readable
-		
-		int currentPosition = 1;
-		for (CrewMember member: crewMembers) {
-			String temp = String.format("%s. %s", currentPosition, member);
-			System.out.println(temp);
-			currentPosition ++;
-		}
-		
-	}
-	
-	/**
 	 * Will call resetMoves method for each crew member.
 	 */
 	public void resetCrewMoves () {
@@ -117,11 +89,27 @@ public class Crew {
 	}
 	
 	/**
-	 * Will call new day for each member and applies effects
+	 * Will apply certain effects after new day is called
+	 * Hunger: Increases by 30 (max 100)
+	 * 
+	 * Infected: Decreases health by 20
+	 * Hunger at 100%: Decreases health by 10
+	 * Tiredness at 100%: Moves deducted by 1
 	 */
 	public void newDay() {
 		for (CrewMember member: crewMembers) {
-			member.newDay();
+			if (member.getHealth() > 0) {
+				if (member.isInfected()) member.setHealth(member.getHealth() - 20);;
+				if (member.getHunger() >= 100) member.setHealth(member.getHealth() - 10);
+				if (member.getHealth() < 0) member.setHealth(0);
+				
+				member.setHunger(member.getHunger() + 40);
+				if (member.getHunger() > 100) member.setHunger(100);
+				
+				member.resetMoves();
+				
+				if (member.getTiredness() >= 100) member.deductMove();
+			}
 		}
 	}
 	
@@ -141,5 +129,17 @@ public class Crew {
 			sum += crew.getMoves();
 		}
 		return sum;
+	}
+	
+	/**
+	 * Returns the number of crew members alive
+	 * @return The number of crew members still alive
+	 */
+	public int getAlive() {
+		int alive = this.size();
+		for (CrewMember crew: crewMembers) {
+			if (crew.getHealth() == 0) alive -= 1;
+		}
+		return alive;
 	}
 }

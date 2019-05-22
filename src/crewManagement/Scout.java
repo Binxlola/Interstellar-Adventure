@@ -14,10 +14,10 @@ public class Scout extends CrewMember {
 	private final String type = "Scout";
 	private String name = "";
 	private int memberMoves;
-	private double memberHealth;
+	private int memberHealth;
 	private boolean infected = false;
-	private double memberHunger;
-	private double memberTiredness;
+	private int memberHunger;
+	private int memberTiredness;
 	
 	public Scout(String newName) {
 		name = newName;
@@ -47,7 +47,7 @@ public class Scout extends CrewMember {
 	/**
 	 * Returns the current health of this crew member
 	 */
-	public double getHealth() {
+	public int getHealth() {
 		return this.memberHealth;
 	}
 	
@@ -113,12 +113,12 @@ public class Scout extends CrewMember {
 	
 	/**
 	 * Deducts a move from the members current available moves.
-	 * Each move will increase tiredness by 10
+	 * Each move will increase tiredness by 15
 	 */
 	public void deductMove() {
 		if((memberMoves - 1) >= 0) {
 			memberMoves -= 1;
-			memberTiredness += 10;
+			memberTiredness += 15;
 			if (memberTiredness >= 100) memberTiredness = 100;
 		}
 	}
@@ -127,7 +127,7 @@ public class Scout extends CrewMember {
 	 * Get the current hunger rate of this crew member
 	 * @return The current hunger rate of this crew member
 	 */
-	public double getHunger() {
+	public int getHunger() {
 		return this.memberHunger;
 	}
 	
@@ -135,7 +135,7 @@ public class Scout extends CrewMember {
 	 * Get the current tiredness rate of this crew member
 	 * @return The current tiredness rate of this crew member
 	 */
-	public double getTiredness() {
+	public int getTiredness() {
 		return this.memberTiredness;
 	}
 	
@@ -153,30 +153,6 @@ public class Scout extends CrewMember {
 	 */
 	public boolean isInfected() {
 		return this.infected;
-	}
-	
-	/**
-	 * Will apply certain effects after new day is called
-	 * Hunger: Increases by 20 (max 100)
-	 * 
-	 * Infected: Decreases health by 20
-	 * Hunger at 100%: Decreases health by 10
-	 * Tiredness at 100%: Maximum moves capped at 1
-	 */
-	public void newDay() {
-		if (memberHealth > 0) {
-			if(isInfected()) memberHealth -= 20;
-			if(memberHunger >= 100) memberHealth -= 10;
-			if (memberHealth < 0) setHealth(0);
-			
-			memberHunger += 20;
-			if (memberHunger > 100) memberHunger = 100;
-			if (memberTiredness > 100) memberTiredness = 100;
-			
-			resetMoves();
-			
-			if(memberTiredness >= 100) deductMove();
-		}
 	}
 	
 	/**
@@ -198,5 +174,21 @@ public class Scout extends CrewMember {
 		memberHunger -= amount;
 		memberMoves -= 1;
 		if (memberHunger < 0) memberHunger = 0;
+	}
+	
+	/**
+	 * Set the tiredness of this crew member to certain amount
+	 * @param amount The number of amount to be set
+	 */
+	public void setTiredness(int amount) {
+		this.memberTiredness = amount;
+	}
+	
+	/**
+	 * Set the hunger of this crew member to certain amount
+	 * @param amount The number of amount to be set
+	 */
+	public void setHunger(int amount) {
+		this.memberHunger = amount;
 	}
 }

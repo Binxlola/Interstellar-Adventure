@@ -87,7 +87,7 @@ public class CrewStatus extends JPanel {
 		
 			String status = "";
 			if (crew.getCrew().get(current).isInfected()) status = "Infected";
-			else if (crew.getCrew().get(current).getHealth() == 0) status = "Dead";
+			else if (crew.getCrew().get(current).getHealth() <= 0) status = "Dead";
 			else if (crew.getCrew().get(current).getHealth() < 15) status = "Dying";
 			else status = "Healthy";
 			

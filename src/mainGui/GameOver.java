@@ -24,6 +24,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import crewManagement.Crew;
+import crewManagement.SpaceShip;
 import management.GameManager;
 
 public class GameOver extends JPanel {
@@ -31,6 +32,7 @@ public class GameOver extends JPanel {
 	private Crew crew = Crew.getInstance();
 	private MainScreen window;
 	private GameManager gameManager = GameManager.getInstance();
+	private SpaceShip spaceShip = SpaceShip.getInstance();
 
 	/**
 	 * Create the panel.
@@ -70,14 +72,19 @@ public class GameOver extends JPanel {
 		scoreLbl.setBounds(60, 180, 600, 40);
 		this.add(scoreLbl);
 		
+		JLabel shipLbl = new JLabel("SHIP: " + spaceShip.getShipName());
+		shipLbl.setFont(new Font("Rockwell", Font.PLAIN, 18));
+		shipLbl.setBounds(60, 220, 600, 40);
+		this.add(shipLbl);
+		
 		JLabel dayLbl = new JLabel("DAYS TAKEN: " + gameManager.getCurrentDay() + " / " + gameManager.getGameDuration());
 		dayLbl.setFont(new Font("Rockwell", Font.PLAIN, 18));
-		dayLbl.setBounds(60, 220, 600, 40);
+		dayLbl.setBounds(60, 260, 600, 40);
 		this.add(dayLbl);
 		
 		JLabel partsLbl = new JLabel("SHIP PARTS FOUND: " + gameManager.getPartsFound() + " / " + gameManager.getPartsToFind());
 		partsLbl.setFont(new Font("Rockwell", Font.PLAIN, 18));
-		partsLbl.setBounds(60, 260, 600, 40);
+		partsLbl.setBounds(60, 300, 600, 40);
 		this.add(partsLbl);
 	}
 }

@@ -16,7 +16,6 @@ public class GameManager {
 	private static GameManager _session;
 	
 	private int gameDuration;
-	private int crewSize;
 	private int currentDay;
 	private int partsFound;
 	private int partsToFind;
@@ -51,9 +50,8 @@ public class GameManager {
 	 * @param name
 	 * @param shipIcon
 	 */
-	public void initializeManager(int duration, int size, String name, Icon shipIcon) {
+	public void initializeManager(int duration, String name, Icon shipIcon) {
 		this.setDuration(duration);
-		this.setCrewSize(size);
 		spaceShip.initializeShip(name, shipIcon);
 		this.setPartsToFind(duration);
 		this.currentDay = 1;
@@ -107,14 +105,6 @@ public class GameManager {
 	}
 	
 	/**
-	 * Sets the crew size to the given Integer value 'size'.
-	 * @param size An integer that represents how big the players crew is.
-	 */
-	private void setCrewSize(int size) {
-		this.crewSize = size;
-	}
-	
-	/**
 	 * A method to calculate and set the number of ship parts to find, based on the players desired game length.
 	 * @param duration An Integer value describing the players desired game length.
 	 */
@@ -130,8 +120,7 @@ public class GameManager {
 		if(!this.endGame()) {
 			this.currentDay += 1;
 			crew.newDay();
-			// RANDOM OCCURENCE
-			new RandomEvent();
+			if (crew.getAlive() > 0) new RandomEvent();
 		}
 	}
 	

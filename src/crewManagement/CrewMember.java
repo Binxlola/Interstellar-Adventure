@@ -1,6 +1,6 @@
 package crewManagement;
 
-/** Represents the Medic type of crew member.
+/** Represents the Parent abstract class of crew members.
  * @author Jason Smit
  * @author Ariel Evangelista
 */
@@ -10,7 +10,7 @@ public abstract class CrewMember {
 	
 	abstract public void setHealth(int health);
 	
-	abstract public double getHealth();
+	abstract public int getHealth();
 	
 	abstract public String getType();
 	
@@ -30,17 +30,19 @@ public abstract class CrewMember {
 	
 	abstract public void setInfection();
 	
-	abstract public double getHunger();
+	abstract public int getHunger();
 	
-	abstract public double getTiredness();
+	abstract public int getTiredness();
 	
 	abstract public void cureInfection();
 	
 	abstract public boolean isInfected();
 	
-	abstract public void newDay();
-	
 	abstract public void sleep();
 	
 	abstract public void eat(int amount);
+
+	abstract public void setTiredness(int amount);
+	
+	abstract public void setHunger(int amount);
 }
