@@ -20,6 +20,7 @@ import javax.swing.event.ChangeListener;
 import crewManagement.Crew;
 import crewManagement.CrewMember;
 import crewManagement.CrewSelector;
+import crewManagement.SpaceShip;
 import environment.Environment;
 import environment.Planet;
 import itemManagement.Inventory;
@@ -34,6 +35,7 @@ public class PlanetMain extends JPanel {
 	private Planet currentPlanet = env.getSelectedPlanet();
 	private ItemWheel itemWheel = ItemWheel.getInstance();
 	private Inventory inventory = Inventory.getInstance();
+	private SpaceShip spaceShip = SpaceShip.getInstance();
 
 	/**
 	 * Create the panel.

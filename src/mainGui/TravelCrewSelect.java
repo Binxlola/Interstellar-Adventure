@@ -17,6 +17,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import crewManagement.Crew;
+import environment.AsteroidEvent;
 import management.GameManager;
 
 public class TravelCrewSelect extends JPanel {
@@ -27,6 +28,7 @@ public class TravelCrewSelect extends JPanel {
 	private List<JCheckBox> checkBoxList = new ArrayList<JCheckBox>();
 	private List<JCheckBox> crewCheckBoxList = new ArrayList<JCheckBox>();
 	private int maxSelected = 0;
+	private boolean pilot = false;
 
 	/**
 	 * Create the panel.
@@ -54,6 +56,7 @@ public class TravelCrewSelect extends JPanel {
 				} else {
 					deductMoves();
 					window.changeContent("PlanetMain");
+					new AsteroidEvent(pilot);
 				}
 			}
 		});
@@ -124,6 +127,7 @@ public class TravelCrewSelect extends JPanel {
 			int i = crewCheckBoxList.indexOf(checkBox);
 			if (checkBox.isSelected()) {
 				crew.getCrew().get(i).deductMove();
+				if (crew.getCrew().get(i).getType() == "Pilot") pilot = true;
 			}
 		}
 	}
@@ -136,6 +140,7 @@ public class TravelCrewSelect extends JPanel {
 	private void checkAvailableCrew() {
 		if (checkBoxList.size() < 2) {
 			JOptionPane.showMessageDialog(null, "You don't have enough crew to pilot the ship!\n         Time to start a new day!");
+			window.changeContent("mainScreen");
 		}
 	}
 	
@@ -158,5 +163,4 @@ public class TravelCrewSelect extends JPanel {
 			checkBox.setEnabled(true);
 		}
 	}
-
 }
