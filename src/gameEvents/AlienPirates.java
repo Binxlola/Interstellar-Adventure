@@ -85,16 +85,18 @@ public class AlienPirates {
 				}
 			}
 			
-			if (stolenItem.getName() == "Ship Part") {
-				gameManager.partStolen();
-				JOptionPane.showMessageDialog(null, "Oh no! Alien Pirates boarded your ship and stole a Ship Part!"
-						+ "\nYou must not allow the warp drive to fall"
-						+ "\n             to the wrong hands!");
-			} else {
-				JOptionPane.showMessageDialog(null, "Oh no! Alien Pirates boarded your ship and stole " + stolenItem.getName() + "!");
-			}
-			
-			stolenItem.deductCount();
+			if(stolenItem.getCount() > 0) {
+				if (stolenItem.getName() == "Ship Part") {
+					gameManager.partStolen();
+					JOptionPane.showMessageDialog(null, "Oh no! Alien Pirates boarded your ship and stole a Ship Part!"
+							+ "\nYou must not allow the warp drive to fall"
+							+ "\n             to the wrong hands!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Oh no! Alien Pirates boarded your ship and stole " + stolenItem.getName() + "!");
+				}
+				
+				stolenItem.deductCount();
+			} else new AlienPirates();
 		}
 	}
 }
