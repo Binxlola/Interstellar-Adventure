@@ -10,7 +10,7 @@ public class Main {
 	
 	/**
 	 * Start the game by calling the GUI manager
-	 * @param args
+	 * @param args No Arguments required
 	 */
 	public static void main(String[] args) {
 		GuiManager game = new GuiManager();

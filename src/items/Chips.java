@@ -106,6 +106,9 @@ public class Chips implements Item {
 	
 	/**
 	 * Creates a JButton that can be used to display the item in a players inventory.
+	 * @param x position of the button in the x axis
+	 * @param y position of the button in the y axis
+	 * @param window The managing MainScreen class
 	 * @return The created item JButton
 	 */
 	public JButton getUseBtn(int x, int y, MainScreen window) {
@@ -135,6 +138,9 @@ public class Chips implements Item {
 	
 	/**
 	 * Creates a JButton that can be used to display the item in the space outpost.
+	 * @param x position of the button in the x axis
+	 * @param y position of the button in the y axis
+	 * @param window The managing MainScreen class
 	 * @return The created item JButton
 	 */
 	public JButton getBuyBtn(int x, int y, MainScreen window) {
@@ -161,6 +167,9 @@ public class Chips implements Item {
 	
 	/**
 	 * Creates a JButton that can be used to display the item in a player's inventory at the space outpost.
+	 * @param x position of the button in the x axis
+	 * @param y position of the button in the y axis
+	 * @param window The managing MainScreen class
 	 * @return The created item JButton
 	 */
 	public JButton getSellBtn(int x, int y, MainScreen window) {

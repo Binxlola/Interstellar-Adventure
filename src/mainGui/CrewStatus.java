@@ -140,7 +140,7 @@ public class CrewStatus extends JPanel {
 							if (crew.getCrew().get(sleepIndex).getMoves() > 0) {
 								crew.getCrew().get(sleepIndex).sleep();
 								JOptionPane.showMessageDialog(null, crew.getCrew().get(sleepIndex).getType() + " " + crew.getCrew().get(sleepIndex).getName()
-										+ " slept and became 80 less tired!");
+										+ " slept and regained energy!");
 							} else {
 								JOptionPane.showMessageDialog(null, crew.getCrew().get(sleepIndex).getType() + " " + crew.getCrew().get(sleepIndex).getName()
 										+ " doesn't have any moves left!");

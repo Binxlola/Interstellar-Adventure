@@ -80,7 +80,7 @@ public class SpaceShip {
 	
 	/**
 	 * Add shield to the current ship shield by certain amount
-	 * @param amount
+	 * @param amount The amount to be added to the shield
 	 */
 	public void addShield(int amount) {
 		this.shipShield += amount;
@@ -89,7 +89,7 @@ public class SpaceShip {
 	
 	/**
 	 * Deduct shield to the current ship shield by certain amount
-	 * @param amount
+	 * @param amount The amount to be deducted on the shield
 	 */
 	public void deductShield(int amount) {
 		this.shipShield -= amount;

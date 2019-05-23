@@ -42,6 +42,7 @@ public class GuiManager {
 	
 	/**
 	 * Close up the main screen of the game and launch a new game
+	 * @param mainScreen The managing MainScreen class
 	 */
 	public void finishGame(MainScreen mainScreen) {
 		mainScreen.closeWindow();
@@ -60,6 +61,7 @@ public class GuiManager {
 	
 	/**
 	 * Will create a new TravelCrewSelect JPanel,
+	 * @param window The current MainScreen window who has the overall control
 	 * @return Will return a TravelCrewSelect JPanel that will then be loaded onto the main screen.
 	 */
 	public TravelCrewSelect getTravelCrewPanel(MainScreen window) {
@@ -69,6 +71,7 @@ public class GuiManager {
 	
 	/**
 	 * Will create a new TravelPlanetSelect JPanel
+	 * @param window The current MainScreen window who has the overall control
 	 * @return Will return a TravelPlanetSelect JPanel that will then be loaded onto the main screen.
 	 */
 	public TravelPlanetSelect getTravelPlanetPanel(MainScreen window) {
@@ -78,6 +81,7 @@ public class GuiManager {
 	
 	/**
 	 * Will create a new PlanetMain JPanel
+	 * @param window The current MainScreen window who has the overall control
 	 * @return Will return a PlanetMain JPanel that will then be loaded onto the main screen.
 	 */
 	public PlanetMain getPlanetMain(MainScreen window) {
@@ -87,6 +91,7 @@ public class GuiManager {
 	
 	/**
 	 * Will create a new InventoryDisplay JPanel
+	 * @param window The current MainScreen window who has the overall control
 	 * @return Will return a InventoryDisplay JPanel that will then be loaded onto the main screen.
 	 */
 	public InventoryDisplay getInventoryPanel(MainScreen window) {
@@ -96,6 +101,7 @@ public class GuiManager {
 	
 	/**
 	 * Will create a new OutpostContent JPanel
+	 * @param window The current MainScreen window who has the overall control
 	 * @return Will return a OutpostContent JPanel that will then be loaded onto the main screen.
 	 */
 	public OutpostContent getOutpostPanel(MainScreen window) {
@@ -105,6 +111,7 @@ public class GuiManager {
 	
 	/**
 	 * Will create a new CrewStatus JPanel
+	 * @param window The current MainScreen window who has the overall control
 	 * @return Will return a CrewStatus JPanel that will then be loaded onto the main screen.
 	 */
 	public CrewStatus getCrewStatusPanel(MainScreen window) {
@@ -114,6 +121,7 @@ public class GuiManager {
 	
 	/**
 	 * Will create a new ShipStatus JPanel
+	 * @param window The current MainScreen window who has the overall control
 	 * @return Will return a ShipStatus JPanel that will then be loaded onto the main screen.
 	 */
 	public ShipStatus getShipStatusPanel(MainScreen window) {
@@ -123,6 +131,7 @@ public class GuiManager {
 	
 	/**
 	 * Will create a new GameOver JPanel
+	 * @param window The current MainScreen window who has the overall control
 	 * @return Will return a GameOver JPanel that will then be loaded onto the main screen.
 	 */
 	public GameOver getGameOverPanel(MainScreen window) {

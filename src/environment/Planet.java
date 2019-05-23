@@ -96,7 +96,7 @@ public class Planet {
 	
 	/**
 	 * Checks if a part is already found on the planet
-	 * @return
+	 * @return The boolean if a piece is already found on the planet
 	 */
 	public boolean isPieceFound() {
 		return this.pieceFound;
@@ -104,7 +104,7 @@ public class Planet {
 	
 	/**
 	 * Checks if a planet is already visited
-	 * @return
+	 * @return The boolean if the planet is already visited
 	 */
 	public boolean isVisited() {
 		return this.visited;

@@ -160,7 +160,7 @@ public class Scientist extends CrewMember {
 	public void sleep() {
 		if((memberMoves - 1) >= 0) {
 			memberMoves -= 1;
-			memberTiredness -= 80;
+			memberTiredness -= 100;
 			if (memberTiredness < 0) memberTiredness = 0;
 		}
 	}

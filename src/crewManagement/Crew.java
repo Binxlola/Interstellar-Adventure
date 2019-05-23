@@ -44,6 +44,7 @@ public class Crew {
 	 * Creates and adds crew members to the crew array based off the users selected crew names and crew types.
 	 * @param crewNames A List containing the JTextField's that hold the names for each crew memeber.
 	 * @param crewTypes A List containing the JComboBox's that hold the types for each crew member.
+	 * @param size The size of the crew
 	 */
 	public void createCrew(List<JTextField> crewNames, List<JComboBox<Object>> crewTypes, int size) {
 		crewMembers.removeAll(crewMembers);
@@ -144,6 +145,7 @@ public class Crew {
 	
 	/**
 	 * Returns the current number of crews
+	 * @return Returns the size of crew
 	 */
 	public int size() {
 		return crewMembers.size();
@@ -151,6 +153,7 @@ public class Crew {
 	
 	/**
 	 * Returns the number of all actions remaining for the crew
+	 * @return The total moves of all crew members
 	 */
 	public int getAllMoves() {
 		int sum = 0;

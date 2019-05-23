@@ -83,10 +83,9 @@ public class GameManager {
 	
 	/**
 	 * A method that is intended to be used after the creation of the GameManager instance, allowing key game parameters to be passed in.
-	 * @param duration
-	 * @param size
-	 * @param name
-	 * @param shipIcon
+	 * @param duration	The duration of the game in days
+	 * @param name The name of the ship
+	 * @param shipIcon The icon of the ship
 	 */
 	public void initializeManager(int duration, String name, Icon shipIcon) {
 		this.setDuration(duration);
@@ -102,7 +101,6 @@ public class GameManager {
 	 * Stores the result of the game
 	 * @param result True for win, false for lose
 	 * @param message Some message why a win or a lose happened
-	 * @param score The score of the player
 	 */
 	public void endGame(boolean result, String message) {
 		this.gameResult = result;
@@ -143,6 +141,7 @@ public class GameManager {
 	
 	/**
 	 * Add a certain amount of score for the player
+	 * @param amount The amount to add to the score
 	 */
 	public void addGameScore(int amount) {
 		this.gameScore += amount;

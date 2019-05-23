@@ -50,7 +50,7 @@ public class Inventory {
 	
 	/**
 	 * Gets the list of all items in the players inventory that are of type potion and returns it.
-	 * @return A List<Item> holding all the potions currently in the players inventory.
+	 * @return A List holding all the potions currently in the players inventory.
 	 */
 	public List<Item> getPotions() {
 		return this.potions;
@@ -58,7 +58,7 @@ public class Inventory {
 	
 	/**
 	 * Gets the list of all items in the players inventory that are of type food and returns it.
-	 * @return A List<Item> holding all the foods currently in the players inventory.
+	 * @return A List holding all the foods currently in the players inventory.
 	 */
 	public List<Item> getFoods() {
 		return this.foods;
@@ -66,7 +66,7 @@ public class Inventory {
 	
 	/**
 	 * Gets the list of all items in the players inventory that are of type misc and returns it.
-	 * @return A List<Item> holding all the miscs currently in the players inventory.
+	 * @return A List holding all the miscs currently in the players inventory.
 	 */
 	public List<Item> getMisc() {
 		return this.misc;

@@ -47,6 +47,7 @@ public class ShipStatus extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param incomingWindow The managing MainScreen window
 	 */
 	public ShipStatus(MainScreen incomingWindow) {
 		window = incomingWindow;

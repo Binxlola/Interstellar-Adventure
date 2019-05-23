@@ -22,7 +22,7 @@ public class AbilityMedic {
 	/**
 	 * Selects the first member other than the medic itself
 	 * who is below 50 health and heals them for 10 health
-	 * @param medic
+	 * @param medic The medic to heal other crew members
 	 */
 	public AbilityMedic(CrewMember medic) {
 		boolean healed = false;
