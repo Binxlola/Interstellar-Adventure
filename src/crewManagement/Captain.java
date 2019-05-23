@@ -61,6 +61,10 @@ public class Captain extends CrewMember {
 		return this.type;
 	}
 	
+	/**
+	 * Gets the name of this crew member
+	 * @return The string representation of the crew member's name
+	 */
 	public String getName() {
 		return this.name;
 	}
@@ -72,9 +76,19 @@ public class Captain extends CrewMember {
 	
 	/**
 	 * Returns the current health of this crew member
+	 * @return Integer representation of this member's health
 	 */
 	public int getHealth() {
 		return this.memberHealth;
+	}
+	
+	/**
+	 * Adds some health to this crew member
+	 * @param health The amount to be added as health
+	 */
+	public void addHealth(int health) {
+		this.memberHealth += health;
+		if (this.memberHealth > 100) this.memberHealth = 100;
 	}
 	
 	
@@ -150,6 +164,7 @@ public class Captain extends CrewMember {
 	
 	/**
 	 * Returns true if the crew member is currently infected
+	 * @return The boolean representation if this member is infected
 	 */
 	public boolean isInfected() {
 		return this.infected;

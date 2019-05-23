@@ -68,6 +68,8 @@ class CrewManagementTest {
 			assertEquals(false, crew.isInfected());
 			
 			crew.setHealth(100);
+			crew.addHealth(10);
+			assertEquals(100, crew.getHealth());
 			crew.resetMoves();
 			crew.eat(100);
 			if (crew.getType() == "Captain") assertEquals(2, crew.getMoves());

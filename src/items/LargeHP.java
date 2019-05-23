@@ -122,8 +122,7 @@ public class LargeHP implements Item {
 					CrewMember crewUser = useItem.getCrew();
 					if (crewUser != null) {
 						deductCount();
-						int newHealth = (int)crewUser.getHealth() + 70;
-						crewUser.setHealth(newHealth);
+						crewUser.addHealth(70);
 						crewUser.deductMove();
 						JOptionPane.showMessageDialog(null, crewUser.getName() + " drank the " + getName() + " and gained 70 health!");
 						new AddGameScore(getPrice());

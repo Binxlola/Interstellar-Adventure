@@ -122,8 +122,7 @@ public class SmallHP implements Item {
 					CrewMember crewUser = useItem.getCrew();
 					if (crewUser != null) {
 						deductCount();
-						int newHealth = (int)crewUser.getHealth() + 40;
-						crewUser.setHealth(newHealth);
+						crewUser.addHealth(40);
 						crewUser.deductMove();
 						JOptionPane.showMessageDialog(null, crewUser.getName() + " drank the " + getName() + " and gained 40 health!");
 						new AddGameScore(getPrice());

@@ -28,7 +28,7 @@ public class AbilityMedic {
 		boolean healed = false;
 		for (CrewMember crew: crew.getCrew()) {
 			if (crew.getHealth() < 50 && crew.getHealth() > 0 && !healed && crew != medic) {
-				crew.setHealth(crew.getHealth() + 10);
+				crew.addHealth(10);
 				healed = true;
 				JOptionPane.showMessageDialog(null, medic.getType()
 						+ " " + medic.getName()

@@ -6,6 +6,8 @@ import crewManagement.Crew;
 import crewManagement.SpaceShip;
 import environment.Environment;
 import gameEvents.RandomEvent;
+import itemManagement.Inventory;
+import itemManagement.Item;
 
 /**
  * Control center of a players game.
@@ -48,6 +50,11 @@ public class GameManager {
 	 * The one and only one instance of SpaceShip class
 	 */
 	private SpaceShip spaceShip = SpaceShip.getInstance();
+	
+	/**
+	 * The one and only one instance of Inventory class
+	 */
+	private Inventory inv = Inventory.getInstance();
 	
 	/**
 	 * The boolean result of the game
@@ -111,6 +118,13 @@ public class GameManager {
 		extraScore += (getPartsToFind() * 100) * (getPartsFound() / getPartsToFind());
 		extraScore += crew.getAlive() * 100;
 		extraScore += ((4 - crew.size()) * 3000);
+		extraScore += inv.getCoins() * 5;
+		for (Item item: inv.getFoods()) {
+			extraScore += item.getPrice() * item.getCount() * 5;
+		}
+		for (Item item: inv.getPotions()) {
+			extraScore += item.getPrice() * item.getCount() * 5;
+		}
 		addGameScore(extraScore);
 	}
 	

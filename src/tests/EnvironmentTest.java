@@ -16,6 +16,7 @@ class EnvironmentTest {
 		
 		assertEquals(6, env.getPlanets().size());
 		assertEquals(-1, env.getSelectedPlanetIndex());
+		assertEquals(null, env.getSelectedPlanet());
 		env.selectPlanet(1);
 		assertEquals(1, env.getSelectedPlanetIndex());
 		assertEquals(env.getSelectedPlanet(), env.getPlanets().get(1));

@@ -62,7 +62,8 @@ public class Medic extends CrewMember {
 	}
 	
 	/**
-	 * Gets the name of the current crew member.
+	 * Gets the name of this crew member
+	 * @return The string representation of the crew member's name
 	 */
 	public String getName() {
 		return this.name;
@@ -70,9 +71,19 @@ public class Medic extends CrewMember {
 	
 	/**
 	 * Returns the current health of this crew member
+	 * @return Integer representation of this member's health
 	 */
 	public int getHealth() {
 		return this.memberHealth;
+	}
+	
+	/**
+	 * Adds some health to this crew member
+	 * @param health The amount to be added as health
+	 */
+	public void addHealth(int health) {
+		this.memberHealth += health;
+		if (this.memberHealth > 100) this.memberHealth = 100;
 	}
 	
 	/** This Method is to set the Health of the crew member relative to the specialization. */
@@ -133,7 +144,7 @@ public class Medic extends CrewMember {
 		return this.memberHunger;
 	}
 	
-	/*
+	/**
 	 * Get the current tiredness rate of this crew member
 	 * @return The current tiredness rate of this crew member
 	 */
@@ -152,6 +163,7 @@ public class Medic extends CrewMember {
 	
 	/**
 	 * Returns true if the crew member is currently infected
+	 * @return The boolean representation if this member is infected
 	 */
 	public boolean isInfected() {
 		return this.infected;

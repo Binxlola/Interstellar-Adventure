@@ -6,6 +6,12 @@ import java.util.Random;
 
 import management.AddGameScore;
 
+/**
+ * The Inventory class of the game which holds the data for all available items for the player
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ *
+ */
 public class Inventory {
 	
 	/**
@@ -79,6 +85,14 @@ public class Inventory {
 	public String getWallet() {
 		String temp = String.format("%s coins", this.wallet);
 		return temp;
+	}
+	
+	/**
+	 * Returns the player's wallet value as an integer
+	 * @return An Integer representing the players wallet value
+	 */
+	public int getCoins() {
+		return this.wallet;
 	}
 	
 	/**

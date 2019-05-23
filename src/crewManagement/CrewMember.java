@@ -10,6 +10,8 @@ public abstract class CrewMember {
 	
 	abstract public void setHealth(int health);
 	
+	abstract public void addHealth(int health);
+	
 	abstract public int getHealth();
 	
 	abstract public String getType();
