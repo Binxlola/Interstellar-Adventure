@@ -11,6 +11,7 @@ import crewManagement.CrewSelector;
 import itemManagement.Inventory;
 import itemManagement.Item;
 import mainGui.MainScreen;
+import management.AddGameScore;
 
 public class LargeHP implements Item {
 	
@@ -93,6 +94,7 @@ public class LargeHP implements Item {
 						crewUser.setHealth(newHealth);
 						crewUser.deductMove();
 						JOptionPane.showMessageDialog(null, crewUser.getName() + " drank the " + getName() + " and gained 70 health!");
+						new AddGameScore(getPrice());
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have this item anymore!");

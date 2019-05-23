@@ -69,7 +69,7 @@ public class SetupScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("Interstellar Adventures");
+		frame.setTitle("Interstellar Adventure");
 		frame.setBounds(100, 100, 1000, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -87,7 +87,7 @@ public class SetupScreen {
 		
 		// Create new game button and add event handler
 		JButton newGameBtn = new JButton("New Game");
-		newGameBtn.setBounds(320, 382, 102, 31);
+		newGameBtn.setBounds(200, 500, 140, 30);
 		newGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cl = (CardLayout)(setup.getLayout());
@@ -96,16 +96,6 @@ public class SetupScreen {
 		});
 		setup1.setLayout(null);
 		setup1.add(newGameBtn);
-		
-		// Create load game buttons and add event handler
-		JButton loadGameBtn = new JButton("Load Game");
-		loadGameBtn.setBounds(470, 383, 102, 31);
-		setup1.add(loadGameBtn);
-		
-		// Create how to play buttons and add event handler
-		JButton howToBtn = new JButton("How to play");
-		howToBtn.setBounds(395, 425, 102, 31);
-		setup1.add(howToBtn);
 		
 		// Create a label field that will act as an image holder for the game logo
 		JLabel gameLogo = new JLabel("");

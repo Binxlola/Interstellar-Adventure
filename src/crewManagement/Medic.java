@@ -102,7 +102,8 @@ public class Medic extends CrewMember {
 	 * @return An integer describing the member available moves.
 	 */
 	public int getMoves() {
-		return memberMoves;
+		if (getHealth() > 0) return memberMoves;
+		else return 0;
 	}
 	
 	/**

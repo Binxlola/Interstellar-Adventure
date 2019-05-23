@@ -11,6 +11,7 @@ import crewManagement.CrewSelector;
 import itemManagement.Inventory;
 import itemManagement.Item;
 import mainGui.MainScreen;
+import management.AddGameScore;
 
 public class SpacePills implements Item {
 	
@@ -102,6 +103,7 @@ public class SpacePills implements Item {
 							crewUser.deductMove();
 							crewUser.cureInfection();
 							JOptionPane.showMessageDialog(null, crewUser.getName() + " took some " + getName() + " and is not infected anymore!");
+							new AddGameScore(getPrice());
 						}
 					}
 				} else {

@@ -14,6 +14,7 @@ import items.ShipPart;
 import items.SmallHP;
 import items.SpacePills;
 import items.Water;
+import management.GameManager;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class ItemWheel {
 	private List<Item> misc = new ArrayList<Item>();
 	
 	private static ItemWheel _session = null;
+	private GameManager gameManager = GameManager.getInstance();
 	
 	private ItemWheel() {
 		// Initialize list with all items

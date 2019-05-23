@@ -18,7 +18,7 @@ public class ShipPart implements Item {
 	private String name = "Ship Part";
 	private String type = "Misc";
 	private int itemCount = 1;
-	private int price = 500;
+	private int price = 100;
 	
 	/**
 	 * Will return the name the item

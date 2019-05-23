@@ -1,4 +1,4 @@
-package environment;
+package gameEvents;
 
 import java.util.Random;
 
@@ -36,7 +36,7 @@ public class SpacePlague {
 				infected = true;
 				crew.getCrew().get(i).setInfection();
 				JOptionPane.showMessageDialog(null, "There is an epidemic of Space Plague!"
-						+ "\n" + crew.getCrew().get(i).getName() + " was infected!");
+						+ "\n" + crew.getCrew().get(i).getName() + " " + crew.getCrew().get(i).getName() + " was infected!");
 			}
 		}
 	}

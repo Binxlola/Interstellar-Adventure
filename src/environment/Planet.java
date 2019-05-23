@@ -1,8 +1,7 @@
 package environment;
 
-import crewManagement.Crew;
-import itemManagement.Inventory;
-import itemManagement.Item;
+import java.util.Random;
+
 import management.*;
 
 /** Represents an planet found in the game environment.
@@ -56,11 +55,15 @@ public class Planet {
 	 * Sets the planet as already visited
 	 */
 	public void visited() {
+		int scoreRoll = (int) (100 * new Random().nextDouble());
+		new AddGameScore(scoreRoll);
 		this.visited = true;
 	}
 	
 	public void pieceFound() {
 		this.gameManager.partFound();
+		int scoreRoll = (int) (300 * new Random().nextDouble());
+		new AddGameScore(scoreRoll);
 		this.pieceFound = true;
 	}
 	
@@ -70,5 +73,13 @@ public class Planet {
 	 */
 	public boolean isPieceFound() {
 		return this.pieceFound;
+	}
+	
+	/**
+	 * Checks if a planet is already visited
+	 * @return
+	 */
+	public boolean isVisited() {
+		return this.visited;
 	}
 }

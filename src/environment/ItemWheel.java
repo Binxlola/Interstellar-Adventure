@@ -18,6 +18,12 @@ import items.Water;
 
 import java.util.List;
 
+/**
+ * Random item generator based on weight probabilities
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ * 
+ */
 public class ItemWheel {
 	
 	private Environment env = Environment.getInstance();
@@ -68,7 +74,7 @@ public class ItemWheel {
 		return _session;
 	}
 	
-	// Returns the selected index based on the weights(probabilities)
+	// Randomly selects an item from all available items based on the weights(probabilities)
 	private Item rouletteSelect() {
 		
 		// 30%: Food, 20%: Potion, 20% Ship Part, 20% Money, 10% Nothing

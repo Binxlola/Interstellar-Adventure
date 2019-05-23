@@ -3,11 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
-
-
+import crewAbilities.ActivateAbility;
 
 
 /** Represents the Medic type of crew member.
@@ -90,23 +89,31 @@ public class Crew {
 	
 	/**
 	 * Will apply certain effects after new day is called
-	 * Hunger: Increases by 30 (max 100)
+	 * Hunger: Increases by 20 (max 100)
 	 * 
-	 * Infected: Decreases health by 20
+	 * Infected: Decreases health by 30
 	 * Hunger at 100%: Decreases health by 10
 	 * Tiredness at 100%: Moves deducted by 1
 	 */
 	public void newDay() {
 		for (CrewMember member: crewMembers) {
 			if (member.getHealth() > 0) {
-				if (member.isInfected()) member.setHealth(member.getHealth() - 20);;
-				if (member.getHunger() >= 100) member.setHealth(member.getHealth() - 10);
-				if (member.getHealth() < 0) member.setHealth(0);
-				
-				member.setHunger(member.getHunger() + 40);
-				if (member.getHunger() > 100) member.setHunger(100);
-				
 				member.resetMoves();
+				
+				new ActivateAbility(member);
+				
+				if (member.isInfected()) member.setHealth(member.getHealth() - 30);;
+				if (member.getHunger() >= 100) member.setHealth(member.getHealth() - 10);
+				if (member.getHealth() <= 0) {
+					member.setHealth(0);
+					member.cureInfection();
+					JOptionPane.showMessageDialog(null, member.getType()
+							+ " " + member.getName()
+							+ " died!");
+				}
+				
+				member.setHunger(member.getHunger() + 20);
+				if (member.getHunger() > 100) member.setHunger(100);
 				
 				if (member.getTiredness() >= 100) member.deductMove();
 			}
@@ -126,7 +133,7 @@ public class Crew {
 	public int getAllMoves() {
 		int sum = 0;
 		for (CrewMember crew: crewMembers) {
-			sum += crew.getMoves();
+			if (crew.getHealth() > 0) sum += crew.getMoves();
 		}
 		return sum;
 	}

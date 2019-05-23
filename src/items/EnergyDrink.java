@@ -10,6 +10,7 @@ import crewManagement.CrewMember;
 import itemManagement.Inventory;
 import itemManagement.Item;
 import mainGui.MainScreen;
+import management.AddGameScore;
 import crewManagement.CrewSelector;
 
 public class EnergyDrink implements Item {
@@ -95,6 +96,7 @@ public class EnergyDrink implements Item {
 						JOptionPane.showMessageDialog(null, crewUser.getName() + " drank the " + getName() + " and become 10 less hungry!"
 								+ "\nBecause of energy boost, he gained one more move!"
 								+ "\n                              (No moves deducted)");
+						new AddGameScore(getPrice());
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have this item anymore!");

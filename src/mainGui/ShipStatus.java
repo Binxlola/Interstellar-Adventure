@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import crewManagement.Crew;
 import crewManagement.CrewMember;
 import crewManagement.SpaceShip;
 import crewManagement.CrewSelector;
+import management.AddGameScore;
 import management.GameManager;
 
 public class ShipStatus extends JPanel {
@@ -108,9 +110,13 @@ public class ShipStatus extends JPanel {
 		repairCrew.deductMove();
 		if (repairCrew.getType() == "Engineer") {
 			spaceShip.addShield(70);
+			int scoreRoll = (int) (70 * new Random().nextDouble());
+			new AddGameScore(scoreRoll);
 			JOptionPane.showMessageDialog(null, "The ship was repaired and regained 70 shields!");
 		} else {
 			spaceShip.addShield(50);
+			int scoreRoll = (int) (50 * new Random().nextDouble());
+			new AddGameScore(scoreRoll);
 			JOptionPane.showMessageDialog(null, "The ship was repaired and regained 50 shields!");
 		}
 	}

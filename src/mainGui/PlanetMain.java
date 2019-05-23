@@ -46,11 +46,6 @@ public class PlanetMain extends JPanel {
 		setBounds(0, 0, 1000, 600);
 		setLayout(null);
 		
-		/* REMOVE */
-		JLabel someLbl = new JLabel("maybe some planet image?");
-		someLbl.setBounds(150, 200, 600, 40);
-		this.add(someLbl);
-		
 		JLabel planetMainLbl = new JLabel("WELCOME TO " + currentPlanet.getName());
 		planetMainLbl.setFont(new Font("Distant Galaxy", Font.PLAIN, 24));
 		planetMainLbl.setBounds(42, 33, 600, 40);

@@ -1,5 +1,6 @@
 package mainGui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -101,6 +102,9 @@ public class TravelPlanetSelect extends JPanel {
 				planetBtn = addListener(planetBtn, i);
 				this.add(planetBtn);
 			}
+			
+			if (planets.get(i).isPieceFound()) planetBtn.setBackground(Color.green);
+			else if (planets.get(i).isVisited()) planetBtn.setBackground(Color.cyan);
 			
 			planetBtns.add(planetBtn);
 		}

@@ -7,7 +7,7 @@ import crewManagement.Crew;
 import crewManagement.CrewMember;
 import crewManagement.CrewSelector;
 import crewManagement.SpaceShip;
-import environment.RandomEvent;
+import gameEvents.RandomEvent;
 import itemManagement.Inventory;
 import management.GameManager;
 
@@ -161,14 +161,12 @@ public class GameNavigation extends JPanel {
 						String msg = "Today is a new day, you are now on day " + day;
 						msg += " of your " + duration + " day journey.";
 						JOptionPane.showMessageDialog(null, msg);
-						gameManager.startNewDay();
-						System.out.println(crew.getAlive());
-						if (crew.getAlive() > 0) {
-							window.changeContent("mainScreen");
-						}
-						else {
+						//gameManager.startNewDay();
+						if (!gameManager.startNewDay()) {
 							gameManager.endGame(false, "All of your crew members died!");
 							window.changeContent("GameOver");
+						} else {
+							window.changeContent("mainScreen");
 						}
 					} else {
 						gameManager.endGame(false, "You have failed to find all the ship parts!");

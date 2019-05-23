@@ -5,7 +5,7 @@ import javax.swing.Icon;
 import crewManagement.Crew;
 import crewManagement.SpaceShip;
 import environment.Environment;
-import environment.RandomEvent;
+import gameEvents.RandomEvent;
 
 /**
  * Control center of a players game.
@@ -69,6 +69,11 @@ public class GameManager {
 	public void endGame(boolean result, String message) {
 		this.gameResult = result;
 		this.gameComment = message;
+		int extraScore = 0;
+		extraScore += (getGameDuration() - getCurrentDay()) * 1000;
+		extraScore += (getPartsToFind() * 100) * (getPartsFound() / getPartsToFind());
+		extraScore += crew.getAlive() * 100;
+		addGameScore(extraScore);
 	}
 	
 	/**
@@ -97,6 +102,13 @@ public class GameManager {
 	}
 	
 	/**
+	 * Add a certain amount of score for the player
+	 */
+	public void addGameScore(int amount) {
+		this.gameScore += amount;
+	}
+	
+	/**
 	 * Sets the game duration to the given Integer value 'duration'.
 	 * @param duration An Integer that represents how long the player would like a game to last.
 	 */
@@ -115,12 +127,19 @@ public class GameManager {
 		
 	}
 	
-	public void startNewDay() {
+	public boolean startNewDay() {
 		// Move to new day if possible.
 		if(!this.endGame()) {
 			this.currentDay += 1;
 			crew.newDay();
-			if (crew.getAlive() > 0) new RandomEvent();
+			if (crew.getAlive() > 0) {
+				new RandomEvent();
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
 		}
 	}
 	

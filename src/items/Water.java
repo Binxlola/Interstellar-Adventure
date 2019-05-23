@@ -11,6 +11,7 @@ import crewManagement.CrewSelector;
 import itemManagement.Inventory;
 import itemManagement.Item;
 import mainGui.MainScreen;
+import management.AddGameScore;
 
 public class Water implements Item {
 	
@@ -95,6 +96,7 @@ public class Water implements Item {
 						crewUser.deductMove();
 						JOptionPane.showMessageDialog(null, crewUser.getName() + " drank the " + getName() + " and become 15 less hungry!"
 								+ "\nAnd probably is not thirsty anymore!");
+						new AddGameScore(getPrice());
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have this item anymore!");

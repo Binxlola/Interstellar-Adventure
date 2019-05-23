@@ -2,6 +2,10 @@ package itemManagement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import management.AddGameScore;
+import management.GameManager;
 
 public class Inventory {
 	
@@ -94,6 +98,8 @@ public class Inventory {
 		String itemType = "";
 		if (item != null) {
 			itemType = item.getType();
+			int scoreRoll = (int) (10 * item.getPrice() * new Random().nextDouble());
+			new AddGameScore(scoreRoll);
 		}
 		
 		switch(itemType) {

@@ -30,7 +30,11 @@ public class SpaceShip {
 		return _session;
 	}
 	
-	
+	/**
+	 * Initializes ships statistics
+	 * @param name The name of the ship
+	 * @param shipIcon The icon of the ship
+	 */
 	public void initializeShip(String name, Icon shipIcon) {
 		this.shipName = name;
 		this.shipShield = 100;

@@ -3,7 +3,8 @@ package environment;
 import java.util.ArrayList;
 import java.util.Random;
 
-/** Represents the Medic type of crew member.
+/** Represents the Environment of the game
+ * Contains all the planets and the current planet the player is into
  * @author Jason Smit
  * @author Ariel Evangelista
 */
@@ -95,6 +96,10 @@ public class Environment {
 			
 	}
 	
+	/**
+	 * Returns the list of all the planets in the game
+	 * @return The list of all the planets
+	 */
 	public ArrayList<Planet> getPlanets() {
 		return planets;
 	}

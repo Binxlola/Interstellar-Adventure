@@ -11,6 +11,7 @@ import crewManagement.CrewSelector;
 import itemManagement.Inventory;
 import itemManagement.Item;
 import mainGui.MainScreen;
+import management.AddGameScore;
 
 public class IceCream implements Item {
 	
@@ -93,6 +94,7 @@ public class IceCream implements Item {
 						crewUser.deductMove();
 						JOptionPane.showMessageDialog(null, crewUser.getName() + " ate the " + getName() + " and become 40 less hungry!"
 								+ "\nHhhhhmmmmmmm! What a delight!");
+						new AddGameScore(getPrice());
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have this item anymore!");

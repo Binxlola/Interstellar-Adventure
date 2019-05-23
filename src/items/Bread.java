@@ -13,6 +13,7 @@ import crewManagement.CrewMember;
 import itemManagement.Inventory;
 import itemManagement.Item;
 import mainGui.MainScreen;
+import management.AddGameScore;
 import crewManagement.CrewSelector;
 
 public class Bread implements Item {
@@ -95,6 +96,7 @@ public class Bread implements Item {
 						crewUser.eat(30);
 						crewUser.deductMove();
 						JOptionPane.showMessageDialog(null, crewUser.getName() + " ate the " + getName() + " and become 30 less hungry!");
+						new AddGameScore(getPrice());
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have this item anymore!");

@@ -11,6 +11,7 @@ import crewManagement.CrewSelector;
 import itemManagement.Inventory;
 import itemManagement.Item;
 import mainGui.MainScreen;
+import management.AddGameScore;
 
 public class Meat implements Item {
 	
@@ -92,6 +93,7 @@ public class Meat implements Item {
 						crewUser.eat(50);
 						crewUser.deductMove();
 						JOptionPane.showMessageDialog(null, crewUser.getName() + " ate the " + getName() + " and become 50 less hungry!");
+						new AddGameScore(getPrice());
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Sorry! You don't have this item anymore!");
