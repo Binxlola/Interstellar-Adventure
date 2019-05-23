@@ -58,7 +58,7 @@ public class GameNavigation extends JPanel {
 		
 		// Create How to play button
 		JButton howToPlayBtn = new JButton("Information");
-		howToPlayBtn.setBounds(60, 500, 140, 30);
+		howToPlayBtn.setBounds(60, 500, 170, 30);
 		howToPlayBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "\nA. How to win\r\n" + 
@@ -190,7 +190,7 @@ public class GameNavigation extends JPanel {
 		
 		// ======Nav Buttons======
 		JButton travelPlanetBtn = new JButton("Travel to Planet");
-		travelPlanetBtn.setBounds(60, 120, 140, 30);
+		travelPlanetBtn.setBounds(60, 120, 170, 30);
 		travelPlanetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.changeContent("TravelPlanetSelect");
@@ -199,7 +199,7 @@ public class GameNavigation extends JPanel {
 		add(travelPlanetBtn);
 		
 		JButton travelOutpostBtn = new JButton("Visit an Outpost");
-		travelOutpostBtn.setBounds(60, 160, 140, 30);
+		travelOutpostBtn.setBounds(60, 160, 170, 30);
 		travelOutpostBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.changeContent("Outpost");
@@ -208,7 +208,7 @@ public class GameNavigation extends JPanel {
 		add(travelOutpostBtn);
 		
 		JButton newDayBtn = new JButton("Next Day");
-		newDayBtn.setBounds(60, 200, 140, 30);
+		newDayBtn.setBounds(60, 200, 170, 30);
 		newDayBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to move on to the next day?",
@@ -224,7 +224,6 @@ public class GameNavigation extends JPanel {
 						String msg = "Today is a new day, you are now on day " + day;
 						msg += " of your " + duration + " day journey.";
 						JOptionPane.showMessageDialog(null, msg);
-						//gameManager.startNewDay();
 						if (!gameManager.startNewDay()) {
 							gameManager.endGame(false, "All of your crew members died!");
 							window.changeContent("GameOver");
@@ -241,7 +240,7 @@ public class GameNavigation extends JPanel {
 		add(newDayBtn);
 		
 		JButton viewShipBtn = new JButton("View Ship");
-		viewShipBtn.setBounds(60,240, 140, 30);
+		viewShipBtn.setBounds(60,240, 170, 30);
 		viewShipBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.changeContent("ShipStatus");
@@ -250,7 +249,7 @@ public class GameNavigation extends JPanel {
 		add(viewShipBtn);
 		
 		JButton viewCrewBtn = new JButton("View Crew");
-		viewCrewBtn.setBounds(60, 280, 140, 30);
+		viewCrewBtn.setBounds(60, 280, 170, 30);
 		viewCrewBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.changeContent("CrewStatus");
@@ -259,7 +258,7 @@ public class GameNavigation extends JPanel {
 		add(viewCrewBtn);
 		
 		JButton viemInv = new JButton("View Inventory");
-		viemInv.setBounds(60, 320, 140, 30);
+		viemInv.setBounds(60, 320, 170, 30);
 		viemInv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.changeContent("Inventory");

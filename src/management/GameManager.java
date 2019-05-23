@@ -95,6 +95,7 @@ public class GameManager {
 	 * @param shipIcon The icon of the ship
 	 */
 	public void initializeManager(int duration, String name, Icon shipIcon) {
+		this.partsFound = 0;
 		this.setDuration(duration);
 		spaceShip.initializeShip(name, shipIcon);
 		this.setPartsToFind(duration);
@@ -126,6 +127,8 @@ public class GameManager {
 			extraScore += item.getPrice() * item.getCount() * 5;
 		}
 		addGameScore(extraScore);
+		
+		inv.resetInv();
 	}
 	
 	/**
@@ -201,6 +204,13 @@ public class GameManager {
 	 */
 	public void partFound() {
 		partsFound +=1;
+	}
+	
+	/**
+	 * Deducts 1 to the partsFound
+	 */
+	public void partStolen() {
+		partsFound -= 1;
 	}
 	
 	/**

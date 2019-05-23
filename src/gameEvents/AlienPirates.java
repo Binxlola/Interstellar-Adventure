@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import itemManagement.Inventory;
 import itemManagement.Item;
+import management.GameManager;
 
 
 /**
@@ -18,6 +19,11 @@ import itemManagement.Item;
  * @author Ariel Evangelista
  */
 public class AlienPirates {
+	
+	/**
+	 * The one and only one instance of the GameManager class
+	 */
+	GameManager gameManager = GameManager.getInstance();
 	
 	/**
 	 * The one and only one instance of the Inventory class
@@ -80,6 +86,7 @@ public class AlienPirates {
 			}
 			
 			if (stolenItem.getName() == "Ship Part") {
+				gameManager.partStolen();
 				JOptionPane.showMessageDialog(null, "Oh no! Alien Pirates boarded your ship and stole a Ship Part!"
 						+ "\nYou must not allow the warp drive to fall"
 						+ "\n             to the wrong hands!");

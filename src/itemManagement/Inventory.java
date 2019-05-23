@@ -262,9 +262,9 @@ public class Inventory {
 	 * Resets the inventory fresh for a new game
 	 */
 	public void resetInv() {
-		potions.removeAll(potions);
-		foods.removeAll(foods);
-		misc.removeAll(misc);
+		potions = new ArrayList<Item>();
+		foods = new ArrayList<Item>();
+		misc = new ArrayList<Item>();
 		this.wallet = 0;
 	}
 
