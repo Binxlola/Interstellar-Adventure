@@ -1,11 +1,5 @@
 package crewManagement;
 
-/** Represents the Medic type of crew member.
- * @author Jason Smit
- * @author Ariel Evangelista
-*/
-import java.util.Objects;
-
 /** Represents the Pilot type of crew member.
  * @author Jason Smit
  * @author Ariel Evangelista
@@ -96,35 +90,6 @@ public class Pilot extends CrewMember {
 	 */
 	public void addMove() {
 		this.memberMoves += 1;
-	}
-	
-	/**
-	 * Overrides java.lang.Object.toString to give a descriptive string representation of the object.
-	 * @return Will return a String describing the current object.
-	 */
-	@Override
-	public String toString() {
-		String temp = String.format("%s has %s moves left and %s current health.", name, memberMoves, memberHealth);
-		return temp;
-	}
-	
-	/**
-	 * Overrides java.lang.Object.equals to compare if the given object is the same as the current object.
-	 * @return Will return a boolean value dependent on if the two objects are the same or not. 
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == this) {
-			return true;
-		}
-		if(obj == null) {
-			return false;
-		}
-		if (!getClass().equals(obj.getClass())) {
-	        return false;
-	    }
-		CrewMember otherObj = (CrewMember) obj;
-	    return Objects.equals(name, otherObj.getName()) && Objects.equals(memberMoves, otherObj.getMoves()) && Objects.equals(memberHealth, otherObj.getHealth());
 	}
 	
 	/**

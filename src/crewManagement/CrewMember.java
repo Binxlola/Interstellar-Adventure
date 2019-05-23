@@ -14,12 +14,6 @@ public abstract class CrewMember {
 	
 	abstract public String getType();
 	
-	@Override
-	abstract public String toString();
-	
-	@Override
-	abstract public boolean equals(Object obj);
-	
 	abstract public int getMoves();
 	
 	abstract public void addMove();

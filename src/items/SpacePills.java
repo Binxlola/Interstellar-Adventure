@@ -20,11 +20,34 @@ import management.AddGameScore;
  */
 public class SpacePills implements Item {
 	
+	/**
+	 * The one and only one instance of Inventory class
+	 */
 	private Inventory inv = Inventory.getInstance();
+	
+	/**
+	 * The drop chance of this item
+	 */
 	private double dropChance = 20;
+	
+	/**
+	 * The name of this item
+	 */
 	private String name = "Space Pills";
+	
+	/**
+	 * The type of this item
+	 */
 	private String type = "Potion";
+	
+	/**
+	 * The initial count of this item
+	 */
 	private int itemCount = 1;
+	
+	/**
+	 * The price of this item
+	 */
 	private int price = 150;
 	
 	/**

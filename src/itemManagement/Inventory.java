@@ -251,7 +251,7 @@ public class Inventory {
 		potions.removeAll(potions);
 		foods.removeAll(foods);
 		misc.removeAll(misc);
-		this.wallet = 500;
+		this.wallet = 0;
 	}
 
 }
