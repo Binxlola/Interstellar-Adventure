@@ -2,12 +2,6 @@ package gameEvents;
 
 import java.util.Random;
 
-import javax.swing.JOptionPane;
-
-import crewManagement.Crew;
-import crewManagement.SpaceShip;
-import itemManagement.Inventory;
-
 /**
  * Initializing random event
  * 40% chance for each event: {Space Plague, Alien Pirates}
@@ -15,6 +9,9 @@ import itemManagement.Inventory;
  */
 public class RandomEvent {
 	
+	/**
+	 * Rolls a pseudo-random chance of getting an event on the start of the day
+	 */
 	public RandomEvent() {
 		double chance = new Random().nextDouble();
 		if (chance < 0.40) {

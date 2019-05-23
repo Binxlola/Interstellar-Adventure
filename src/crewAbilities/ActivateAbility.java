@@ -10,6 +10,10 @@ import crewManagement.CrewMember;
  */
 public class ActivateAbility {
 
+	/**
+	 * Detect the type of the crew activating its ability
+	 * @param crew The crew member activating its ability
+	 */
 	public ActivateAbility(CrewMember crew) {
 		String crewType = crew.getType();
 		if (crew.getHealth() > 0) {

@@ -19,11 +19,32 @@ import management.GameManager;
  */
 public class AsteroidEvent {
 	
+	/**
+	 * Boolean if a pilot is flying the ship or not
+	 */
 	private boolean pilot;
+	
+	/**
+	 * The incoming MainScreen class
+	 */
 	private MainScreen window;
+	
+	/**
+	 * The one and only one instance of SpaceShip class
+	 */
 	private SpaceShip spaceShip = SpaceShip.getInstance();
+	
+	/**
+	 * The one and only one instance of GameManager class
+	 */
 	private GameManager gameManager = GameManager.getInstance();
 	
+	
+	/**
+	 * Constructor for the AsteroidEvent class
+	 * @param newPilot Boolean if a pilot is flying the ship or not
+	 * @param incomingWindow The incoming MainScreen class
+	 */
 	public AsteroidEvent(boolean newPilot, MainScreen incomingWindow) {
 		this.pilot = newPilot;
 		this.window = incomingWindow;

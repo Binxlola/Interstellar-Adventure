@@ -20,12 +20,34 @@ import crewManagement.CrewMember;
  */
 public class CrewSelector {
 	
+	/**
+	 * The one and only one instance of Crew class
+	 */
 	private Crew crew = Crew.getInstance();
+	
+	/**
+	 * The current crew member selected
+	 */
 	private CrewMember crewSelect = null;
+	
+	/**
+	 * The message inside pop-up dialog
+	 */
 	private String msg;
+	
+	/**
+	 * The title of the pop-up dialog
+	 */
 	private String dialog;
+	
+	/**
+	 * The list of all selectable crew members in the game
+	 */
 	private List<JRadioButton> crewSelectList = new ArrayList<JRadioButton>();
 	
+	/**
+	 * Set the default message and title for pop-up
+	 */
 	public CrewSelector() {
 		crewSelectList.removeAll(crewSelectList);
 		msg = "Select a crew";
@@ -33,6 +55,10 @@ public class CrewSelector {
 		getcrewSelect();
 	}
 	
+	/**
+	 * Set the default title and custom message for pop-up
+	 * @param newMsg The message inside the dialog
+	 */
 	public CrewSelector(String newMsg) {
 		crewSelectList.removeAll(crewSelectList);
 		msg = newMsg;
@@ -40,6 +66,11 @@ public class CrewSelector {
 		getcrewSelect();
 	}
 	
+	/**
+	 * Set the custom message and title for pop-up
+	 * @param newMsg The message inside the dialog
+	 * @param newDialog The title of the pop-up dialog
+	 */
 	public CrewSelector(String newMsg, String newDialog) {
 		crewSelectList.removeAll(crewSelectList);
 		msg = newMsg;
@@ -47,6 +78,10 @@ public class CrewSelector {
 		getcrewSelect();
 	}
 	
+	/**
+	 * Get the selected crew member
+	 * @return The selected crew member
+	 */
 	public CrewMember getCrew() {
 		return this.crewSelect;
 	}

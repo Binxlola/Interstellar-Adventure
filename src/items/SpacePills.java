@@ -13,6 +13,11 @@ import itemManagement.Item;
 import mainGui.MainScreen;
 import management.AddGameScore;
 
+/**
+ * The class implementation of the item SpacePills
+ * @author Ariel Evangelista
+ *
+ */
 public class SpacePills implements Item {
 	
 	private Inventory inv = Inventory.getInstance();

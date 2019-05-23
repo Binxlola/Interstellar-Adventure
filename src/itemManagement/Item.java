@@ -1,12 +1,15 @@
 package itemManagement;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 
 import mainGui.MainScreen;
 
+/**
+ * The interface for all item class
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ *
+ */
 public interface Item {
 	
 	/**

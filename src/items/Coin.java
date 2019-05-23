@@ -2,21 +2,42 @@ package items;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
-import itemManagement.Inventory;
 import itemManagement.Item;
+
 import mainGui.MainScreen;
 
+/**
+ * The class implementation of the item Coin
+ * @author Ariel Evangelista
+ *
+ */
 public class Coin implements Item {
 	
-	private Inventory inv = Inventory.getInstance();
+	/**
+	 * The drop chance of the item
+	 */
 	private double dropChance = 15;
+	
+	/**
+	 * The name of the item
+	 */
 	private String name = "Coin";
+	
+	/**
+	 * The type of the item
+	 */
 	private String type = "Coin";
+	
+	/**
+	 * The initial count of the item
+	 */
 	private int itemCount = 1;
+	
+	/**
+	 * The price of the item
+	 */
 	private int price = 1;
 	
 	/**

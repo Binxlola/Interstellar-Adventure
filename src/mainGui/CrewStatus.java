@@ -4,35 +4,38 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import crewManagement.Crew;
-import management.GameManager;
 
+/**
+ * Represents the status of all crew members
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
+ */
+@SuppressWarnings("serial")
 public class CrewStatus extends JPanel {
 	
+	/**
+	 * The one and only one instance of the Crew class
+	 */
 	Crew crew = Crew.getInstance();
+	
+	/**
+	 * The managing MainScreen class
+	 */
 	MainScreen window;
 
 	/**
-	 * Create the panel.
+	 * Create the panel
+	 * @param incomingWindow The MainScreen class
 	 */
 	public CrewStatus(MainScreen incomingWindow) {
 		window = incomingWindow;
@@ -68,8 +71,8 @@ public class CrewStatus extends JPanel {
 		createCrewFields();
 	}
 	
-	/*
-	 * Creates the check buttons for each crew members
+	/**
+	 * Create a crew field for each crew member
 	 */
 	private void createCrewFields() {
 		

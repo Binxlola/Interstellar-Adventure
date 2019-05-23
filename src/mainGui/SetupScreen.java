@@ -1,31 +1,22 @@
 package mainGui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import java.awt.CardLayout;
-import java.awt.Component;
-
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
-import java.awt.GridLayout;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -36,27 +27,75 @@ import management.GameManager;
  * Represents and application window that will act as the main entry point to the game, where a user can set the game parameters when starting a new game.
  * User may also load a previously saved game from this setup window.
  * @author Jason Smit
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
  *
  */
 public class SetupScreen {
-
+	
+	/**
+	 * The initial window the player will see
+	 */
 	private JFrame frame;
+	
+	/**
+	 * The textbox of ship name
+	 */
 	private JTextField shipNameFld;
+	
+	/**
+	 * The size of crew members
+	 */
 	private int crewSize;
+	
+	/**
+	 * The duration of the game in days
+	 */
 	private int gameDuration;
+	
+	/**
+	 * The managing GUI manager
+	 */
 	private GuiManager manager;
+	
+	/**
+	 * The icon for the ship
+	 */
 	private static Icon shipIcon;
+	
+	/**
+	 * The boolean if a ship icon was selected
+	 */
 	private boolean iconSelected = false;
 	
-	//For setup3 window
+	/**
+	 * List of text box containing the textbox of crew name
+	 */
 	private List<JTextField> crewNames = new ArrayList<JTextField>();
+	
+	/**
+	 * List of combo box containing the types of crew
+	 */
 	private List<JComboBox<Object>> crewTypes = new ArrayList<JComboBox<Object>>();
+	
+	/**
+	 * List of labels containing the labels of crew numbers
+	 */
 	private List<JLabel> crewNumLbl = new ArrayList<JLabel>();
+	
+	/**
+	 * List of labels containing the labels of crew names
+	 */
 	private List<JLabel> crewNamesLbl = new ArrayList<JLabel>();
+	
+	/**
+	 * List of labels containing the labels of crew types
+	 */
 	private List<JLabel> crewTypesLbl = new ArrayList<JLabel>();
 
 	/**
-	 * Create the application.
+	 * Initialize the setup screen
+	 * @param incomingManager The GUI manager
 	 */
 	public SetupScreen(GuiManager incomingManager) {
 		initialize();
@@ -144,7 +183,7 @@ public class SetupScreen {
 		// Game Length setup
 		JLabel gameLengthLbl = new JLabel("Game Length:");
 		gameLengthLbl.setFont(new Font("Rockwell", Font.PLAIN, 14));
-		gameLengthLbl.setBounds(50, 228, 150, 20);
+		gameLengthLbl.setBounds(45, 228, 150, 20);
 		setup2.add(gameLengthLbl);
 		
 		JLabel daysLbl = new JLabel("(DAYS)");

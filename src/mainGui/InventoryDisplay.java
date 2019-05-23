@@ -4,35 +4,44 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.border.MatteBorder;
-import javax.swing.table.DefaultTableModel;
 
 import itemManagement.Inventory;
 import itemManagement.Item;
-import items.LargeHP;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Represents the inventory of the player
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
+ */
+@SuppressWarnings("serial")
 public class InventoryDisplay extends JPanel {
 	
+	/**
+	 * The managing MainScreen class
+	 */
 	MainScreen window;
-	private JTable table;
+	
+	/**
+	 * The one and only one instance of the Inventory class
+	 */
 	private Inventory inventory = Inventory.getInstance();
 
 	/**
-	 * Create the panel.
+	 * Create the panel
+	 * @param incomingWindow The managing MainScreen
 	 */
 	public InventoryDisplay(MainScreen incomingWindow) {
 		window = incomingWindow;

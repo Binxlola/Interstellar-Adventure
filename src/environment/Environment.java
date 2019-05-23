@@ -10,10 +10,19 @@ import java.util.Random;
 */
 public class Environment {
 	
-	// Disabled until Item Wheel is implemented
-	//private ItemWheel itemWheel = ItemWheel.getInstance();
+	/**
+	 * The current index of selected planet from the planets list
+	 */
 	private int selectedPlanet = -1;
+	
+	/**
+	 * The list of all the available planets in game
+	 */
 	private ArrayList<Planet> planets = new ArrayList<Planet>();
+	
+	/**
+	 * A string list containing all possible planet names
+	 */
 	private String[] planetNames = {
 			"Inater",
 			"Cingaturn",
@@ -47,6 +56,9 @@ public class Environment {
 			"Gragua UO"
 	};
 	
+	/**
+	 * The one and only one session of the Environment class
+	 */
 	private static Environment _session = null;
 	
 	/**
@@ -66,16 +78,18 @@ public class Environment {
 		return _session;
 	}
 	
-	/* Disabled until Item Wheel is implemented
-	public ItemWheel getWheel() {
-		return this.itemWheel;
-	}
-	*/
-	
+	/**
+	 * Builds the environment based on the duration of the game
+	 * @param gameDuration The number of the days the game will run
+	 */
 	public void buildEnvironment(int gameDuration) {
 		createPlanets(gameDuration);
 	}
 	
+	/**
+	 * Create the all planets based on the duration of the game
+	 * @param gameLength The number of the days the game will run
+	 */
 	private void createPlanets(int gameLength) {
 		planets.removeAll(planets);
 		Random rand = new Random();

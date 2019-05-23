@@ -1,41 +1,40 @@
 package mainGui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.MatteBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import crewManagement.Crew;
 import crewManagement.SpaceShip;
 import management.GameManager;
 
+/**
+ * Represent the results of the game
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
+ */
+@SuppressWarnings("serial")
 public class GameOver extends JPanel {
 	
-	private Crew crew = Crew.getInstance();
+	/**
+	 * The managing MainScreen class
+	 */
 	private MainScreen window;
+	
+	/**
+	 * The one and only one instance of the GameManager class
+	 */
 	private GameManager gameManager = GameManager.getInstance();
+	
+	/**
+	 * The one and only one instance of the SpaceShip class
+	 */
 	private SpaceShip spaceShip = SpaceShip.getInstance();
 
 	/**
-	 * Create the panel.
+	 * Create the panel
+	 * @param incomingWindow The managing MainScreen class
 	 */
 	public GameOver(MainScreen incomingWindow) {
 		window = incomingWindow;

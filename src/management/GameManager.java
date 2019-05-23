@@ -13,17 +13,55 @@ import gameEvents.RandomEvent;
  * @author Ariel Evangelista
  */
 public class GameManager {
+	
+	/**
+	 * The session of the GameManager, there can only be one
+	 */
 	private static GameManager _session;
 	
+	/**
+	 * The duration of the game in days
+	 */
 	private int gameDuration;
+	
+	/**
+	 * The current day of the game
+	 */
 	private int currentDay;
+	
+	/**
+	 * The current parts found
+	 */
 	private int partsFound;
+	
+	/**
+	 * The total parts to find
+	 */
 	private int partsToFind;
+	
+	/**
+	 * The one and only one instance of Crew class
+	 */
 	private Crew crew = Crew.getInstance();
+	
+	/**
+	 * The one and only one instance of SpaceShip class
+	 */
 	private SpaceShip spaceShip = SpaceShip.getInstance();
 	
+	/**
+	 * The boolean result of the game
+	 */
 	private boolean gameResult;
+	
+	/**
+	 * The comments why is the game resulted in the gameResult
+	 */
 	private String gameComment;
+	
+	/**
+	 * The current score for the game
+	 */
 	private int gameScore;
 
 	
@@ -71,8 +109,10 @@ public class GameManager {
 		this.gameComment = message;
 		int extraScore = 0;
 		extraScore += (getGameDuration() - getCurrentDay()) * 1000;
+		extraScore += ((10 - getGameDuration()) * 500);
 		extraScore += (getPartsToFind() * 100) * (getPartsFound() / getPartsToFind());
 		extraScore += crew.getAlive() * 100;
+		extraScore += ((4 - crew.size()) * 3000);
 		addGameScore(extraScore);
 	}
 	

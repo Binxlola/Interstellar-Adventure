@@ -4,10 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import crewManagement.Crew;
-import crewManagement.CrewMember;
-import crewManagement.CrewSelector;
 import crewManagement.SpaceShip;
-import gameEvents.RandomEvent;
 import itemManagement.Inventory;
 import management.GameManager;
 
@@ -25,17 +22,35 @@ import javax.swing.ImageIcon;
  * Represent a JPanel displaying multiple buttons used for navigating the main content modules of the game.
  * Each buttons has a simple ActionListener attached which will simply call the ChangeContent method of the main screen, giving a String describing the content to be changed to.
  * @author Jason Smit
- *
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
  */
+@SuppressWarnings("serial")
 public class GameNavigation extends JPanel {
 	
+	/**
+	 * The one and only one instance of the GameManager class
+	 */
 	GameManager gameManager = GameManager.getInstance();
+	
+	/**
+	 * The one and only one instance of the Inventory class
+	 */
 	Inventory inventory = Inventory.getInstance();
+	
+	/**
+	 * The one and only one instance of the SpaceShip class
+	 */
 	SpaceShip spaceShip = SpaceShip.getInstance();
+	
+	/**
+	 * The one and only one instance of the Crew class
+	 */
 	Crew crew = Crew.getInstance();
 
 	/**
-	 * Create the panel.
+	 * Create the panel
+	 * @param window The managing MainScreen window
 	 */
 	public GameNavigation(MainScreen window) {
 		setBounds(0, 0, 1000, 600);

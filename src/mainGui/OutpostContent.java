@@ -6,11 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -30,16 +28,38 @@ import items.SmallHP;
 import items.SpacePills;
 import items.Water;
 
+/**
+ * Represents the Outpost (Store) of the game
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
+ */
+@SuppressWarnings("serial")
 public class OutpostContent extends JPanel {
 	
+	/**
+	 * The one and only one instance of Inventory class
+	 */
 	private Inventory inventory = Inventory.getInstance();
 	
+	/**
+	 * The incoming MainScreen class
+	 */
 	private MainScreen window;
+	
+	/**
+	 * The Panel of the store
+	 */
 	private JPanel storePanel;
+	
+	/**
+	 * The panel for the inventory
+	 */
 	private JPanel invPanel;
 
 	/**
 	 * Create the panel.
+	 * @param incomingWindow The incoming MainScreen class
 	 */
 	public OutpostContent(MainScreen incomingWindow) {
 		window = incomingWindow;
@@ -126,6 +146,10 @@ public class OutpostContent extends JPanel {
 		this.populateStore(storePanel);
 	}
 	
+	/**
+	 * Put items in the inventory panel
+	 * @param section The panel to be populated
+	 */
 	private void populateInventory(JPanel section) {
 		List<Item> potions = inventory.getPotions();
 		List<Item> foods = inventory.getFoods();
@@ -158,6 +182,10 @@ public class OutpostContent extends JPanel {
 		}
 	}
 	
+	/**
+	 * Put items in the store panel
+	 * @param section The panel to be populated
+	 */
 	private void populateStore(JPanel section) {
 		List<Item> storeItems = new ArrayList<Item>();
 		// Food
@@ -187,7 +215,6 @@ public class OutpostContent extends JPanel {
 		int i = 0;
 		int x = 5;
 		int y = -95;
-		int[] btnXY = new int[] {5, 5};
 		
 		for(i = 0; i < storeItems.size(); i++) {
 			JButton btn = new JButton();

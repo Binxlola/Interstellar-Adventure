@@ -13,13 +13,42 @@ import itemManagement.Item;
 import mainGui.MainScreen;
 import management.AddGameScore;
 
+/**
+ * The class implementation of the item SmallHP
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ *
+ */
 public class SmallHP implements Item {
 	
+	/**
+	 * The one any only one instance of the Inventory class
+	 */
 	private Inventory inv = Inventory.getInstance();
+	
+	/**
+	 * The drop chance of the item
+	 */
 	private double dropChance = 50;
+	
+	/**
+	 * The name of the item
+	 */
 	private String name = "Small HP";
+	
+	/**
+	 * The type of the item
+	 */
 	private String type = "Potion";
+	
+	/**
+	 * The initial count of the item
+	 */
 	private int itemCount = 1;
+	
+	/**
+	 * The price of the item
+	 */
 	private int price = 60;
 	
 	/**

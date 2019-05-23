@@ -3,23 +3,12 @@ package mainGui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import crewManagement.Crew;
 import crewManagement.CrewMember;
@@ -28,11 +17,32 @@ import crewManagement.CrewSelector;
 import management.AddGameScore;
 import management.GameManager;
 
+/**
+ * Represents the status of all crew members
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
+ */
+@SuppressWarnings("serial")
 public class ShipStatus extends JPanel {
 	
+	/**
+	 * The one and only one instance of the Crew class
+	 */
 	Crew crew = Crew.getInstance();
+	
+	/**
+	 * The one and only one instance of the GameManager class
+	 */
 	GameManager gameManager = GameManager.getInstance();
+	
+	/**
+	 * The one and only one instance of the SpaceShip class
+	 */
 	SpaceShip spaceShip = SpaceShip.getInstance();
+	
+	/**
+	 * The managing MainScreen class
+	 */
 	MainScreen window;
 
 	/**

@@ -1,6 +1,6 @@
 package crewManagement;
 
-/** Represents the Parent abstract class of crew members.
+/** Represents the abstract class of crew members.
  * @author Jason Smit
  * @author Ariel Evangelista
 */

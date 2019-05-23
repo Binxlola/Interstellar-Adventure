@@ -3,24 +3,14 @@ package mainGui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-import crewManagement.Crew;
 import crewManagement.CrewMember;
 import crewManagement.CrewSelector;
-import crewManagement.SpaceShip;
 import environment.Environment;
 import environment.Planet;
 import itemManagement.Inventory;
@@ -28,17 +18,47 @@ import itemManagement.Item;
 import itemManagement.ItemWheel;
 import management.GameManager;
 
+/**
+ * Represents the Planet in the game
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
+ */
+@SuppressWarnings("serial")
 public class PlanetMain extends JPanel {
 	
+	/**
+	 * The incoming MainScreen class
+	 */
 	private MainScreen window;
+	
+	/**
+	 * The one and only one instance of Environment class
+	 */
 	private Environment env = Environment.getInstance();
+	
+	/**
+	 * The current selected planet from the Environment Class
+	 */
 	private Planet currentPlanet = env.getSelectedPlanet();
+	
+	/**
+	 * The one and only one instance of ItemWheel class
+	 */
 	private ItemWheel itemWheel = ItemWheel.getInstance();
+	
+	/**
+	 * The one and only one instance of the Inventory class
+	 */
 	private Inventory inventory = Inventory.getInstance();
+	
+	/**
+	 * The one and only one instance of the GameManager class
+	 */
 	private GameManager gameManager = GameManager.getInstance();
 
 	/**
 	 * Create the panel.
+	 * @param incomingWindow The incoming MainScreen class
 	 */
 	public PlanetMain(MainScreen incomingWindow) {
 		window = incomingWindow;

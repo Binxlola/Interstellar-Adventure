@@ -1,12 +1,6 @@
 package crewManagement;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.Icon;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-
-
 
 /** Represents the Medic type of crew member.
  * @author Jason Smit
@@ -14,15 +8,34 @@ import javax.swing.JTextField;
 */
 public class SpaceShip {
 	
+	/**
+	 * The one and only one instance of SpaceShip class
+	 */
 	private static SpaceShip _session = null;
+	
+	/**
+	 * The name of the ship
+	 */
 	private String shipName;
+	
+	/**
+	 * The current shield health of the ship
+	 */
 	private int shipShield;
+	
+	/**
+	 * The icon of the ship
+	 */
 	private Icon shipIcon;
 	
 	private SpaceShip() {
 		
 	}
 	
+	/**
+	 * Get the one and only one instance of SpaceShip class
+	 * @return The active SpaceShip class
+	 */
 	public static SpaceShip getInstance() {
 		if(_session == null) {
 			_session = new SpaceShip();

@@ -11,14 +11,46 @@ import java.util.Objects;
  * @author Ariel Evangelista
 */
 public class Scientist extends CrewMember {
+	
+	/**
+	 * Type of the Crew Member
+	 */
 	private final String type = "Scientist";
+	
+	/**
+	 * Name of the Crew Member
+	 */
 	private String name = "";
+	
+	/**
+	 * Remaining Moves of the crew member
+	 */
 	private int memberMoves;
+	
+	/**
+	 * Remaining Health of the crew member
+	 */
 	private int memberHealth;
+	
+	/**
+	 * Current health state of the crew member
+	 */
 	private boolean infected = false;
+	
+	/**
+	 * Current hunger of the crew member
+	 */
 	private int memberHunger;
+	
+	/**
+	 * Current tiredness of the crew member
+	 */
 	private int memberTiredness;
 	
+	/**
+	 * Sets the name of the current crew member.
+	 * @param newName A String describing the desired name of the current crew member.
+	 */
 	public Scientist(String newName) {
 		name = newName;
 		memberMoves = 2;
@@ -55,7 +87,8 @@ public class Scientist extends CrewMember {
 	 * This method will reload the crew members moves.
 	 */
 	public void resetMoves() {
-		this.memberMoves = 2;
+		if (getHealth() > 0) this.memberMoves = 2;
+		else this.memberMoves = 0;
 	}
 	
 	/**

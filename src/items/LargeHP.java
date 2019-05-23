@@ -13,13 +13,42 @@ import itemManagement.Item;
 import mainGui.MainScreen;
 import management.AddGameScore;
 
+/**
+ * The class implementation of the item LargeHP
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ *
+ */
 public class LargeHP implements Item {
 	
+	/**
+	 * The one any only one instance of the Inventory class
+	 */
 	private Inventory inv = Inventory.getInstance();
+	
+	/**
+	 * The drop chance of the item
+	 */
 	private double dropChance = 30;
+	
+	/**
+	 * The name of the item
+	 */
 	private String name = "Large HP";
+	
+	/**
+	 * The type of the item
+	 */
 	private String type = "Potion";
+	
+	/**
+	 * The initial count of the item
+	 */
 	private int itemCount = 1;
+	
+	/**
+	 * The price of the item
+	 */
 	private int price = 100;
 	
 	/**

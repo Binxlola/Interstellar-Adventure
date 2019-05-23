@@ -2,10 +2,14 @@ package mainGui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * Represents the selected ship icon on the setup screen
+ * @author Jason Smit
+ * @version 1.0, May 2019.
+ */
 public class SelectedIconListener implements ActionListener {
 	
 	private JPanel frame;

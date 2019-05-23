@@ -14,19 +14,40 @@ import items.ShipPart;
 import items.SmallHP;
 import items.SpacePills;
 import items.Water;
-import management.GameManager;
 
 import java.util.List;
 
+/**
+ * Random item generator based on weight probabilities
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ * 
+ */
 public class ItemWheel {
 	
+	/**
+	 * The list of all items of type potion
+	 */
 	private List<Item> potions = new ArrayList<Item>();
+	
+	/**
+	 * The list of all items of type food
+	 */
 	private List<Item> foods = new ArrayList<Item>();
+	
+	/**
+	 * The list of all items of type misc
+	 */
 	private List<Item> misc = new ArrayList<Item>();
 	
+	/**
+	 * The one and only one session of the ItemWheel class
+	 */
 	private static ItemWheel _session = null;
-	private GameManager gameManager = GameManager.getInstance();
 	
+	/**
+	 * Constructor of ItemWheel class populating the lists of items with all available items in the game
+	 */
 	private ItemWheel() {
 		// Initialize list with all items
 		
@@ -56,10 +77,12 @@ public class ItemWheel {
 		foods.add(iceCream);
 		foods.add(meat);
 		misc.add(shipPart);
-
-		
 	}
 	
+	/**
+	 * Get one and only one instance of the ItemWheel class
+	 * @return The one and only one instance of the ItemWheel class
+	 */
 	public static ItemWheel getInstance() {
 		if(_session == null) {
 			_session = new ItemWheel();
@@ -67,19 +90,22 @@ public class ItemWheel {
 		return _session;
 	}
 	
-	// Returns the selected index based on the weights(probabilities)
+	/**
+	 * Randomly selects an item from the list of all available items from the game
+	 * @return The item selected or null
+	 */
 	private Item rouletteSelect() {
 		
-		// 30%: Food, 20%: Potion, 20% Ship Part, 20% Money, 10% Nothing
+		// 10%: Food, 10%: Potion, 20% Ship Part, 10% Money, 50% Nothing
 		List<Item> items = new ArrayList<Item>();
-		double type = randUniformPositive();
-		if (type < 0.3) items = foods;
-		else if (type < 0.50) items = potions;
-		else if (type < 0.70) items = misc;
-		else if (type < 0.90) {
+		double type = new Random().nextDouble();
+		if (type < 0.10) items = foods;
+		else if (type < 0.20) items = potions;
+		else if (type < 0.45) items = misc;
+		else if (type < 0.50) {
 			Coin coin = new Coin();
-			double temp = randUniformPositive() * 100;
-			double temp2 = randUniformPositive() * 1.25;
+			double temp = new Random().nextDouble() * 100;
+			double temp2 = new Random().nextDouble() * 5;
 			int multiplier = (int)temp2;
 			int cost = (int)temp;
 			for (int i = 0; i < cost*multiplier; i++) coin.addCount();
@@ -93,7 +119,7 @@ public class ItemWheel {
 			weight_sum += item.getDropChance();
 		}
 		// get a random value
-		double value = randUniformPositive() * weight_sum;	
+		double value = new Random().nextDouble() * weight_sum;	
 		// locate the random value based on the weights
 		for(Item item: items) {		
 			value -= item.getDropChance();		
@@ -103,12 +129,10 @@ public class ItemWheel {
 		return null;
 	}
 
-	// Returns a uniformly distributed double value between 0.0 and 1.0
-	private double randUniformPositive() {
-		// easiest implementation
-		return new Random().nextDouble();
-	}
-	
+	/**
+	 * Randomly generates an item from the list of all available implemented items
+	 * @return Pseudo-randomly generated item
+	 */
 	public Item getItem() {
 		return this.rouletteSelect();
 	}

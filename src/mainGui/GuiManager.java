@@ -2,8 +2,9 @@ package mainGui;
 
 /**
  * Control center for the core GUI functionality, primarily acting as a middle man between the main screen and content panes.
- * @author jasonsmit
- *
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
  */
 public class GuiManager {
 	
@@ -84,26 +85,46 @@ public class GuiManager {
 		return content;
 	}
 	
+	/**
+	 * Will create a new InventoryDisplay JPanel
+	 * @return Will return a InventoryDisplay JPanel that will then be loaded onto the main screen.
+	 */
 	public InventoryDisplay getInventoryPanel(MainScreen window) {
 		InventoryDisplay content = new InventoryDisplay(window);
 		return content;
 	}
 	
+	/**
+	 * Will create a new OutpostContent JPanel
+	 * @return Will return a OutpostContent JPanel that will then be loaded onto the main screen.
+	 */
 	public OutpostContent getOutpostPanel(MainScreen window) {
 		OutpostContent content = new OutpostContent(window);
 		return content;
 	}
 	
+	/**
+	 * Will create a new CrewStatus JPanel
+	 * @return Will return a CrewStatus JPanel that will then be loaded onto the main screen.
+	 */
 	public CrewStatus getCrewStatusPanel(MainScreen window) {
 		CrewStatus content = new CrewStatus(window);
 		return content;
 	}
 	
+	/**
+	 * Will create a new ShipStatus JPanel
+	 * @return Will return a ShipStatus JPanel that will then be loaded onto the main screen.
+	 */
 	public ShipStatus getShipStatusPanel(MainScreen window) {
 		ShipStatus content = new ShipStatus(window);
 		return content;
 	}
 	
+	/**
+	 * Will create a new GameOver JPanel
+	 * @return Will return a GameOver JPanel that will then be loaded onto the main screen.
+	 */
 	public GameOver getGameOverPanel(MainScreen window) {
 		GameOver content = new GameOver(window);
 		return content;

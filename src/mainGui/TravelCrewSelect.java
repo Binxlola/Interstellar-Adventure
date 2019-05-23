@@ -3,7 +3,6 @@ package mainGui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,26 +11,57 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import crewManagement.Crew;
 import environment.AsteroidEvent;
 import management.GameManager;
 
+/**
+ * Represents the selection of crew to travel to a planet
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
+ */
+@SuppressWarnings("serial")
 public class TravelCrewSelect extends JPanel {
 	
+	/**
+	 * The one and only one instance of GameManager class
+	 */
 	GameManager gameManager = GameManager.getInstance();
+	
+	/**
+	 * The one and only one instance of Crew class
+	 */
 	Crew crew = Crew.getInstance();
+	
+	/**
+	 * The managing MainScreen class
+	 */
 	MainScreen window;
+	
+	/**
+	 * The list of all available to view check boxes for crew
+	 */
 	private List<JCheckBox> checkBoxList = new ArrayList<JCheckBox>();
+	
+	/**
+	 * The list of all check boxes for crew
+	 */
 	private List<JCheckBox> crewCheckBoxList = new ArrayList<JCheckBox>();
+	
+	/**
+	 * The current selected crew on the screen
+	 */
 	private int maxSelected = 0;
+	
+	/**
+	 * Boolean if there is a crew of type pilot selected
+	 */
 	private boolean pilot = false;
 
 	/**
-	 * Create the panel.
+	 * Create the panel
+	 * @param incomingWindow The managing MainScreen class
 	 */
 	public TravelCrewSelect(MainScreen incomingWindow) {
 		window = incomingWindow;

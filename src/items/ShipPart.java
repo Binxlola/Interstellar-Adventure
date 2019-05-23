@@ -6,18 +6,40 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import crewManagement.CrewMember;
-import crewManagement.CrewSelector;
-import itemManagement.Inventory;
 import itemManagement.Item;
 import mainGui.MainScreen;
 
+/**
+ * The class implementation of the item ShipPart
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ *
+ */
 public class ShipPart implements Item {
 	
+	/**
+	 * The drop chance of the item
+	 */
 	private double dropChance = 10;
+	
+	/**
+	 * The name of the item
+	 */
 	private String name = "Ship Part";
+	
+	/**
+	 * The type of the item
+	 */
 	private String type = "Misc";
+	
+	/**
+	 * The initial count of the item
+	 */
 	private int itemCount = 1;
+	
+	/**
+	 * The price of the item
+	 */
 	private int price = 100;
 	
 	/**

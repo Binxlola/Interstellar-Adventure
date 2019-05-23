@@ -1,13 +1,10 @@
 package items;
 
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import crewManagement.CrewMember;
 import itemManagement.Inventory;
@@ -16,13 +13,41 @@ import mainGui.MainScreen;
 import management.AddGameScore;
 import crewManagement.CrewSelector;
 
+/**
+ * The class implementation of the item Bread
+ * @author Ariel Evangelista
+ *
+ */
 public class Bread implements Item {
 	
+	/**
+	 * The one any only one instance of the Inventory class
+	 */
 	private Inventory inv = Inventory.getInstance();
+	
+	/**
+	 * The drop chance of the item
+	 */
 	private double dropChance = 20;
+	
+	/**
+	 * The name of the item
+	 */
 	private String name = "Bread";
+	
+	/**
+	 * The type of the item
+	 */
 	private String type = "Food";
+	
+	/**
+	 * The initial count of the item
+	 */
 	private int itemCount = 1;
+	
+	/**
+	 * The price of the item
+	 */
 	private int price = 20;
 	
 	/**

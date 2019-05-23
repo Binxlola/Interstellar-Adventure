@@ -10,15 +10,38 @@ import management.*;
 */
 public class Planet {
 	
+	/**
+	 * The one and only one instance of the GameManager class
+	 */
 	private GameManager gameManager = GameManager.getInstance();
+	
+	/**
+	 * Reflects if a piece is already found on this planet
+	 */
 	private Boolean pieceFound = false;
+	
+	/**
+	 * The name of the planet
+	 */
 	private String planetName = ""; // randomly given from a list of names
+	
+	/**
+	 * Reflect if the planet is already visited by the player or not
+	 */
 	private boolean visited = false;
 	
+	/**
+	 * Constructor initializing the planet with name
+	 * @param name The name of the planet
+	 */
 	public Planet(String name) {
 		this.planetName = name;
 	}
 	
+	/**
+	 * String representation of the name of the planet
+	 * @return The name of the planet
+	 */
 	public String getName() {
 		return this.planetName;
 	}
@@ -36,8 +59,9 @@ public class Planet {
 		return String.format("%s (%s, %s.)", this.planetName, visitedString, partString);
 	}
 	
-	/*
-	 * Returns information about the planet exploration
+	/**
+	 * Information about the planet exploration
+	 * @return The string describing the exploration
 	 */
 	public String getInfo() {
 		String visitedString = "First time visit";
@@ -60,6 +84,9 @@ public class Planet {
 		this.visited = true;
 	}
 	
+	/**
+	 * Sets the planet as already found a ship part
+	 */
 	public void pieceFound() {
 		this.gameManager.partFound();
 		int scoreRoll = (int) (300 * new Random().nextDouble());

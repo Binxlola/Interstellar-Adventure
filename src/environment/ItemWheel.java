@@ -26,14 +26,29 @@ import java.util.List;
  */
 public class ItemWheel {
 	
-	private Environment env = Environment.getInstance();
-	private Planet currentPlanet = env.getSelectedPlanet();
+	/**
+	 * The list of all items of type potion
+	 */
 	private List<Item> potions = new ArrayList<Item>();
+	
+	/**
+	 * The list of all items of type food
+	 */
 	private List<Item> foods = new ArrayList<Item>();
+	
+	/**
+	 * The list of all items of type misc
+	 */
 	private List<Item> misc = new ArrayList<Item>();
 	
+	/**
+	 * The one and only one session of the ItemWheel class
+	 */
 	private static ItemWheel _session = null;
 	
+	/**
+	 * Constructor of ItemWheel class populating the lists of items with all available items in the game
+	 */
 	private ItemWheel() {
 		// Initialize list with all items
 		
@@ -63,10 +78,12 @@ public class ItemWheel {
 		foods.add(iceCream);
 		foods.add(meat);
 		misc.add(shipPart);
-
-		
 	}
 	
+	/**
+	 * Get one and only one instance of the ItemWheel class
+	 * @return The one and only one instance of the ItemWheel class
+	 */
 	public static ItemWheel getInstance() {
 		if(_session == null) {
 			_session = new ItemWheel();
@@ -74,7 +91,10 @@ public class ItemWheel {
 		return _session;
 	}
 	
-	// Randomly selects an item from all available items based on the weights(probabilities)
+	/**
+	 * Randomly selects an item from the list of all available items from the game
+	 * @return The item selected or null
+	 */
 	private Item rouletteSelect() {
 		
 		// 30%: Food, 20%: Potion, 20% Ship Part, 20% Money, 10% Nothing

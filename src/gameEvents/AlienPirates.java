@@ -19,17 +19,35 @@ import itemManagement.Item;
  */
 public class AlienPirates {
 	
+	/**
+	 * The one and only one instance of the Inventory class
+	 */
 	Inventory inv = Inventory.getInstance();
+	
+	/**
+	 * The list of all items in the player's inventory of type potion
+	 */
 	private List<Item> potions = inv.getPotions();
+	
+	/**
+	 * The list of all items in the player's inventory of type food
+	 */
 	private List<Item> foods = inv.getFoods();
+	
+	/**
+	 * The list of all items in the player's inventory of type misc
+	 */
 	private List<Item> misc = inv.getMisc();
 
+	/**
+	 * Constructor for the alien pirates calling initialize method
+	 */
 	public AlienPirates() {
 		initialize();
 	}
 	
 	/**
-	 * Initializes Alien Pirates Event
+	 * Initializes Alien Pirates Event and steal some items from the player's inventory
 	 */
 	private void initialize() {
 		
@@ -61,7 +79,7 @@ public class AlienPirates {
 				}
 			}
 			
-			if (stolenItem.getType() == "Ship Part") {
+			if (stolenItem.getName() == "Ship Part") {
 				JOptionPane.showMessageDialog(null, "Oh no! Alien Pirates boarded your ship and stole a Ship Part!"
 						+ "\nYou must not allow the warp drive to fall"
 						+ "\n             to the wrong hands!");

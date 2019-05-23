@@ -5,16 +5,33 @@ import java.util.List;
 import java.util.Random;
 
 import management.AddGameScore;
-import management.GameManager;
 
 public class Inventory {
 	
+	/**
+	 * The one and only one instance of the Inventory class
+	 */
 	public static Inventory _session = null;
+	
+	/**
+	 * The list of all the player's item of type potion
+	 */
 	private List<Item> potions = new ArrayList<Item>();
+	
+	/**
+	 * The list of all the player's item of type food
+	 */
 	private List<Item> foods = new ArrayList<Item>();
+	
+	/**
+	 * The list of all the player's item of type misc
+	 */
 	private List<Item> misc = new ArrayList<Item>();
 
-	private int wallet = 500;
+	/**
+	 * The current money of the player
+	 */
+	private int wallet = 0;
 
 	
 	/** Private constructor for Inventory class, and as such can only be created from inside. */

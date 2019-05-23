@@ -14,8 +14,16 @@ import crewManagement.CrewMember;
  */
 public class AbilityMedic {
 	
+	/**
+	 * The Crew instance of Crew class
+	 */
 	Crew crew = Crew.getInstance();
 
+	/**
+	 * Selects the first member other than the medic itself
+	 * who is below 50 health and heals them for 10 health
+	 * @param medic
+	 */
 	public AbilityMedic(CrewMember medic) {
 		boolean healed = false;
 		for (CrewMember crew: crew.getCrew()) {

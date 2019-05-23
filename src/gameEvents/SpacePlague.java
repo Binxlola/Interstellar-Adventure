@@ -14,14 +14,21 @@ import crewManagement.Crew;
  */
 public class SpacePlague {
 	
+	/**
+	 * The one and only one instance of the Crew class
+	 */
 	Crew crew = Crew.getInstance();
 
+	/**
+	 * Constructor for the Space Plague calling initialize method
+	 */
 	public SpacePlague() {
 		initialize();
 	}
 	
 	/**
-	 * Initializes the Space Plague Event
+	 * Initializes the Space Plague Event and infects an unlucky crew member
+	 * with all crew member having equal chances of getting infected
 	 */
 	private void initialize() {
 		
@@ -33,10 +40,12 @@ public class SpacePlague {
 		
 		for (int i = 0; i < crew.size(); i++) {
 			if ((random < (i+1)/total) && !infected && !crew.getCrew().get(i).isInfected())  {
-				infected = true;
-				crew.getCrew().get(i).setInfection();
-				JOptionPane.showMessageDialog(null, "There is an epidemic of Space Plague!"
-						+ "\n" + crew.getCrew().get(i).getName() + " " + crew.getCrew().get(i).getName() + " was infected!");
+				if (crew.getCrew().get(i).getHealth() > 0) {
+					infected = true;
+					crew.getCrew().get(i).setInfection();
+					JOptionPane.showMessageDialog(null, "There is an epidemic of Space Plague!"
+							+ "\n" + crew.getCrew().get(i).getType() + " " + crew.getCrew().get(i).getName() + " was infected!");
+				}
 			}
 		}
 	}

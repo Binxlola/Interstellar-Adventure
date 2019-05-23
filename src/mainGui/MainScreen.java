@@ -3,14 +3,32 @@ package mainGui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Represents the MainScreen (View) controller
+ * @author Jason Smit
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
+ */
 public class MainScreen {
 
+	/**
+	 * The current JFrame window for the game
+	 */
 	private JFrame frame;
+	
+	/**
+	 * The GUI manager to communicate with GameManager class
+	 */
 	private GuiManager manager;
+	
+	/**
+	 * The initial panel to be visible to the player
+	 */
 	private JPanel mainScreen;
 
 	/**
-	 * Create the application.
+	 * Create the application
+	 * @param incomingManager The GUI manager
 	 */
 	public MainScreen(GuiManager incomingManager) {
 		initialize();

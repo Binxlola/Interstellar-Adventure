@@ -17,15 +17,37 @@ import environment.Planet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the selection of planet to travel to
+ * @author Ariel Evangelista
+ * @version 1.0, May 2019.
+ */
+@SuppressWarnings("serial")
 public class TravelPlanetSelect extends JPanel {
 
+	/**
+	 * The managing MainScreen window
+	 */
 	private MainScreen window;
+	
+	/**
+	 * The one and only one instance of Environment class
+	 */
 	private Environment env = Environment.getInstance();
+	
+	/**
+	 * The label of the selected planet
+	 */
 	private JLabel planetLbl;
+	
+	/**
+	 * A list of all JButton representing the planets
+	 */
 	private List<JButton> planetBtns = new ArrayList<JButton>();
 	
 	/**
-	 * Create the panel.
+	 * Create the panel
+	 * @param incomingWindow The managing MainScreen class
 	 */
 	public TravelPlanetSelect(MainScreen incomingWindow) {
 		window = incomingWindow;

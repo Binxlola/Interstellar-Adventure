@@ -15,13 +15,24 @@ import crewAbilities.ActivateAbility;
 */
 public class Crew {
 	
+	/**
+	 * List of all current crew members
+	 */
 	private ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
+	
+	/**
+	 * The one and only one instance of crew
+	 */
 	private static Crew _session = null;
 	
 	private Crew() {
 		
 	}
 	
+	/**
+	 * The unique instance of Crew class
+	 * @return The instance of the Crew class
+	 */
 	public static Crew getInstance() {
 		if(_session == null) {
 			_session = new Crew();
@@ -70,10 +81,19 @@ public class Crew {
 		}
 		
 	}
+	
+	/**
+	 * Adds member to the list of current crew members
+	 * @param o The crew member to be added onto the list
+	 */
 	private void addMember(CrewMember o) {
 		crewMembers.add(o);
 	}
 	
+	/**
+	 * Get the list of current crew members
+	 * @return The list of current crew members
+	 */
 	public ArrayList<CrewMember> getCrew() {
 		return crewMembers;
 	}
@@ -106,6 +126,8 @@ public class Crew {
 				if (member.getHunger() >= 100) member.setHealth(member.getHealth() - 10);
 				if (member.getHealth() <= 0) {
 					member.setHealth(0);
+					member.setHunger(0);
+					member.setTiredness(0);
 					member.cureInfection();
 					JOptionPane.showMessageDialog(null, member.getType()
 							+ " " + member.getName()

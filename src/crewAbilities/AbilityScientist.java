@@ -18,10 +18,25 @@ import items.SpacePills;
  */
 public class AbilityScientist {
 	
+	/**
+	 * The Scientist Crew Member
+	 */
 	private CrewMember scientist;
+	
+	/**
+	 * The Inventory instance of Inventory Class
+	 */
 	private Inventory inv = Inventory.getInstance();
+	
+	/**
+	 * The SpaceShip instance of SpaceShip Class
+	 */
 	private SpaceShip ship = SpaceShip.getInstance();
 
+	/**
+	 * Pick a random method with 80% chance and 20% of nothing
+	 * @param crew The scientist member to execute tasks
+	 */
 	public AbilityScientist(CrewMember crew) {
 		scientist = crew;
 		double chance = new Random().nextDouble();

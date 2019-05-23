@@ -13,14 +13,42 @@ import mainGui.MainScreen;
 import management.AddGameScore;
 import crewManagement.CrewSelector;
 
+/**
+ * The class implementation of the item EnergyDrink
+ * @author Ariel Evangelista
+ *
+ */
 public class EnergyDrink implements Item {
 	
+	/**
+	 * The one any only one instance of the Inventory class
+	 */
 	private Inventory inv = Inventory.getInstance();
+	
+	/**
+	 * The drop chance of the item
+	 */
 	private double dropChance = 10;
+	
+	/**
+	 * The name of the item
+	 */
 	private String name = "Energy Drink";
+	
+	/**
+	 * The type of the item
+	 */
 	private String type = "Food";
+	
+	/**
+	 * The initial count of the item
+	 */
 	private int itemCount = 1;
-	private int price = 75;
+	
+	/**
+	 * The price of the item
+	 */
+	private int price = 120;
 	
 	/**
 	 * Will return the name the item

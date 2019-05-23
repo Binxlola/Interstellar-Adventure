@@ -7,12 +7,40 @@ import java.util.Objects;
  * @author Ariel Evangelista
 */
 public class Medic extends CrewMember {
+	
+	/**
+	 * Type of the Crew Member
+	 */
 	private final String type = "Medic";
+	
+	/**
+	 * Name of the Crew Member
+	 */
 	private String name = "";
+	
+	/**
+	 * Remaining Moves of the crew member
+	 */
 	private int memberMoves;
+	
+	/**
+	 * Remaining Health of the crew member
+	 */
 	private int memberHealth;
+	
+	/**
+	 * Current health state of the crew member
+	 */
 	private boolean infected = false;
+	
+	/**
+	 * Current hunger of the crew member
+	 */
 	private int memberHunger;
+	
+	/**
+	 * Current tiredness of the crew member
+	 */
 	private int memberTiredness;
 	
 	/**
@@ -58,7 +86,8 @@ public class Medic extends CrewMember {
 	 * This method will reload the crew members moves.
 	 */
 	public void resetMoves() {
-		this.memberMoves = 2;
+		if (getHealth() > 0) this.memberMoves = 2;
+		else this.memberMoves = 0;
 	}
 	
 	/**
