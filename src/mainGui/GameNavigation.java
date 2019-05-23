@@ -56,6 +56,54 @@ public class GameNavigation extends JPanel {
 		setBounds(0, 0, 1000, 600);
 		setLayout(null);
 		
+		// Create How to play button
+		JButton howToPlayBtn = new JButton("Information");
+		howToPlayBtn.setBounds(60, 500, 140, 30);
+		howToPlayBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "\nA. How to win\r\n" + 
+						"		i.   Find all the missing Ship Parts within a given number of days\r\n" + 
+						"\r\n" + 
+						"	B. How to lose\r\n" + 
+						"		i.   Reach the end of the given days with missing Ship Parts\r\n" + 
+						"		ii.  Let all the crew members die\r\n" + 
+						"		iii. Let your ship be destroyed\r\n" + 
+						"\r\n" + 
+						"	C. Game Setup\r\n" + 
+						"		i.   You can pick the duration of the game between 3 to 10 days\r\n" + 
+						"		ii.  You can pick the number of crew between 2 to 4 members\r\n" + 
+						"		iii. You need to pick a ship name, ship icon, crew name and types for your team\r\n" + 
+						"\r\n" + 
+						"	D. Abilities\r\n" + 
+						"		i.   Captain   - the leader of the team gets an extra move each day (3 moves)\r\n" + 
+						"		ii.  Engineer  - the one who can repair the ship  for 20 more efficiently than anyone else\r\n" + 
+						"		iii. Medic     - heals (10hp) a person who is below 50 health each day.\r\n" + 
+						"		iv.  Pilot     - the ace of the team, if you let him fly, he avoid rocks in the sky\r\n" + 
+						"		v.   Scientist - the madman who constantly do bizzare experiments each day\r\n" + 
+						"		vi.  Scout     - the pathfinder, scavenger, he can get more for searching!\r\n");
+				JOptionPane.showMessageDialog(null, "	E. Random Events\r\n" + 
+						"		i.   Asteroid Belt - There is a chance of passing through an asteroid belth when\r\n" + 
+						"			travelling to another planet\r\n" + 
+						"		ii.  Alien Pirates - Each day there is a chance of some Alien Pirates boarding your ship\r\n" + 
+						"			stealing your chips!\r\n" + 
+						"		iii. Space Plague - A space plague that constantly infects the universe, there is no\r\n" + 
+						"			vaccine available for this but Space Pills does the job\r\n" + 
+						"\r\n" + 
+						"	F. Items\r\n" + 
+						"		i.    Bread: -30 Hunger\r\n" + 
+						"		ii.   Chips: -10 Hunger\r\n" + 
+						"		iii.  Meat: -50 Hunger\r\n" + 
+						"		iv.   Ice Cream: -40 Hunger\r\n" + 
+						"		v.    Water: - 15 Hunger\r\n" + 
+						"		vi.   Energy Drink: +1 Move\r\n" + 
+						"		vii.  Small HP: +40 Health\r\n" + 
+						"		viii. Large HP: +70 Health\r\n" + 
+						"		ix.   Space Pills: Cures Space Plagues\n\n");
+			}
+		});
+		add(howToPlayBtn);
+		
+		
 		// Labels for day
 		JLabel dayLbl = new JLabel("DAY " + gameManager.getCurrentDay() + " OF " + gameManager.getGameDuration());
 		dayLbl.setFont(new Font("Unispace", Font.PLAIN, 15));
