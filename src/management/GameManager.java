@@ -114,11 +114,11 @@ public class GameManager {
 		this.gameResult = result;
 		this.gameComment = message;
 		int extraScore = 0;
-		extraScore += (getGameDuration() - getCurrentDay()) * 3000;
+		if (this.gameResult) extraScore += (getGameDuration() - getCurrentDay()) * 3000;
 		extraScore += ((10 - getGameDuration()) * 500);
 		extraScore += (getPartsToFind() * 100) * (getPartsFound() / getPartsToFind());
 		extraScore += crew.getAlive() * 100;
-		extraScore += ((4 - crew.size()) * 10000);
+		if (this.gameResult) extraScore += ((4 - crew.size()) * 10000);
 		extraScore += inv.getCoins() * 5;
 		for (Item item: inv.getFoods()) {
 			extraScore += item.getPrice() * item.getCount() * 5;
