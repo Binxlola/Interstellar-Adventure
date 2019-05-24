@@ -95,7 +95,7 @@ public class AlienPirates {
 					JOptionPane.showMessageDialog(null, "Oh no! Alien Pirates boarded your ship and stole " + stolenItem.getName() + "!");
 				}
 				
-				stolenItem.deductCount();
+				inv.deductItem(stolenItem);
 			} else new AlienPirates();
 		}
 	}
