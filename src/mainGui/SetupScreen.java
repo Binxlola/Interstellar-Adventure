@@ -185,8 +185,8 @@ public class SetupScreen {
 		
 		// Create a label field that will act as an image holder for the game logo
 		JLabel gameLogo = new JLabel("");
-		gameLogo.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/game_logo.png")));
-		gameLogo.setBounds(0, 0, 984, 348);
+		gameLogo.setIcon(new ImageIcon(SetupScreen.class.getResource("/images/game_logo.jpg")));
+		gameLogo.setBounds(0, 0, 984, 450);
 		setup1.add(gameLogo);
 		
 		// Create setup3 before setup2's Next Button creation
