@@ -9,6 +9,5 @@ The theme of the game is that a crew are stranded somewhere in space as their sh
 
 Personally I had a great deal of fun working on this project. This is why I plan to continue development on the project, enchance the inventory and shop experience. While adding a few more engaging features, such as ship battles and alien brawls where the player is able to make desicions that will help define the outcome of the event. The game could also do with some work on it's visual appeal with some images and art work.
 
-![alt text](https://raw.githubusercontent.com/Binxlola/Interstellar-Adventure
-/Master/showcase_images/main.jpg)
+![alt text](showcase_images/main.jpg)
 
